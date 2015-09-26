@@ -1,0 +1,158 @@
+% 17
+@article{pascanu2015revisiting,
+	author={Pascanu, Razvan and Bengio, Yoshua},
+	title={Revisiting natural gradient for deep networks},
+	year={2015},
+	booktitle={arXiv},
+	annote={This paper looks at using the natural gradient instead of the loss function gradient for training deep neural networks. The natural gradient uses the geometry of the underlying parameter manifold. The parameter manifold refers to a Riemannian manifold defined by the family of density functions, F, that map parameters to probability density functions. The KL-divergence is a distance metric on this manifold. Natural gradient methods try to move along this manifold by adjusting the gradient of the loss function using the local curvature of the KL-divergence surface. Approximations are used which are only meaningful around theta but if small enough steps are taken (a trust region is set) it works. Some properties of Natural Gradient Descent (NGD) are that it can be used online and is robust to local reparameterizations (e.g. whitening I think). The first has to do with the fact that target values are not needed to compute the metric value of NGD. This means unlabeled data can be used to improve generalization. Using this unlabeled data acts as a regularizer. NGD is also robust to the order that the training data is presented in. Experimental results demonstrate the practical significance of NGD.}
+}
+
+% 16
+@article{Hermann2015teaching,
+	author={Hermann, Karl Moritz and Kocisky, Tomas and Grefenstette, Edward and Espeholt, Lasse and Kay, Will and Suleyman, Mustafa and Blunsom, Phil},
+	title={Teaching Machines to Read and Comprehend},
+	year={2015},
+	booktitle={arXiv},
+	annote={The main contribution of this paper seems to be a large data set for teaching machines to read. Summary and paraphrase sentences are converted to context-query-answer triplets using entity detection and anonymisation algorithms. This approach is used on a million news stories from the Daily Mail and CNN websites. Then different methods are evaluated on this data set. Two state-of-the-art NLP systems and three neural models are evaluated. The neural models outperform the NLP systems. The neural models are a deep LSTM, an attentive reader (attention mechanism with a bidirectional LSTM) and an impatient reader which rereads the document as it receives input. The impatient reader performs the best. This shows that neural models can maintain a context as it reads the document and carry information over distance (e.g. not forgetting the first words read).}
+}
+
+% 15
+@article{schulman2015gradient,
+	author={Schulman, John and Heess, Nicolas and Weber, Theophane and Abbeel, Pieter},
+	title={Gradient Estimation Using Stochastic Computation Graphs},
+	year={2015},
+	booktitle={arXiv},
+	annote={This work introduces the formalism of stochastic computation graphs which include both deterministic functions and conditional probability distributions. The idea is that it could help develop models that involve a combination of stochastic and deterministic operations. Examples of each:
+- Back propagation is only for when the loss function is deterministic and differentiable in terms of the parameters.
+- Some problems require optimizing loss functions that involve expectation over random variables such as policy gradient reinforcement learning.
+Contributions: 1) Introduce stochastic computation graphs and derive an unbiased estimate of the gradient of the expected loss, 2) Show how estimator can be computed as the gradient of a differentiable surrogate loss function (so back prop can be used), 3) describe variance reduction techniques that can be applied in the stochastic computation graph setting, and 4) Show how to extend some other optimization techniques to this setting.
+The formalism consists of input nodes (inputs and parameters that are differentiated with respect to), deterministic nodes (functions of parents), and stochastic nodes (distributed conditional on parents). In addition, some deterministic nodes can be denoted as costs. Then a gradient estimate for the costs with respect to the inputs can be made. They derive this estimator and show how it can be computed by differentiating a surrogate loss function. In order to do this they prove some theorems that allow stochastic graphs to be converted into deterministic graphs from which backprop can be applied. An algorithm is given for determining the gradient estimator given a stochastic computation graph. Finally, the paper gives examples for using stochastic computation graphs with problems of interest such as variational inference, variational autoencoders, and policy gradient reinforcement learning for MDPs or POMDPs. The variance reduction technique is adding a baseline to all stochastic nodes.}
+}
+
+% 14
+@article{desjardins2015natural,
+	author={Desjardins, Guillaume and Simonyan, Karen and Pascanu, Razvan and Kavukcuoglu, Koray},
+	title={Natural Neural Networks},
+	year={2015},
+	booktitle={arXiv},
+	annote={This paper introduces an algorithm for training neural networks that modifies the network parameters to improve conditioning of the Fisher Information Matrix (FIM). This speeds up convergence. The FIM measures covariance between parameters. A block diagonal FIM for a neural network means that parameters are independent of parameters in other layers. This paper seeks a method for reparameterizing a neural network so its FIM is constrained to the identity matrix (i.e. all parameters are independent). The contributions of this paper are introducing the reparameterization technique based on whitening (and justifying it theoretically) and unifying many heuristics for training neural networks under the natural gradient. The introduced learning algorithm is projected natural gradient descent (PRONG). The algorithm uses eigen-decomposition to get a whitening matrix from the covariance matrix. These whitening parameters are estimated directly from model statistics (mean and covariance) and are not learned like the model parameters are. Updating the whitening parameters is computationally expensive but can be amortized over multiple updates so the whitening parameters need only be computed every T updates. The authors show that there exists a duality between the canonical model parameters (actual weights) and the models of the whitened neural network. They also show how their work relates to Mirror descent. The method is evaluated on unsupervised (training an autoencoder) and supervised (training a CNN). Both experiments showed PRONG converged faster. PRONG also showed better generalization possibly because natural gradient descent can leverage unlabeled data for better generalization (Not sure how - reading the paper they cite). Future work includes trying to bridge the gap between deep learning and online convex optimization.}
+}
+
+% 13
+@inproceedings{mnih2014recurrent,
+	author={Mnih, Voldymyr and Heess, Nicolas and Kavukcuoglu, Koray},
+	title={Recurrent Models of Visual Attention},
+	year={2014},
+	booktitle={NIPS},
+	annote={This research aims to reduce the computational requirements of object recognition by modeling visual attention as a reinforcement learning problem. The introduced model (RAM) processes a sequence of glimpses at high resolution and uses the glimpses to build up an internal representation of the image. Policy gradient methods are used for training a neural network that decides where the next glimpse should be. This model is based on human vision as humans process a sequence of foveations instead of the image as a whole all at once. Furthermore, the glimpse policy is task dependent. The model is a recurrent network that builds up its own internal representation of the image. The model is trained end to end with policy gradient used for the non-differentiables in the control policy and back prop used for the neural network parts. For controls tasks REINFORCE is always used for all components. Back prop only works when the correct action is known as in image classification. The components of the model are as follows. The sensor takes a bandwidth limited input image and produces a glimpse feature vector. This glimpse feature vector is input to the recurrent internal state model. At each step the agent performs two actions: deciding where to look next and what environmental action to take. After taking an action the agent gets a new observation and receives a scalar reward. Previous methods to reduce computation use a sliding window approach or try to detect saliency. The network is evaluated on MNIST digit classification, MNIST non-centered, cluttered and non-centered MNIST, and on a toy control task (similar to pong). The network is compared against convolutional networks and shown to perform better. Most importantly the amount of computation can be controlled independently of the size of the input image.}
+}
+
+% 12
+@inproceedings{ba2015multiple,
+	author={Ba, Jimmy Lei and Mnih, Volodymyr and Kavukcuoglu, Koray},
+	title={Multiple Object Recognition with Visual Attention},
+	year={2015},
+	booktitle={International Conference on Learning Representations, ICLR},
+	annote={This paper presents an attention based model for recognizing multiple objects in images. Standard CNNs that process an entire image at once suffer from poor training and testing computation. For this reason they fail to scale well to large images. Frequently this requires integrating it with a separately trained sequence detector. In contrast, the architecture her processes multi-resolution cropped portions of the image called glimpses. At each glimpse the network adds to its internal representation of the image which is maintained with a recurrent neural network. The model learns where to look and where to recognize. The model has five components. A glimpse network receives a glimpse at two different scales and a location and outputs a feature vector for the glimpse and location. The recurrent network has two recurrent layers and receives input from the glimpse network. The emission network takes as input the top layer of the recurrent network and outputs the next glimpse location. The context network takes as input a down sampled version of the entire image and initializes the top layer of the recurrent network. The classification network outputs a prediction for the class label from the state of the lower recurrent layer. The cross entropy objective function is used. It is approximately optimized and this is shown to be equivalent to using the REINFORCE learning rule. The network is evaluated on learning to find digits in cluttered MNIST, learning to add two MNIST digits, and to read house numbers. The model outperforms standard CNNs and the earlier RAM model proposed by Mnih et. al. DRAM is the model in this paper (Differentiable recurrent attentave model). The paper also shows that their model uses substantially less parameters than a 10 layer CNN.}
+}
+
+% 11
+@article{graves2014neural,
+	author={Graves, Alex and Wayne, Greg and Danihelka, Ivo},
+	title={Neural Turing Machines},
+	year={2014},
+	booktitle={arXiv},
+	annote={}
+}
+
+% 10
+@inproceedings{le2012building,
+	author={Le, Quoc V. and Ranzato, Marc'Aurelio and Monga, Rajat and Devin, Matthieu and Chen, Kai and Corrado, Greg S. and Dean, Jeff and Ng, Andrew Y.}
+	title={Building High-level Features Using Large Scale Unsupervised Learning},
+	year={2012},
+	booktitle={International Conference on Machine Learning (ICML)},
+	annote={This paper considers whether it is possible to learn high level features from unlabeled data. The approach is to build a nine layered locally connected sparse autoencoder with 1 billion connections on 10 million images. The network is trained with asynchronous SGD on 1000 machines. The idea is that a lot of data will allow the model to learn high level features. The network does result in high level features (face, cat, human body) and acheived a 70 percent improvement on the state of the art for unsupervised object recognition. Practical purpose of this is developing features from unlabeled data since most real world data is unlabeled. It also attempts to answer the question of whether or not a 'grandmother' neuron could be learned from unlabeled data.}
+}
+
+% 9
+@article{gregor2014Draw,
+	author={Gregor, Karol and Danihelka, Ivo and Graves, Alex and Wierstra, Daan},
+	title={DRAW: A Recurrent Neural Network for Image Generation},
+	year={2014},
+	journal={arXiv},
+	annote={This paper presents a novel neural network architecture for image generation. As opposed to generating the image in a single pass, the network iteratively changes part of the image canvas. The main components of the network are an encoder network for compressing images during training and a decoder that reproduces images after receiving codes. These networks belong to the family of variational auto-encoders which are something I should no about. The decoder iteratively emits modifications which are observed by the encoder. An image can be better characterized by a sequence of partial glimpses (foveations). Challenge is knowing where to look but the authors introduce a differentiable attention mechanism. The autoencoder passes a sequence of code samples to the decoder and is also privy to the decoder's previous outputs. The attention mechanism determines what the encoder reads and where the decoder writes. The encoder is not used in image generation but only in training. The attention model parameters are output by the decoder. They determine where and how much to zoom. Experimental results are state of the art for MNIST generation. Also gave results for cluttered MNIST classification, MNIST generation with two digits, street view house number generation, and CIFAR image generation.}
+}
+
+% 8
+@article{bengio2014representation,
+	author={Bengio, Yoshua and Courville, Aaron and Vincent, Pascal},
+	title={Representation Learning: A Review and New Perspectives},
+	year={2014},
+	journal={arXiv},
+	annote={This paper surveys work in unsupervised feature learning and deep learning. Feature learning refers to extracting useful information that improves the performance of prediction algorithms. Section 3 is particularly interesting in that it talks about what makes a representation good. This section identifies priors for AI research such as smoothness and sparsity. A large part of the paper then discusses how deep networks can be viewed as probabilistic models or computational models. Representation learning can also be viewed as manifold learning. Section 10 discusses global training of deep models.}
+}
+
+% 7
+@inproceedings{Yang2015Deep,
+	author={Yang, Shuo and Luo, Ping and Loy, Chen Change and Shum, Kenneth W. and Tang, Xiaoou},
+	title={Deep Representation Learning with Target Coding},
+	year={2015},
+	booktitle={AAAI},
+	annote={In supervised deep learning the usual labels are encoded using a 1-of-k encoding (e.g. 0,1 or 1,0). The contribution of this paper is an analysis of the relationship between encoding and the features learned. The authors use a Hadamard coding and show that it is better at encouraging discriminative features. The Hadamard coding helps with error correcting, better separability, and also maintains that every class is equally far from the others. Experimental evaluation is conducted by training the same CNN architechture using the different encodings. The different encoding is helpful for distinguishing similar categories. The evaluation also includes extracting the learned features and using them with k-NN to classify data. The paper demonstrates that class label encoding is important for labeling discriminative features.}
+}
+
+% 6
+@article{Dauphin2015RMSProp,
+	author={Dauphin, Yann N. and Vries, Harm de and Chung, Junyoung and Bengi, Yoshua},
+	title={RMSProp and equilibrated adaptive learning rates for non-convex optimization},
+	year={2015},
+	booktitle={arXiv},
+	annote={One challenge with stochastic gradient descent is how to adapt the learning rate to speed up learning for neural networks. Preconditioning is a way to locally change the geometry of the objective function to speed up convergence. Adaptive learning rates is one way to do this. Equilibration is a method for doing this that has been shown to work well. This paper shows that the RMSProp algorithm approximates equilibration. RMSProp involves calculating the Hessian matrix but the authors show that the absolute value of the Hessian is better for non-convex problems. The authors than introduce an algorithm that computes an unbiased estimate of the equilibration preconditioner. RMSProp approximates a biased estimate. The new method has better performance on non-convex problems.}
+}
+
+% 5
+@article{Pascanu2014Saddle,
+	author={Pascanu, Razvan and Dauphin, Yann N. and Ganguli, Surya and Bengio, Yoshua},
+	title={On the saddle point problem for non-convex optimization},
+	year={2014},
+	booktitle={arXiv},
+	annote={This paper presents evidence that the biggest problem in using stochastic gradient descent to train deep neural networks is not local minima in the error function but instead saddle points. Evidence is taken from statistics and random matrix theory and shows that with high probability in a high dimensional space a critical point is a saddle point. Since most quasi-Newton methods are for quickly descending to the bottom of a convex optimization problem they lose theoretical justification in non-convex high dimensionalal problems. The authors propose a new method, "saddle-free Newton method" whose justification is on its ability to escape saddle points quickly. Theoretical results are given and the new method is experimentally compared with the Damped Newton method and basic stochastic gradient descent. The tests are performed on a scaled down version of the MNIST data set. Saddle-free Newton converged to the minimum in fewer epochs.}
+}
+
+% 4
+@inproceedings{Balduzzi2015Kickback,
+	author={Balduzzi, David and Vanchinathan, Hastagiri and Buhmann, Joachim},
+	title={Kickback cuts Backprop's red-tape: Biologically plausible credit assignment in neural networks},
+	year={2015},
+	booktitle={AAAI},
+	annote={Weight updates in backpropogation require separate output and error signals from neurons. In contrast, biological neurons only have one output signal.}
+}
+
+% 3
+@article{ClockworkRNN,
+	author={Koutnik, Jan and Greff, Klaus and Gomex, Faustino and Schmidhuber, Jurgen},
+	title={A Clockwork RNN},
+	year={2014},
+	booktitle={arXiv},
+	annote={A new type of RNN. Purpose is to match performance of a LSTM network but reduce the number of parameters of the network. RNNs have struggled to live up to their theoretical ability to cope with temporal dependencies when a long-term memory is required. Clockwork RNN (CW-RNN) reduces the number of RNN parameters while improving performance. Essentially, the architecture divides the hidden layer into different modules. Each modules is updated at a different clock rate. Faster modules have slower modules as inputs. This gives the network a memory. Output and error signals at time $t$ only depend on modules that operated at time $t$. Experiments on TIMIT dataset and audio signal generation show that CW-RNN outperforms LSTM.}
+}
+
+% 2
+@article{Hinton2007Learning,
+	author={Hinton, Geoffrey E.},
+	title={Learning multiple layers of representaiton},
+	year={2007},
+	journal={Trends in Cognitive Sciences},
+	volume={11},
+	number={10},
+	annote={This article reviews different methods of learning generative models. Neural networks can contain bottom-up recognition connections or top-down generative connections. The distribution that the generative model represents matches the distribution of the training data. Training data in this context is not labeled. A generative model can be learned that does not require labeled data and then supervised learning can be used to fine-tune the network to be able to classify. The review coveres multi-layer generative models and restricted boltzmann machines. Training algorithms are also discussed.}
+}
+
+% 1
+@inproceedings{Graves2013Speech,
+	author={Graves, Alex and Mohamed, Abdel-rahman and Hinton, Geoffrey},
+	title={Speech Recognition with Deep Recurrent Neural Networks},
+	year={2013},
+	booktitle={ICASSP},
+	annote={This paper combines learning multiple layers of representation with a bidirectional LSTM network. A bidirectional LSTM processes input in both the forward and backward direction using two separate hidden layers. This allows the network to take advantage of future context as well as previous context. For training they look at two methods for defining the output distribution. One is Connectionist temporal classification (CTC) which defines a softmax layer for outputing the conditional probability of each phoneme at a given time step. The other method is to have a separate RNN (A RNN ransducer) which predicts the current phoneme given the previous ones. A modification to this approach is that the hidden layers of both RNNs are fed into a seperate feed forward network. For regularization, random weight noise and early stopping were used. Acheived best performance to date on TIMIT phoneme recognition benchmark. }
+}

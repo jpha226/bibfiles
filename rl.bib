@@ -1,0 +1,269 @@
+
+% 29
+@inproceedings{thomas2015policy,
+	title={High Confidence Policy Improvement},
+	author={Thomas, Philip S. and Theocharous, Georgios and Ghavamzadeh, Mohammad},
+	year={2015},
+	booktitle={Proceedings of the 32nd International Conference on Machine Learning, ICML},
+	annote={This paper presents RL algorithms that provide probabilistic lower bounds on each policy that they find. This is in the thread of finding safe policies. They assume the problem is a POMDP and it is stationary. They can then define an algorithm to be safe if it only proposes policies that meet the lower bound or semi-safe if it does this but relaxes these assumptions. They propose several confidence intervals for high confidence off-policy evaluation (see their other paper from this year).}
+}
+
+% 28
+@inproceedings{thomas2015off-policy,
+	title={High Confidence Off-Policy Evaluation},
+	author={Thomas, Philip S. and Theocharous, Georgios and Ghavamzadeh, Mohammad},
+	year={2015},
+	booktitle={Association for the Advancement of Artificial Intelligence, AAAI},
+	annote={This paper proposes a method for off-policy evaluation with high confidence in the lower bound of the evaluated policy's performance. Given trajectories from other policies, importance sampling can be used to estimate the expected value of a policy. Concentration inequalities can be used to get a lower bound on the expected return. This paper proposes a new concentration inequality specifically for the policy evaluation setting. The paper reviews a few existing concentration inequalities and then combines two of them to obtain a new tight bound which is applicable to non identically distributed random variables (e.g. returns from different policies) and doesn't depend on the range of the variables. The bound is proven and experimental results show its performance.}
+}
+
+
+% 27
+@inproceedings{schulman2015trust,
+	title={Trust Region Policy Optimization},
+	author={Schulman, John and Levine, Sergey and Moritz, Philipp and Jordan, Michael and Abbeel, Pieter},
+	year={2015},
+	booktitle={International Conference on Machine Learning, ICML},
+	annote={This paper presents a policy update scheme with monotonic improvement and then introduces a finite sample approximation for large scale problems. The policy update scheme is theoretically derived. A previous result had derived the correct direction for monotonic improvement but required a very small step size to guarantee performance. The bound also only applies to mixed policies but this work extends it to all policy classes. A surrogate loss function is introduced which is the loss function with a penalty for the KL-divergence between the current policy and the updated policy. Minimizing the surrogate loss guarantees improvement for all policy classes. Then they change the KL-divergence penalty to a constraint which allows larger steps to be made. The final optimization problem is minimize the loss function such that the average KL divergence is less than a constraint. The objective and constraint function are approximated using Monte Carlo simulations. Two methods for this are given, the standard single path method and a new vine method that can be used if the system can be set to an arbitary state. Experiments compare against a variety of gradient based and gradient free methods on several simulated robotics tasks and Atari games. On experiments the algorithm performed better than the others. On Atari games they compare against the DeepMind workshop paper with DQN which outperforms them on most game. However, this demonstrates the generality of the method for learning policies. Future work could include recurrent neural network policies or combining with model based RL.}
+}
+
+% 26
+@inproceedings{cutler2014reinforcement,
+	title={Reinforcement Learning with Multi-Fidelity Simulators},
+	author={Cutler, Mark and Walsh, Thomas J. and How, Jonathan P.},
+	year={2014},
+	booktitle={IEEE Conference on Robotics and Automation, ICRA},
+	annote={This paper presents a framework (and two algorithms) for learning from multiple simulators where simulators can be ordered in terms of fidelity to a goal simulator or the real world. The method involves transferring Q-values to higher fideltiy simulators and using high fidelity samples to improve the models of lower fidelity simulators. Three things the framework does are 1) uses low fidelity simulators to eliminate sub-optimal actions, 2) minimizes real world samples, and 3) limits total samples. Specifically the number of samples in a simulator is polynomial in the number of samples from the previous simulator. Theoretical results are given for the family of KWIK (knows what it knows) learners. A simulator is defined as an MDP and fidelity is measured in terms of how much the optimal Q-values differ between successive simulators. Access to simulators is limited to running trajectories, not random access. Theoretical proofs are given and empirical results provided for a multi-armed bandit problem and a RC car on a race track. Results show that this method is better than unidirectional transfer in terms of number of samples needed. The low fidelity simulators eliminate policies that are clearly sub-optimal and then higer fidelity simulators eliminate policies that are problematic with higher fidelity.}
+}
+
+% 25
+@article{schulman2015high,
+	title={High-Dimensional Continuous Control Using Generalized Advantage Estimation},
+	author={Schulman, John and Moritz, Philipp and Levine, Sergey and Jordan, Michael I. and Abbeel, Pieter},
+	year={2015},
+	booktitle={arXiv},
+	annote={The equation for the policy gradient estimate can take on several different forms. The form with the least amount of variance uses the advantage function. However the advantage function is hard to compute in practice. This paper introduces a method for estimating the advantage function while introducing a small amount of bias. This estimate is computed using a discounted sum of temporal difference residuals. Furthermore, the bias-variance tradeoff is parameterized for the purpose of interpolating between higher bias or higher variance. The estimation scheme is termed the generalized advantage estimator (GAE). Empirically, it is shown to have faster policy improvement than REINFORCE or actor-critic methods. This paper provides a novel analysis of GAE, proposes the use of trust region optimization methods for the value function (represented as a large neural network), and give empirical results for the combination of these two. Part of the analysis is an interesting interpretation of the estimate in terms of cost-shaping and a response function (decomposing the advantage function over time steps). This is used to build intuition for the introduction of bias. With this new gradient estimate, trust region policy optimization is used for optimizing the policy. Experimental results are given which show how the bias-varience parameters affect the underlying algorithm. Intermediate values are shown to be best. In the experiments, neural network policies are trained for bipedal and quadrapedal walking and a biped standing up. An idea for future work is to allow the policy and value function to share function approximators so that features of the input could be learned.}
+}
+
+% 24
+@article{barth-maron2015learning,
+	title={Learning Deep State Representations with Convolutional Autoencoders},
+	author={Barth-Maron, Gabriel and Tellex, Stefanie},
+	year={2015},
+	booktitle={Master's Thesis},
+	annote={The method in this paper is to learn a lower dimensional representation of the state space. Then other function approximation techniques can be used with this new representation. Essentially it is automatic generation of features for reinforcement learning. The evaluation environment state can be described by an x,y coordinate but the agent receives an 80x20 image from its location. For dimensionality reduction various types of autoencoders are used - normal, stacked, convolutional (no pooling). The training set was every feasible image for the small domain. I don't think this would scale... Experiments used Gradient Descent SARSA. The baseline was given the true x,y position and thus provides an upperbound on performance. The convolutional autoencoder performed best. The autoencoders and conv autoencoders converged in a similar number of episodes as the baseline. However it appears that the non-baseline episodes involved more steps. Each episode had a maximal step number of 10,000 and the domain only had 20 grid cells so an agent could easily explore everywhere very quickly. Stacked autoencoders did not perform well because they did not learn a good representation.}
+}
+
+% 23
+@inproceedings{legg2011approximation,
+	title={An Approximation of the Universal Intelligence Measure},
+	author={Legg, Shane and Veness, Joel},
+	year={2011},
+	booktitle={Solomonoff Memorial Conference}
+	annote={This paper is concerned with the problem of defining and computing intelligence. The Universal Intelligence Measure is a formal definition of intelligence that is specified mathematically and is highly general. It is also not anthropocentric. This paper seeks an approximation of the UIM since the UIM is not computable. The measure is computed based on the sum of the expected reward for an agent over all computable reward bounded environments. The measure is continuous unlike the pass or fail Turing test. The metric defined in this paper is the Algorithmic Intelligence Quotient (AIQ). AIQ is defined as the expected value of an agent's policy over N randomly samped programs that define environments. The reference machine (essentially the language of the program) is the BF reference machine. It has a very small number of symbols and programs are always syntactically valid. Note that the choice of reference machine introduces bias into what environments will be created. Consider a Prolog reference machine. The environments would have a clear logical structure. The authors evaluated MC-AIXI (approximation to AIXI), two variants of Q-learning, and an agent that automatically adapts its learning rate. The agents performed as expected with MC-AIXI at the top. The sampling scheme was also inspected and found to be working with shorter programs being more likely and longer ones less likely.
+AIXI - the most intelligent agent under the UIM. Converges to optimal if possible.}
+}
+
+% 22
+@inproceedings{nair2015massively,
+	title={Massively Parallel Methods for Deep Reinforcement Learning},
+	author={Nair, Arun and Srinivasan, Praveen and Blackwell, Sam and Alcicek, Cagdas and Fearon, Rory and De Maria, Alessandro and Panneershelvan, Vedavyas and Suleyman, Mustafa and Beattie, Charles and Petersen, Stig and Legg, Shane and Mnih, Volodymyr and Kavukcuoglu, Koray and Silver, David},
+	year={2015},
+	booktitle={ICML Deep Learning Workshop}
+	annote={The DQN architecture (Mnih et. al.) had a long training time on a single machine architecture. This work implements a distributed version of DQN to speed up training time. This is similar to the DistBelief (Dean et. al. 2012) architecture for training large neural networks. The architecture involves parallel actors for generating new behavior, parallel learners training from experience, distributed replay memory, and a distributed value function approximator. The different actors can use slightly different policies which means each will see a different distribution of training data. The actors update their Q network from the central server not a particular learner. A central parameter server has a master copy of the model. It receives gradients from the learners and uses these to update its model. The replicas take mini-batches of experience and calculate gradients. Periodically they update themselves with the master parameters. Learners sample from either local or global replay memory. The simplest instantiation of the model has a one-to-one mapping between actors and learners. In this case the actor generates the local replay memory for the learner. When the master server receives gradients if they are not recent enough they will be discarded. This is to deal with network slowdown of any other problem that could arise in distributed learning. In experimental evaluation, Gorila DQN outperforms DQN on 41 of 49 Atari games. It also trained by an order of magnitude faster. The paper does not offer an explanation for the 8 games that Gorila DQN did not outperform DQN on.}
+}
+
+% 21
+@inproceedings{schaul2015universal,
+	title={Universal Value Function Approximation},
+	author={Schaul, Tom and Horgan, Dan and Gregor, Karol and Silver, David}
+	year={2015},
+	booktitle={International Conference on Machine Learning, ICML},
+	annote={A standard value function approximator maps states to values given its parameters. This paper is concerned with constructing a universal value function approximator (UVFA) which maps states and goals to values. A UVFA generalizes over both states and goals. A UVFA is a generalization of the Horde architecture which constucts a discrete set of value functions. Different value functions allow for creating sets of options to achieve different goals. The universal refers to generalizing over a discrete set of goal states, the power set of these states, a set of continuous goal regions or a vector representation of pseudo-reward functions. The method involves creating a sparse table with observed states as rows and observed goals as columns. Then a low rank factorization of this table is found which gives state and goal embeddings. Then a MLP can be trained to compute these embeddings and the embeddings combined with a dot product operator (or some other symmetric function). The combined result is the value for that state and goal. This architecture can interpolate between similar goals and extrapolate to new parts of the state space. The extrapolation result is due to sharing features between the state and goal networks. These tests are done in a supervised learning setting. To extend to reinforcement learning, the Horde architecture is used to learn a value function for a set of goals and use this to seed the data tablefor learning the UVFA. One challenge with this is that the behavior policy shapes what data is seen as the environment is explored. Experimental results on the Ms. Pacman domain show that a UVFA trained from a small Horde can approximate the knowledge of a much larger Horde. A method for directly bootstrapping from  Q-learning is also presented. Important to note that MDP dynamics remain the same in this approach. Only the goal changes. A UVFA could also be used to generate temporarily abstract options.}
+}
+
+% 20
+@article{stadie2015incentivizing,
+	title={Incentivizing Exploration in Reinforcement Learning with Deep Predictive Models},
+	author={Stadie, Bradly C. and Levine, Sergey and Abbeel, Pieter},
+	year={2015},
+	booktitle={arXiv},
+	annote={This paper present a method for assigning exploration bonuses in high dimensional reinforcement learning problems. This method learns a model of the system dynamics and rewards based on novelty. Novelty is based on how much a given state disagrees with the model. Instead of enumerating all possible states, an autoencoder is used to learn a lower dimensional representation of states. Even with a good representation it would be intractable to maintain a table of visitation frequencies (as in Bayesian RL). Instead a model of the task dynamics is used to determine novelty of a state. If the model can reliably predict for a given state action pair it is no longer novel. Using a function approximator for the model together with the learned representation means that similar states can be grouped together. Then if two states are trivially different from another then the model can generalize over them. The model is retrained every epoch and the representation autoencoder is trained every 5 epochs. The exploration bonus makes the task non-stationary but in practice this did not cause problems. [This is because the value of states can change over time. So the optimal policy and hence the state distribution would change as well.] Two types of AE tested: static and dynamic meaning pre-trained or re-trained during task. The model takes the state and action as input and tries to predict the next state. The model is a relatively shallow feed forward network. The method is incorporated into DQN and compared against DQN. The authors compare against their own implementation of DQN as opposed to the Deepmind reported scores (also only trained for 100 epochs). The new method improved upon DQN scores in many games that have been challenging. It would be nice to see a more apples to apples comparison since the DQN code is open source. Future work: method assumes unpredictability is a sign of novelty, this may not be the case in highly stochastic domains.}
+}
+
+% 19
+@inproceedings{littman2001friend,
+	title={Friend-or-Foe Q-learning in General-Sum Games},
+	author={Littman, Michael L.},
+	year={2001},
+	booktitle={Eighteenth International Conference on Machine Learning, ICML},
+	annote={This paper introduces an algorithm for learning in games. The algorithm is friend-or-foe Q-learning (FFQ). FFQ provides convergence guarantees and learns the optimal policy in several scenarios. Main requirement is that other players are identified as either friend or foe (cooperative or adverserial). Main comparison is with an algorithm Nash-Q which uses a Nash equilibrium update rule. Problem is that if an arbitary NE is used in the update than the algorithm can't converge. By identifying the other players as friend or foe the learner can either use a maximization or minimax update respectively. This allows convergence. FFQ also does not require learning estimates of opponents' Q functions. Theoretical results and proofs are given. Two examples are used to describe how FFQ learns. One shortcoming is that FFQ cannot find equilibria if neither a coordination nor adversarial equilibira exists.}
+}
+
+% 18
+@inproceedings{amor2007learning,
+	title={Learning Android Control using Growing Neural Networks},
+	author={Amor, Heni Ben and Ikemoto, Shuhei and Minato, Takashi and Ishiguro, Hiroshi},
+	year={2007},
+	booktitle={ICANNGA, International Conference on Adaptive and Natural Computing Algorithms},
+	annote={Fixed size neural networks can be used to learn control of a non-linear plant. Problem with a neural network is that they can 'forget' old knowledge when learning new knowledge. Same problem can be found in human learning. Consolidation is the process of moving a learned task into long term memory if there is sufficient time between learning of an old and new task. This paper presents an approach to using consolidation with artificial neural networks to prevent forgetting and increase generalization. The basic idea is to use on-line learning with a small neural network. Than offline rehearsal is used to train a big neural network. The big network grows to prevent forgetting. It is not clear if this is done with cascade correlation or neuroevolution. Experimental results are given on a real robot with a very simple experiment. The robot had to learn to actuate one DOF a certain amount. Three trajectories were learned and then the network was tested on these three and two new ones. Results showed consolidation learning prevented forgetting and generalized to new tasks. However, I'm not sure how impressive these results are given the simple tasks. Interesting way of combining neurophysiology with robotics though.}
+}
+
+% 17
+@inproceedings{silver2014deterministic,
+	title={Deterministic Policy Gradient Algorithms},
+	author={Silver, David and Lever, Guy and Heess, Nicolas and Degris, Thomas and Weirstra, Daan and Riedmiller, Martin},
+	year={2014},
+	booktitle={ICML},
+	annote={This paper shows how to compute the gradient of deterministic policies. Previous work had shown how to compute the gradient for stochastic policies. The computation for the deterministic gradient is more efficient because there is no need to integrate over actions as in the stochastic policy gradient. As well as proving their deterministic policy gradient theorem, the authors show that their theorem is the limiting case of the stochastic policy gradient theorem as variance goes to 0. Deterministic policies may not explore as well as stochastic policies. To combat this the authors introduce an off-policy actor-critic. The actor in this method adjusts the parameters of the deterministic policy with gradient ascent. The critic can update its Q function using TD learning. The off-policy adaption uses importance sampling since experience comes from the exploration policy distribution, not the target policy one. The authors also describe what compatible function approximators are for the policy. Experimental results are given for high dimensional, continuous action domains. Comparisons are done against a stochastic actor-critic algorithm. The deterministic off-policy actor critic learns quicker in terms of computation and steps to convergence.}
+}
+
+% 16
+@inproceedings{sutton2000policy,
+	title={Policy Gradient Methods for Reinforcement Learning with Function Approximation},
+	author={Sutton, Richard S. and McAllester, David and Singh, Satinder and Mansour, Yishay},
+	year={2000},
+	booktitle={NIPS},
+	annote={Instead of using function approximators for RL one can use function approximators for the policy. Then the parameters of the approximator can be updated using the reward gradient. The main result of this paper is to show that the gradient can be estimated from sample interactions with the environment. A function approximator for a policy takes a state as input and outputs a probability distribution over actions. Using this approach, a locally optimal policy can be found. The paper presents a policy gradient theorem where the exact action value function is used to compute the gradient. The next section shows that an approximation of the action value function is good enough for estimating the gradient. These two results allow the authors to show that policy iteration with function approximation will converge to a local optimum. Actor-critic methods and the REINFORCE algorithm are examples of this approach.}
+}
+
+% 15
+@inproceedings{konidaris2014constructing,
+	title={Constructing Symbolic Representations for High-Level Planning},
+	author={Konidaris, George and Kaelbling, Leslie Pack and Lozano-Perez, Tomas},
+	year={2014},
+	booktitle={AAAI},
+	annote{This paper shows how a symbolic representation for high level planning can be developed from a continuous low-level environment. A symbolic representation can be converted into PDDL and there are fast planners for this type of planning problem. The authors define a propositional symbol as a test that is true in a subset of the states. The paper explicitly goes over how they construct their PDDL representation. Theoretical results prove the correctness of their method. Empirical results in the continuous playroom are given. Symbols are constructed by hand and then automatically converted to PDDL. FF is used as the planner. After the initial tests, more experiments were ran that showed that symbols could be acquired through experience. The key contribution is allowing agents to construct their own symbolic representations for high level planning.}
+}
+
+% 14
+@inproceedings{guo2015concurrent,
+	title={Concurrent PAC RL},
+	author={Guo, Zhaohan and Brunskill, Emma},
+	year={2015},
+	booktitle={AAAI},
+	annote={This paper introduces an algorithm and provides sample complexity bounds for concurrent RL. Concurrent RL in this context refers to an agent that is acting in multiple MDPs at the same time. The paper looks at the cases of the MDPs being identical and also not identical but similar. Taking actions in one MDP does not affect the other MDPs. Using information sharing the authors make a slight modification to an existing algorithm to acheive a linear improvement in the sample complexity. When the MDPs are similar but not identical, the authors propose an algorithm PAC-EXPLORE to explore the different MDPs and then cluster the MDPs into groups of identical MDPs. Then they use CMBIE (MBIE algorithm modified as mentioned above) on each cluster. This also provides a linear gain in improvement on the sample complexity. Most of the paper is proofs of sample complexity with a small experiment on a tiny grid world. The empirical evaluation compares information sharing with no information sharing. Information sharing increases average reward per MDP.}
+}
+
+% 13
+@inproceedings{guez2012efficient,
+	title={Efficient Bayes-Adaptive Reinforcement Learning using Sample-Based Search},
+	author={Guez, Arthur and Silver, David and Dayan, Peter},
+	year={2012},
+	booktitle={NIPS},
+	annote= {This paper combines MCTS with Bayesian RL to make Bayesian RL tractable. Bayesian RL maintains distribution over a set of MDPs. This prior knowledge is updated as new data becomes available. Updating the prior produces a posterior distribution over the possible MDPs. The belief distribution is integrated with UCT to produce BA-UCT. Three key modifications are used to turn BA-UCT into BAMCP which is the main contribution. The three ideas are root-sampling which is updating the beliefs at the start of simulation in UCT, learning the roll-out policy, and a lazy sampling scheme for sampling the posterior efficiently. The authors prove theoretical convergence and empirically evaluate the algorithm against the state of the art in Bayesian RL algorithms. The algorithm significantly outperforms these. The paper also evaluates BAMCP on an infinite grid task which is not tractable for the previous state of the art.}
+}
+
+% 12
+@inproceedings{mugan2009autonomously,
+	title={Autonomously learning an action hierarchy using a learned qualitative state representation},
+	author={Mugan, Jonathan and Kuipers, Benjamin},
+	year={2009},
+ 	annote = {This paper addresses the problem of learning an action hierarchy in a continuous environment. The agent first learns a qualitative representation of the environment and then creates options to reach different qualitative states. In this context the agent receives no extrinsic reward (developmental robotics). Algorithm is QLAP (qualitative learner of actions and perceptions). QLAP learns a dynamic Bayes Net (DBN) for predict events on change and magnitude variables. It then creates options for making the child variable of the DBN true. When a task is specified the agent uses SARSA and its learned actions to plan. Experimental evaluation is conducted on a simple simulated robotics task and measured against a tiled version of SARSA. QLAP outperforms although during the learning phase it does not know the task while the other algorithm does. This is only possible because the task is very simple. Assumption needed for QLAP is that an agent can change the values of individual variables.}
+}
+
+% 11
+@inproceedings{niekum2015online,
+	title={Online Bayesian Changepoint Detection for Articulated Motion Models},
+	author={Niekum, Scott and Osentoski, Sarah and Atkeson, Christopher G. and Barto, Andrew G.}
+	year={2015},
+	booktitle={icra},
+	annote={This paper presents an algorithm called CHAMP for online Bayesian changepoint detection. As I understand it, changepoint detection is when you have time series data and at some point the distribution from which a data point is drawn changes. Online changepoint detection is when the data must be processed in an online method. CHAMP is a general method but the focus of this paper is using it to detect changing articulation models. An articulation model represents how an objects motion can change (e.g. a door swings and then locks in place). CHAMP approximates model parameters to avoid explicit integration of candidate models. The algorithm is experimentally evaluated on time-series data with five change points where a change point is a change of variance for a Gaussian distribution. Then it is evaluated on learning changepoints in articulation models for real world objects. This work is useful for robots learning from demonstration data.}
+}
+
+% 10
+@inproceedings{Morimoto2004Simple,
+	title={A Simple Reinforcement Learning Algorithm for Biped Walking},
+	author={Morimoto, Jun and Cheng, Gordon and Atkeson, Christopher G. and Zeglin, Garth},
+	booktitle={icra},
+	year={2004},
+	annote={This paper crafts a domain for model-based RL for bipedal walking. The approach is used to learn a walk on a simulated 5 link bipedal robot. Towards this the model learns optimal foot placement and timing parameters. Learns a Poincare map of the effect of foot placement. The resulting policy outputs an angle for the swing leg knee. The walking pattern is hand designed and RL is used for optimizing stability.}
+}
+
+% 9
+@article{2015MnihDQN,
+	title={Human-level control through deep reinforcement learning},
+	author={Mnih, Volodymyr and Kavukcuoglu, Koray and Silver, David and ...},
+	journal={Nature},
+	volume={518},
+	year={2015},
+	annote={RL + CNN for playing atari video games. Same architecture used to learn a network for all 49 games in ALE. A deep CNN is used as a function approximator for the Q function. Two problems with using a non-linear function approximator. Subsequent observations are correlated and small changes to the Q function can change the policy which changes the data distribution. Experience replay is used to remove correlations in the data. The second problem is addressed by updating Q function used for determining the policy at a slower rate than the main Q network. Q-learning updates are performed on mini-batches drawn from the replay pool. The loss function is the expected value of the mini-batches. This method allowed large neural networks to be trained using only RL signals and SGD.
+
+Important idea: features learned are shaped by RL signal. It isn't just a matter of using CNN on visual input and then using RL. End to end training}
+}
+
+% 8
+@inproceedings{Ammar2015Manifold,
+	title={Unsupervised Cross-Domain Transfer in Policy Gradient Reinforcement Learning via Manifold Alignment},
+	author={Ammar, Haitham Bou and Eaton, Eric and Ruvolo, Paul, and Taylor, Matthew E.},
+	booktitle={AAAI},
+	year={2015},
+	annote={Transfer learning has depended on a provided inter-task mapping. This paper provides a method for learning this mapping for policy gradient RL. Policy gradient methods need to be initialized sensibly to avoid local maxima. Transfer learning is one way to find a good initial instantiation. The algorithm works by gathering samples in both tasks and using these samples with the unsupervised manifold alignment algorithm to learn an intertask mapping of states between the tasks. Then a set of initial states in the target task are mapped back to the source task and optimal trajectories found from these states in the source task. The trajectories are then mapped back to the target task to get an initial policy for the target task. Algorithm called MAXDT-PG. Empirical evaluation on spring-mass control, cart pole, three link cart pole, and quadrotor. Evaluation is done in same domain tranfer (different instantiations) and cross domain transfer.}
+}
+
+% 7
+@article{Clark2015Go,
+	title={Teaching Deep Convolutional Neural Networks to Play Go},
+	author={Clark, Christopher and Storkey, Amos},
+	year={2015},
+	journal={arXiv},
+	annote={The approach in this paper is to use deep convolutional neural networks to recognize 'good' moves in the game 'Go'. The networks are trained as supervised learners and then play by playing the move that they predict to be best. The traditional way to design competitive computer Go programs is to use MCTS. The approach in this paper acheived competitive performance against these programs without any planning ahead. Future work would involve integrating this approach with MCTS. I believe DeepMind has a paper basically saying they are doing this. Also, this paper used symmetries in the Go board to tie weights in the network to reduce training time. This makes the network invariant to reflections.}
+}
+
+% 6
+@inproceedings{Veness2015Compress,
+	title={Compress and Control},
+	author={Veness, Joel and Bellemare, Marc G. and Hutter, Marcus and Chua, Alvin, and Desjardins, Guillaume},
+	year={2015},
+	booktitle={AAAI},
+	annote={Information-theoretic method for policy evaluation. The algorithm learns a compressed representation of states (encodes the states). Under certain conditions this can be used for estimating the Q function. Conditions involve a stationary policy for a finite, time homogenous MDP. Theoretical results under these assumptions are shown. The method, "compress and control" is then empirically evaluated on the Atari domain (Pong, which doesn't meet theoretical conditions) and it is shown to perform well. First set of experiments use different encoding algorithms. Second set of experiments compare against other Atari playing programs. CNC learned competitive policies for the games tested. Also evaluated on a modified blackjack game where it also performed well. Apparently at AAAI, one of the authors said they didn't know if this method is useful but that it is still cool that it works.}
+}
+
+% 5
+@inproceedings{Jonschkowski2014Prior,
+	author={Jonschkowski, Rico and Brock, Oliver},
+	title={State Representation Learning in Robotics: Using Prior Knowledge about Physical Interaction},
+	year={2014},
+	booktitle={Robotics: Science and Systems},
+	annote={In robotics tasks, observations may be high dimensional and noisy. From this data a state representation must be extracted (learned or provided) so that the robot can manage high level planning. This paper identifies several robotic priors on the physical world and integrates them into the loss function for learning the state representation. Priors were: simplicity, temporal coherence, proportionality (f=ma), causality (Newton's third law) and, repeatability.Empirical evaluation showed the method identifies good state representations and these representations are usefule for solving tasks on toy domains (racetack and grid world - did not use actual robots)}
+}
+
+
+% 4
+@inproceedings{Harutyunyan2015Expressing,
+	author={Harutyunyan, Anna and Devlin, Sam and Vrancx, Peter and Nowe, Ann},
+	title={Expressing Arbitary Reward Functions as Potential-Based Advice},
+	year={2015},
+	booktitle={AAAI},
+	annote={Reward shaping paper. Potential-based advice is a framework for providing advice to a learning agent such that the resulting policy is invarient to the advice given. In other words, the optimal policy is the same as the optimal policy with no advice given. The paper provides a way to specify the effective shaping reward from an arbitrary reward function. In other words converting from an arbitrary function to potential based advice. Paper provides theoretical guarantees for convergence and empirical results on two toy domains.}
+}
+
+% 3
+@inproceedings{Vien2015Hierarchical,
+	author={Vien, Ngo Anh and Toussaint, Marc},
+	title={Hierarchical Monte-Carlo Planning},
+	year={2015},
+	booktitle={AAAI},
+	annote={This paper extends the UCT algorithm to hierarchical MDPs in the MAXQ framework. UCT and POMCP (POMDP UCT) need to be able to exploit hierarchy to scale to large domains. The proposed method H-UCT integrates a hierarchy into UCT and POMCP. Theoretical and experimental results are given. Theoretical results analyze the bias of H-UCT. Experiments evaluate H-UCT on an MDP, POMDP, and Bayesian RL domain. The algorithm is compared to flat UCT, Bayesian MAXQ, and MAXQ. H-UCT averages the best cumulative reward over the others. Some of the MAXQ methods run faster because they do not plan as far forward. H-UCT is faster than flat UCT due to the hierarchy allowing the algorithm to reach mroe promising regions of the state space sooner. H-POMCP is the new version of POMCP. The authors say that the technique for extending UCT to H-UCT can be used to extend other MCTC methods with hierarchies.}
+}
+
+%2
+@inproceedings{Srinivasan2015UCT,
+	author={Srinivasan, Sriram and Talvitie, Erik and Bowling, Michael and Szepesvari, Csaba},
+	title={Improving exploration in UCT using local manifolds},
+	year={2015},
+	booktitle={AAAI},
+	annote={A weakness of UCT is that exploration is poor when rewards are sparse. In this paper, similar states are generalized over with a distance metric. If there is no natural distance metric than a local manifold is learned and this is used to compute a distance metric. The general algorithm is NN-UCT (nearest neighbors UCT) and the manifold version is mNN-UCT. Manifolds may be costly to compute so only local manifolds are constructed. If a state is encountered in the UCT roll out that was not embedded than an approximate embedding is used from a learned translation operator. Experimental results were shown on a grid world domain and several games based on Atari games. The algorithm was compared to UCT without generalization and it outperformed it.}
+}
+
+%1
+@inproceedings{konidaris2014hidden,
+  title={Hidden Parameter Markov Decision Processes: An Emerging Paradigm for Modeling Families of Related Tasks},
+  author={Konidaris, George and Doshi-Velez, Finale},
+  booktitle={2014 AAAI Fall Symposium Series},
+  year={2014},
+  annote={This symposium paper describes hidden parameter MDPs. A hidden parameter MDP is one in which the task dynamics depend on a set of hidden parameters. A HIP-MDP models a distribution of tasks and an instantiation of the parameters defines a task instance. Any task instance is an MDP (and can be solved as one) and the hidden parameters do not change during a task. The latent parameters are sufficient for specifying an individual task and a parameterized policy can be used with the agents current belief of the values of the parameters. POMDP planners can be used in this context. The paper surveys existing work on HIP-MDPs and describes why HIP-MDPs are a good model for many robotics task.}
+
+}
+
+

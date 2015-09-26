@@ -1,0 +1,18 @@
+% 2
+@inproceedings{heinrich2015fictious,
+	title={Fictitious Self-Play in Extensive-Form Games},
+	author={Heinrich, Johannes and Lanctot, Marc and Silver, David},
+	year={2015},
+	booktitle={Thirty Second International Conference on Machine Learning, ICML},
+	annote={This paper introduces two varients of fictious play for extensive form games. Fictious play was shown to converge in normal form games but has not been able to be used in the extensive form because the extensive form game had to be converted to normal form which results in exponential computation. The authors introduce extensive-form fictious play (XFP). XFP is realization equivalent to normal-form fictious play and so it will converge. XFP has two steps: compute a best response profile to the current average strategies and then updates the average strategy profile with the best response. XFP is also linear in the number of game states instead of exponential. They then introduce fictious self-play (FSP) which is a machine learning framework that implements generalized weakened fictious play in behavioural strategies. The agent learns an approximate best response and a model of their own average strategy. FSP improves upon XFP because it allows for approximation which reduces computation. The best response computation is replaced with RL (using fitted Q iteration). As their strategy changes through the self-play process transfer is used between the new MDPs to speed up learning. Supervised learning is used for the average strategy computation. Theoretical work is validated on two varients of Texas Hold'em. The concluding remark is that FSP is a framework and there is a lot of work that can be done with different RL and function approximator methodologies.}
+}
+
+% 1
+@inproceedings{littman2001friend,
+        title={Friend-or-Foe Q-learning in General-Sum Games},
+        author={Littman, Michael L.},
+        year={2001},
+        booktitle={Eighteenth International Conference on Machine Learning, ICML},
+        annote={This paper introduces an algorithm for learning in games. The algorithm is friend-or-foe Q-learning (FFQ). FFQ provides convergence guarantees and learns the optimal policy in several scenarios. Main requirement is that other players are identified as either friend or foe (cooperative or adverserial). Main comparison is with an algorithm Nash-Q which uses a Nash equilibrium update rule. Problem is that if an arbitary NE is used in the update than the algorithm can't converge. By identifying the other players as friend or foe the learner can either use a maximization or minimax update respectively. This allows convergence. FFQ also does not require learning estimates of opponents' Q functions. Theoretical results and proofs are given. Two examples are used to describe how FFQ learns. One shortcoming is that FFQ cannot find equilibria if neither a coordination nor adversarial equilibira exists.}
+}
+

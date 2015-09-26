@@ -1,0 +1,246 @@
+% 25
+@inproceedings{pastor2011skill,
+	title={Skill Learning and Task Outcome Prediction for Manipulation},
+	author={Pastor, Peter and Kalakrishnan, Mrinal and Chitta, Sachin and Theodorou, Evangelos and Schall, Stefan},
+	year={2011},
+	booktitle={IEEE International Conference on Robotics and Automation, ICRA},
+	annote={This paper presents a method for robotics learning of manipulation tasks. Learning starts with a demonstration then uses a blackbox optimization approach (PI^2) to improve the DMP which was learned by immitation learning. Then the robot is able to predict the success of a task from statistics of sensory data. Motions are represented as DMPs and initial parameters are learned with imitation learning. Then PI^2 is used to further optimize the task. After the task is at a satisfying level of performance statistics are collected on what sensory data predicts success. The statistics are then used to predict success or failure. The method is evaluated on learning a pool shot and flipping a box with chop sticks. Learning takes place quickly which may be due to the small amount of parameters used to encode the task. The success/failure prediction stats are a good step towards sensorimotor learning.}
+}
+
+% 24
+@inproceedings{chernova2004learning,
+	title={Learning and Using Models of Kicking Motions for Legged Robots}
+	author={Chernova, Sonia and Veloso, Manuela},
+	year={2004},
+	booktitle={IEEE International Conference on Robotics and Automation, ICRA},
+	annote={This paper presents an approach to modelling the effects of different kicks on a Sony Aibo. Each kick is performed and angle and distance data is used to calculate statistics for each kick. The kick data is then used in the Aibo behavior and it is shown that a robot with the kick information performs better than one without. The estimates were all made on board with the Aibo recording distance and angle. It is a nice exhibition of autonomous learning on a real robot and very minimal human intervention.}
+}
+
+% 23
+@article{kober2013reinforcement,
+  title={Reinforcement learning in robotics: A survey},
+  author={Kober, Jens and Bagnell, J Andrew and Peters, Jan},
+  journal={The International Journal of Robotics Research},
+  year={2013},
+  publisher={SAGE Publications},
+  annote={This paper surveys uses of reinforcement learning in robotics. The high level idea is to show how different reinforcement learning ideas apply to robotics domains (e.g. model-based vs model-free). It also highlights challenges for RL in robotics tasks. Some of these main challenges are noisy environments, partial observability, under modeling, and defining a reward function. The paper describes value function approaches vs policy search methods. Policy search methods usually scale better to robotics because local coverage of the state-space can be good enough while value function methods need total coverage. Function approximatin is introduced as one way to make value function tractable. The paper then goes into more detail on challenges such as curse of dimensionality, expensive real-world samples, under modeling and model uncertainty, and difficulty in specifying the reward function. The next section surveys work that tries to make learning tractable through good representations (e.g. neural networks, motor primitives). The section after that focuses on using prior knowledge such as learning from demonstration, directing exploration, or creating a hierarchy. The next section looks at using models to improve learning. This discusses methods for handling simulation bias and uncertainty. It also surveys successful model based methods. It also notes that having access to a simulator is similar to having a model. A case study is presented of learning a ball-in-cup task which goes through the design choices for applying RL to the task. The final section discusses open questions (automatic representation, generating reward functions, integrating with perception). It also suggests ways that RL research can be focused to help the field of robotics learning.}
+}
+
+% 22
+@inproceedings{paraschos2013probabilistic,
+	title={Probabilistic Movement Primitives},
+	author={Paraschos, Alexandros and Daniel, Christian and Peters, Jan and Neumann, Gerhard},
+	year={2013},
+	booktitle={Advances in Neural Information Processing Systems},
+	annote={This paper develops and introduces ProMPs, a probabilistic formulation of motion primitives (maintains a distribution over trajectories). The authors want this formulation to allow for blending of MPs for producing higher level behavior. So the formulation must allow sequential and parallel composition. They also require adjustable speed, learnability from demonstration or RL, and applicable for stroke based or rythmic tasks. The MP formulation is a normal distribution with mean defined by a linear basis function with additive zero-mean gaussian noise. The authors describe how they adjust speed by using a phase variable as in DMPs. Different basis functions are used for rhythmic or stroke-based motions. Joints can be coupled through the covariance of the joints at each time-step. Learning from demonstration requires multiple trajectories in order to learn a distribution. Combination of ProMPs can be described with probabilistic operators. The paper also derives how to analytically find a controller from the learned ProMP. The ability to learn on robotics task is illustrated with several experiments using immitation learning (robot hockey, maraca shaking). Future work should look at ProMPs in a modular control architecture.}
+}
+
+% 21
+@inproceedings{calinon2007learning,
+	title={On Learning, Representing and Generalizing a Task in a Humanoid Robot},
+	author={Calinon, Sylvain and Guenter, Florent and Billard, Aude},
+	year={2007},
+	booktitle={IEEE Transactions on Systems, Man, and Cybernetics, Part B},
+	annote={This paper looks at the LfD questions of what-to-imitate, how-to-imitate, and when-to-imitate. There are different types of data used - joint angles, relative position to objects, binary hand open/close variables. Demonstration data is first reduced in dimensionality by PCA. Then the data signals are temporally aligned with dynamic time warping. Gaussian mixture regression is then used to encode a generalized data signal. A method of imitation performance is defined that measures similarity between desired position and a possible position. A metric of imitation than looks at how the candidate position matches the desired position across the different types of data. Constraints of the body and environment are provided and used as constraints on finding an optimal controller. The body constraints are represented as a time-varying Jacobian. Jacobian methods work well for solving the inverse kinematics problem. The controller can then be found analytically. Generalization comes from the use of relative position data. Also new constraints change the task and could be used to derive a new controller for a new task. Experiments are carried out on some simple pick and place and manipulation tasks.}
+}
+
+% 20
+@inproceedings{ross2011reduction,
+	title={A Reduction of Imitation Learning and Structured Prediction to No-Regret Online Learning},
+	author={Ross, St{\'e}phane and Gordon, Geoffrey J. and Bagnell, J. Andrew},
+	year = {2011},
+	booktitle={International Conference on Artificial Intelligence and Statistics (AISTATS)},
+	annote={This paper presents a meta algorithm (Dagger) for supervised learning to be used with imitation learning. The problem with supervised learning with imitation learning is that if the learned policy makes a mistake it can get outside of the learned distribution and mistakes will continue to compound. Previous solutions to this problem learn non-stationary or stochastic policies. On the other hand, Dagger learns a stationary, deterministic policy. Dagger works by executing a mixed policy that is made by executing the expert policy with probability beta and the current iteration's policy with probability 1 - beta. Beta is decreased over iterations so the algorithm relies more on the learned policy as it can trust it more. The policy at each iteration is trained in a supervised fashion over all the data seen up to that point. Dagger is run for a fixed number of iterations and the best policy over all the iterations is the final policy. Theoretical results establish no regret guarantees for both infinite and finite samples. Experimentally the algorithm is evaluated on two video game tasks and handwriting recognition (structured prediction).}
+}
+
+% 19
+@inproceedings{akgun2012trajectories,
+	title={Trajectories and Keyframes for Kinesthetic Teaching: A Human-Robot Interaction Perspective}
+	author={Akgun, Baris and Cakmak, Maya and Yoo, Jae Wook and Thomaz, Andrea L.},
+	year={2012},
+	booktitle={ACM/IEEE International Conference on Human-Robot Interaction},
+	annote={This paper looks at different methods for providing demonstration in terms of what is best for the human user to effectively teach the task. The most common form of kinesthetic teaching is trajectory based. This paper considers keyframe demonstrations as an alternative. The user gives the robot a sparse set of key frames which can be connected to learn a skill. A third approach involves the user improving existing key frames. This paper compares these approaches from an HRI perspective. Results show that single demonstrations were common, trajectory demos are better for single demonstrations, keyframe demos are better for means-oriented skills (raise hand a particular way), overall both methods are liked, trajectory demos take less time. Overall both methods are viable methods. Keyframes are robust to noise but lack timing information. Finally, a hybrid method of both keyframe and trajectory based demonstration is proposed.}
+}
+
+% 18
+@inproceedings{pastor2009learning,
+	title={Learning and Generalization of Motor Skills by Learning from Demonstration},
+	author={Pastor, Peter and Hoffmann, Heiko and Asfour, Tamim and Schaal, Stefan},
+	year={2009},
+	booktitle={IEEE International Conference on Robotics and Automation},
+	annote={This paper presents a method for learning a system of non-linear differential equations that describe a demonstrated movement. The equations are parameterized by start and goal values that allow generalization to new positions. The correspondence problem is addressed by recording a demonstration from a human worn exo-arm and by representing the movement in end-effector space. The approach involves modifying the dynamic motion primitive formulation. Learning a DMP involves learning a non-linear function f that is part of a system of differentiable equations that can be interpreted as modeling a spring system. The modifications allow the start and goal to be changed as well as obstacle avoidance to be incorporated. Learned DMPs form a library that can be used to construct higher level actions. Semantic meaning is given to DMPs and pre/post conditions allow high level planning (user provided). In practice each DOF has its own DMP. Experiments are provided in simulation and on a real robot. The method demonstrated generalization and obstacle avoidance.}
+}
+
+% 17
+@book{thrun2006probabilistic,
+	title={Probabilistic Robotics},
+	author={Thrun, Sebastian and Burgard, Wolfram and Fox, Dieter},
+	year={2006},
+	publisher={MIT Press},
+	annote={This book examines approaches to uncertainty in robotics. Robots that explicitly model uncertainty are more robust in the real world. Robotic uncertainty can be categorized into uncertainty from sensors and uncertainty from actions. The book introduces the basic mathematical framework underlying algorithms, presents probabilistic models of mobile robots, discusses the localization problem and mapping problem, and finishes with probabilistic planning and control.}
+}
+
+% 16
+@inproceedings{kroemer2015towards,
+	title={Towards Learning Hierarchical Skills for Multi-Phase Manipulation Tasks},
+	author={Kroemer, Oliver and Daniel, Christian and Neumann, Gerhard and van Hoof, Herke and Peters, Jan},
+	booktitle={IEEE Conference on Robotics and Automation (ICRA)},
+	year={2015},
+	annote={The method presented in this paper involves segmenting a human demonstration into probabilistic phases. This is represented by a state-based transitions autoregressive hidden Markov Model (STARHMM). The robot then creates a motor primitive for each phase (like an option) and optimizes it with RL (REPS). The motor primitive is created with mimicry. This part of the approach creates a library of DMPs which can be used in later tasks. Then dynamic programming is used to sequence the primitives into a high level policy. This high level policy also learns to avoid primitives that tend to fail. I believe that the number of the phases of the task has to be given and is not determined automatically. }
+}
+
+% 15
+@article{argall2009survey,
+	title={A survey of robot learning from demonstration},
+	author={Argall, Brenna D and Chernova, Sonia and Veloso, Manuela and Browning, Brett},
+	journal={Robotics and autonomous systems},
+	volume={57},
+	number={5},
+	pages={469--483},
+	year={2009},
+	publisher={Elsevier},
+	annote={This article surveys the field of robotic learning from demonstration (LfD). The main motivation for LfD is to allow non-expert robotics users as demonstration is an intuitive way to teach a new behavior. It is noted that demonstration learning is a subset of supervised learning. The survey is organized by breaking LfD down into two phases - gathering data and deriving a policy. For the first phase the design choices are the choice of demonstrator and the demonstration technique. Examples of the former are a human or robot teacher and examples of the latter are batch learning vs interactive learning. One issue in this first phase is correspondence which is the mapping between teacher and learner. This is composed of two mappings - from teacher to recording (recording mapping) and from recording to learner (embodiment). Several techniques for the demonstration are discussed including teleoperation, shadowing, external observation, sensors on teacher and mimicry. The second phase of LfD is concerned with deriving a policy from this data. Three main paradigms for this are mapping (learn observation to action mapping directly), system model (learn a model and then plan a policy), and plans (learn pre and post conditions for actions and form a plan). The direct mapping can be produced using classification or regression techniques and the provided demonstration data. The system model approach is more like traditional reinforcement learning. This requires hand engineered rewards or inverse reinforcement learning. The plan approach works best at a higher level and can allow better teacher-learner interaction. The article goes on to disccus limitations within the data set that can come from undemonstrated states (interaction and generalization help here) and poor quality data from suboptimal demonstrations. Finally, the article gives several directions for future work - learning state features, incorporating temporal data, handling execution failures, evaluation metrics, and multi-robot LfD.}
+}
+
+% 14
+@inproceedings{kupcsik2013data,
+	title={Data-Efficient Generalization of Robot Skills with Contextual Policy Search.},
+	author={Kupcsik, Andras Gabor and Deisenroth, Marc Peter and Peters, Jan and Neumann, Gerhard},
+	booktitle={AAAI},
+	year={2013},
+	annote={This paper presents an algorithm for learning contexual policies with minimal interaction time on the physical system. The approach is model based which lowers the sample complexity. The algorithm learns Gaussian Process forward models and uses these models and the REPS algorithm to update the policy. Acontexual policy has an upper level policy that is a distribution of parameters given a context and a lower level policy which is a distibution of actions given a state and parameterized by the upper level policy. The REPS algorithm bounds the change in the trajectory distribution between consecutive updates in order to avoid too large of updates. Sample based REPS can have a lot of variance unless it makes multiple roll outs on the real system. In the experiments the upper level policy is a linear-Gausian model and the lower level policy is a Dynamic Motion Primitives. Real data is used for learning the forward models and estimating the context distribution. Expected reward is computed with the forward model. With forward models it is easy to execute trajectories in parallel so better estimate can be made. Artificial samples are also created by using the reward of a different context and the trajectory already ran. GPREPS is compared with Model Free REPS and PILCO (analytical solution but not contextual). The Model based methods were substantially faster (2 orders of magnitude). GPREPS also converged quickly in a contexual scenario.} 
+}
+
+% 13
+@inproceedings{koos2010crossing,
+	title={Crossing the reality gap in evolutionary robotics by promoting transferable controllers},
+	author={Koos, Sylvain and Mouret, Jean-Baptiste and Doncieux, St{\'e}phane},
+	booktitle={Proceedings of the 12th annual conference on Genetic and evolutionary computation},
+	pages={119--126},
+	year={2010},
+	organization={ACM},
+	annote={This paper views optimization of robotics control as a multi-objective problem. Simulator inaccuracies result in a trade-off between good solutions and transferable solutions. The goals are to find good transferrable controllers and minimize the number of interactions with the target system. To minimize transfers, a transferrability approximation method is introduced to measure transferrability of solutions that have not been transferred by looking at ones that have. Controller behavior is broken down into behavior features which makes it possible to compute a distance metric between behavior of different controlelrs. The objectives are then transferrability, fitness, and behavioral diversity (for exploration). The general algorithm is to evaluate controllers and compare to already transferred controllers. Controllers with high enough diversity are transferred to the real system. Then a Pareto-optimal multi objective evolutionary algorithm is applied. The final solution is taken from the set of transferable non-dominated solutions. The best compromise solution is the one closest to the ideal point of maximal transferrability and maximal fitness. Experimental results are given for a simple robot quadrupedal walking with sinusoidal controllers. NSGA-II is used as the evolutionary algorithm of choice. One experiment used a simulator and a better simulator. The other used the better simulator and a real robot. Results show that the method works but I'm not sure how impressive they are. (Interesting related work - mask parts of simulation that are inaccurate in noise. This causes robust controllers to evolve)}
+}
+
+% 12
+@incollection{stronger2005model,
+	author={Stronger, Daniel and Stone, Peter},
+	title={A Model-Based Approach to Robot Joint Control},
+	year={2005},
+	booktitle={RoboCup-2004},
+	publisher={Springer Verlag},
+	editor={Nardi, Daniele and Riedmiller, Martin and Sammut, Claude},
+	pages={297-309}
+	annote={This paper is concerned with building a mathematical model of robot joints. Robot joints could lag behind the commands being sent or have limits not are not in the control software. Essentially empirical measurements are taken to determine a function that maps commands to joint positions. Then this model is approximately inverted using a piece-wise linear approximation to the desired trajectory. This is because the model is not invertible everywhere and when it is there can be infinitely many inverses. Experimental results show that this model allows an Aibo to better match desired trajectories than directly requesting the trajectory even taking into account the known lag. Future work needs to look at external forces being applied.}
+}
+
+% 11
+@inproceedings{farchy2013humanoid,
+	author={Farchy, Alon and Barrett, Samuel and MacAlpine, Patrick and Stone, Peter},
+	title={Humanoid Robots Learning to Walk Faster: From the Real World to Simulation and Back},
+	year={2013},
+	booktitle={Twelth International Conference on Autonomous Agents and Multiagent Systems, AAMAS},
+	annote={This paper introduces the Grounded Simulation Learning (GSL) framework for learning in simulation and transferring to a real robot. The basic idea is to iteratively modify the simulator to make it better match the performance of the physical robot. This approach allows for many trials to be ran in simulation and orders of magnitude fewer ran on the real robot. Without the grounding learning algorithms tend to overfit to the simulator's differences from realities. The five parts of the framework are 1) an imperfect simulator that can be modified, 2) A robot on which evaluations can be ran, 3) An explor robot routine, 4) a supervised learning algorithm to learn a model of states and actions on the real robot, and 5) an optimization algorithm for finding better parameters in simulation. In addition to the grounding, the framework can also exploit expert guidance of the optimization. In this paper the task is a Nao learning to walk faster (HTWK walk base). The optimization method is CMA-ES and the supervised learning algorithm is the M5P tree regression algorithm. For grounding, a function is learned that maps commands on the real robot to resulting joint positions. Then the resulting joint positions are used as commands (plus some smoothing) in simulation. Guidance was in the form of opening and closing different parameters. Result was a 25 percent increase in walk speed. Future work could look at improving how the simulator is grounded or automating the selection of parameters for further investigation.}
+}
+
+% 10
+@article{zhang2015policy,
+	author={Zhang, Marvin and Levine, Sergey and McCarthy, Zoe and Finn, Chelsea and Abbeel, Pieter},
+	title={Continuous Memory States for Partially Observed Robotic Control},
+	year={2015},
+	booktitle={arXiv},
+	annote={This paper presents a method for learning policies with memory for robotics tasks. It extends the framework of guided policy search (GPS) to learn policies with memory. The policy is a RNN however it is trained as a feedforward network. This makes the network easier to train and avoids exploding or vanishing gradients. Experiments show that this is more effective than naively replacing the feedforward network policy with a LSTM policy. To reiterate what GPS does: trajectory optimization is used to produce training data for supervised learning of a neural network policy. At each time step the policy takes an action and modifies its memory state. The memory state is then part of the input to the policy at the next time step. The memory states are optimized in the trajectory optimization which lets them be used as input for learning the policy. This changes GPS from learning a reactive policy (pi(u_t|o_t)) to a policy conditioned on sequences of observations. The trajectory optimization determines actions to take and also what is the best "store" action for modifying the memory states. The hidden memory state is then part of the input to the policy. The store actions and hidden input make the policy equivalent to a RNN. The proposed approach is tested on simulated robotic tasks that require memory. The method is compared against GPS with a LSTM and GPS with a standard feedforward network. The proposed approach was able to perform better. I do wonder if they did something wrong in training the LSTM network.}
+}
+
+% 9
+@inproceedings{levine2015learning,
+	author={Levine, Sergey and Wagener, Nolan and Abbeel, Pieter},
+	title={Learning Contact-Rich Manipulation Skills with Guided Policy Search},
+	year={2015},
+	booktitle={International Conference on Robotics and Automation, ICRA},
+	annote={This paper is on learning skills for tasks with complex dynamics (i.e. more than just moving the body and object in a particular trajectory). Typical policies are resticted to low dimensional representations but this work uses higher dimensional policy representations. Also standard dynamics methods struggle with tasks with significant force or dynamics components. This approach learns a set of trajectories using linear-Gaussian controllers and unifies them with a neural network policy using guided policy search (GPS). They also propose a method for generating samples from trajectory distributions to produce more samples for learning the policy. The robot learns linear-gaussian controllers for learning a trajectory distribution. Samples from these trajectories are then used to train a neural network policy. At each iteration the allowable step size between the old and new trajectory distributions is adaptively adjusted to allow the robot to learn quicker in some parts of the task. GPS requires that as the policy is learned the trajectories must be optimized to match the state distribution of the current policy. As long as the state distribution is the same for the policy and the trajectories they can use supervised learning. For the different experimental manipulation tasks they define a general cost function which encourages quickly getting the object close to the target and then placing the object precisely. They also penalize joint velocities and torques to produce smooth motion. Method is evaluated on placing rings onto pegs, putting a part into a toy airplane, stacking large lego blocks, screwing caps onto bottles, and inserting a shoe tree into a shoe. The number of samples to learn a good controller is 20-25 which is much better than previous work. A two hidden layer neural network is used to represent the policy and provide generalization.}
+}
+
+% 8
+@inproceedings{hausman2015active,
+	author={Hausman, Karol and Niekum, Scott and Osentoski, Sarah and Sukhatme, Gaurav S.},
+	title={Active Articulation Model Estimation through Interactive Perception},
+	year={2015},
+	booktitle={International Conference on Robotics and Automation, ICRA},
+	annote={Introduces a method for representing uncertainty over articulation models and action selection for reducing that uncertainty. Probabilistic method that integrates visual observations with feedback from actions. This method maintains a distribution over articulation models and parameters. Interactive perception is the paradigm of using a robots manipulation capabilities to learn about the world. The main contributions are a particle filter approach to track uncertainty, a manipulation sensor model that updates model liklihood based on feedback from manipulations, and introduces an action selection method for efficiently reducing uncertainty. The posterior probability of a model depends on a visual sensor model, action sensor model, and prior over the models. The two action selection methods considered are a maximal reduction of entropy selection vs a maximal information gain approach (KL divergence between the current distribution and expected distribution post action). The information gain approach is shown to be more effective and is used in most of the experiments. A particle filter is used to approximate the joint distribution of each model and its parameters. Human demonstrations are used to initialize the particle filter. Experiments conducted using all four types of articulation model (prismatic, rigid, rotational, and free body). Visual fiducials are used to remove object recognition from pipeline. Experiments show that few actions are needed to converge on correct model. Future work would include expanding to more types of models and looking for the best action over more than one time step.}
+}
+
+% 7
+@article{levine2015end-to-end,
+	author={Levine, Sergey and Finn, Chelsea and Darrell, Trevor and Abbeel, Pieter},
+	title={End-to-End Training of Deep Visuomotor Policies},
+	year={2015},
+	booktitle={arXiv},
+	annote={Similar to DQN, use deep CNN as function approximator for learning a policy. In this case the end to end training is for robotics tasks. The policies map raw observations to motor torques. Novel CNN architecture for localizing points of interests (i.e. no pooling). The CNN represents a randomized policy where actions are chosen from a Gaussian with mean given by the CNN. CNN represents probability of actions conditioned on observations (image and raw joints). The algorithm uses guided policy search which incorporates supervised learning into policy search. Training data must come from policy's state distribution. This is done by using BADMM to optimize policy to match trajectories and trajectories to match the policy. At convergence they will have same state distribution. The policy is trained on observations (image and joints) but the trajectories are optimized with full state information. The joint configuration is used as raw input alongside the learned visual features. No attempt at deep learning from joints is made. Work is evaluated on several different simple robotics task (using a PR-2).}
+}
+
+% 6
+@inproceedings{levine2013exploring,
+	author={Levine, Sergey},
+	title={Exploring Deep and Recurrent Architectures for Optimal Control},
+	year={2013},
+	booktitle={NIPS Workshop on Deep Learning},
+	annote={This workshop paper looks at applying deep and recurrent neural networks to learn walking controllers for simple simulated robots. The idea is that these architectures could learn high level features of the task that would allow knowledge to be transferred to a similar task. Example given is learning to walk and then being able to walk on uneven ground using a control law such as balance. Guided Policy Search (GPS) is used to optimize the walking policy. The various neural network architectures are used as function approximators for the policy. The three architectures used were a one hidden layer and a two hidden layer MLP and a single hidden layer recurrent network with rectified linear units. No regularization was used. There were 10 training terrains. General results were that deep and recurrent networks performed better but not always. Two types of overfitting are analyzed. One is high level overfitting where the network learns a poor control law from a demonstration. The other type is overfitting the training examples. Both types are observed. Local optima are also a challenge for the deeper network and recurrent network. Overall the deep and recurrent architectures generalized a little better than the shallow model. Future work could look at new regularizers for control tasks or changing the objective function to a maximum liklihood objective.}
+}
+
+% 5
+@inproceedings{grasemann2008neural,
+        author={Uli Grasemann and Daniel Stronger and Peter Stone},
+        title="A Neural Network-Based Approach to Robot Motion Control",
+        booktitle= "{R}obo{C}up-2007: Robot Soccer World Cup {XI}",
+        Editor="Ubbo Visser and Fernando Ribeiro and Takeshi Ohashi
+        and Frank Dellaert",
+        Publisher="Springer Verlag",
+        address="Berlin",
+        year="2008",
+        series="Lecture Notes in Artificial Intelligence",      
+	volume="5001",
+	pages="480--87",
+	annote={This paper presents learning open loop control of a Sony Aibo's leg using neural networks. Commercially available robots have their own internal controls which can make control of them difficult if the user does not have access to these control models. Using a neural network, this paper shows how to learn a trajectory or sequence of actions over time to produce a desired movement. One approach is to slow the robot down to control exact trajectories. In contrast, this paper runs the robot at the max frequency. The output of the neural network is a joint command for each of the leg joints. The input is the values of those joints for the previous ten timesteps and the value of those joints for the next ten time steps. The leg has three joints so a network is trained with 60 inputs and three outputs. This is compared to three 20 input networks for each joint. The single network performs better which indicates it exploits the additional information of the other joint values. The neural network degraded well when it received requests that were out of its range.}
+}
+
+%4
+@inproceedings{amor2007learning,
+	title={Learning Android Control using Growing Neural Networks},
+	author={Amor, Heni Ben and Ikemoto, Shuhei and Minato, Takashi and Ishiguro, Hiroshi},
+	year={2007},
+	booktitle={ICANNGA, International Conference on Adaptive and Natural Computing Algorithms},
+	annote={Fixed size neural networks can be used to learn control of a non-linear plant. Problem with a neural network is that they can 'forget' old knowledge when learning new knowledge. Same problem can be found in human learning. Consolidation is the process of moving a learned task into long term memory if there is sufficient time between learning of an old and new task. This paper presents an approach to using consolidation with artificial neural networks to prevent forgetting and increase generalization. The basic idea is to use on-line learning with a small neural network. Than offline rehearsal is used to train a big neural network. The big network grows to prevent forgetting. It is not clear if this is done with cascade correlation or neuroevolution. Experimental results are given on a real robot with a very simple experiment. The robot had to learn to actuate one DOF a certain amount. Three trajectories were learned and then the network was tested on these three and two new ones. Results showed consolidation learning prevented forgetting and generalized to new tasks. However, I'm not sure how impressive these results are given the simple tasks. Interesting way of combining neurophysiology with robotics though.}
+}
+
+
+% 3
+@inproceedings{luck2014latent,
+	title={Latent Space Policy Search for Robotics},
+	author={Luck, Kevin Sebastian and Neumann, Gerhard and Berger, Erik and Peters, Jan and Amor, Heni Ben},
+	year={2014},
+	booktitle={IROS},
+	annote={A high number of degrees of freedom on a robot can make learning motor skills hard because the search space is high dimensional. Complex robots often have redundancies and can be controlled in a lower dimensional space. Reducing the dimensionality can reduce the number of trials needed to learn a policy. Previous work learns the latent space and then learns the policy. This work learns both jointly using a EM framework. They use Probabilistic PCA (PPCA) to reduce to the latent space. A projection matrix is used to transform latent variables into the high dimensional action space. This projection matrix defines synergies in the action space so it leads to correlated exploration. Experimental results show that the algorithm (PEPPER) can learn inverse kinematics and a nao learns to stand on one leg in simulation. The policies are good and not very many iterations are needed. The number of latent dimensions is a parameter of the algorithm. Also the latent dimensions are specific to the task not the possible actions the robot could take.}
+}
+
+
+% 2
+@inproceedings{niekum2015online,
+	title={Online Bayesian Changepoint Detection for Articulated Motion Models},
+	author={Niekum, Scott and Osentoski, Sarah and Atkeson, Christopher G. and Barto, Andrew G.}
+	year={2015},
+	booktitle={icra},
+	annote={This paper presents an algorithm called CHAMP for online Bayesian changepoint detection. As I understand it, changepoint detection is when you have time series data and at some point the distribution from which a data point is drawn changes. Online changepoint detection is when the data must be processed in an online method. CHAMP is a general method but the focus of this paper is using it to detect changing articulation models. An articulation model represents how an objects motion can change (e.g. a door swings and then locks in place). CHAMP approximates model parameters to avoid explicit integration of candidate models. The algorithm is experimentally evaluated on time-series data with five change points where a change point is a change of variance for a Gaussian distribution. Then it is evaluated on learning changepoints in articulation models for real world objects. This work is useful for robots learning from demonstration data.}
+}
+
+
+% 1
+@inproceedings{Jonschkowski2014Prior,
+	author={Jonschkowski, Rico and Brock, Oliver},
+	title={State Representation Learning in Robotics: Using Prior Knowledge about Physical Interaction},
+	year={2014},
+	booktitle={Robotics: Science and Systems},
+	annote={In robotics tasks, observations may be high dimensional and noisy. From this data a state representation must be extracted (learned or provided) so that the robot can manage high level planning. This paper identifies several robotic priors on the physical world and integrates them into the loss function for learning the state representation. Priors were: simplicity, temporal coherence, proportionality (f=ma), causality (Newton's third law) and, repeatability.Empirical evaluation showed the method identifies good state representations and these representations are usefule for solving tasks on toy domains (racetack and grid world - did not use actual robots)}
+}
+
+
