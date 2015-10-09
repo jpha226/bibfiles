@@ -1,3 +1,30 @@
+% 32
+@inproceedings{abbeel2004apprenticeship,
+	title={Apprenticeship Learning via Inverse Reinforcement Learning},
+	author={Abbeel, Pieter and Ng, Andrew Y.},
+	year={2004},
+	booktitle={International Conference on Machine Learning, ICML},
+	annote={}
+}
+
+% 31
+@inproceedings{deisenroth2011pilco,
+        title={PILCO: A Model-Based and Data-Efficient Approach to Policy Search},
+        author={Deisenroth, Marc Peter and Rasmussen, Carl Edward},
+        year={2011},
+        booktitle={International Conference on Machine Learning, ICML},
+        annote={This paper introduce PILCO, a model based RL method with reduced model bias. The model is represented as a Gaussian process. The model allows PILCO to be very data-efficient in learning from scratch and the GP lets it represent uncertainty in the model. Policy evaluation can be done in closed form and the gradient computed analytically. Then the policy is updated with this gradient. Experimental results show that the algorithm can learn tasks rapidly. The main contribution is the reduction of model bias with the GP. This paper also mentions that motor babbling is an inefficient way to explore. I would like to learn more about what is the best exploration strategy for building a model.}
+}
+
+% 30
+@inproceedings{stulp2012path,
+        title={Path Integral Policy Improvement with Covariance Matrix Adaptation},
+        author={Stulp, Freek and Sigaud, Olivier},
+        year={2012},
+        booktitle={International Conference on Machine Learning, ICML},
+        annote={This paper looks at the PI^2, CEM, and CMA-ES algorithms. These three algorithms all use probability-weighted averaging in their parameter updates. CEM is shown to be a special case of CMA-ES. Empirical results show that updating the exploration in PI^2 could improve the algorithm. Therefore the authors introduce PI^2-CMA which adapts the exploration covariance matrix (instead of keeping it fixed) based on the costs of trials. This algorithm decreases exploration as the algorithm converges. They also looked at PI^2-CMAES but only saw small improvement.}
+}
+
 
 % 29
 @inproceedings{thomas2015policy,
