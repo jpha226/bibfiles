@@ -1,3 +1,12 @@
+% 18
+@article{gal2015dropout,
+	author={Gal, Yarin and Ghahramani, Zoubin},
+	title={Droput as a Bayesian Approximation: Representing Model Uncertainty in Deep Learning},
+	year={2015},
+	booktitle={arXiv},
+	annote={This paper shows that multiple inferences with a neural network using dropout in the forward pass during inference can approximate gaussian processes. This gives an efficient method for computing uncertainty in neural network models. This paper shows this result mathematically and empirically. To acheive this a model is first trained with dropout. Then multiple stochastic forward passes are ran with the same input and the uncertainty can be estimated with the variance on the output. Empirical evaluation is conducted on extrapolation and interpolation in regression and MNIST classification. They then combine uncertainty estimates with a Q-network to use Thompson sampling to converge faster on a simple RL task. Future work intends to look at model uncertainty on adverserial inputs (e.g. corrupted images).}
+}
+
 % 17
 @article{pascanu2015revisiting,
 	author={Pascanu, Razvan and Bengio, Yoshua},

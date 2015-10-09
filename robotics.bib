@@ -1,3 +1,48 @@
+% 30
+@inproceedings{phillips2013learning,
+	title={Learning to Plan for Constrained Manipulation from Demonstrations},
+	author={Phillips, Mike and Hwang, Victor and Chitta, Sachin and Likhachev, Maxim},
+	year={2013},
+	booktitle={Robotics: Science and Systems},
+	annote={}
+}
+
+% 29
+@inproceedings{phillips2012egraphs,
+	title={E-Graphs: Bootstrapping Planning with Experience Graphs},
+	author={Phillips, Mike and Cohen, Benjamin and Chitta, Sachin and Likhachev, Maxim},
+	year={2012},
+	booktitle={Robotics: Science and Systems},
+	annote={}
+}
+
+% 28
+@article{konidaris2011robot,
+	title={Robot Learning from Demonstration by Constructing Skill Trees},
+	author={Konidaris, George and Kuindersma, Scott and Grupen, Roderic and Barto, Andrew},
+	year={2011},
+	journal={The International Journal of Robotics Research},
+	annote={}
+}
+
+% 27
+@inproceedings{veloso2005learning,
+	title={Learning Visual Object Definitions by Observing Human Activities},
+	author={Veloso, Manuela and von Hundelshausen, Felix and Rybski, Paul E.},
+	year={2005},
+	booktitle={IEEE-RAS International Conference on Humanoid Robotics},
+	annote={This paper presents an approach for recognizing objects by matching function to image features and then generalizing with these features to recognize similar objects. The algorithm works with prior knowledge of affordance and functional features of an object (e.g. chairs are sat on). Given an observation of a human interacting with an object the robot can learn what the object is based on the interaction (e.g. the human sat on that object so it is a chair). After the object has been given a label in this way the algorithm pulls out visual features of the object and uses these to generalize to other objects (e.g. this also looks like a chair so it is a chair and can be sat on). The method relies on good prior knowledge and an activity recognition system. The image features can be fairly general and low level (SIFT, color, etc.) This method only works for objects with a clear activity associated with them. Experiments show the method generalizing over chairs and doorways.}
+}
+
+% 26
+@inproceedings{levine2013guided,
+	title={Guided Policy Search},
+	author={Levine, Sergey and Koltun, Vladlen},
+	year={2013},
+	booktitle={International Conference on Machine Learning, ICML},
+	annote={The high level idea of this paper is to create a guiding trajectory for completing a task. This can be repeated for different starting states and the controllers combined into one neural network policy. This results in a policy that generalizes well to new situations. Differential dynamic programming is used to find the trajectories. The trajectories are then used to generate training data for the neural network. A constraint on the KL-divergence of the controllers and the policy ensures that the induced state distributions will be the same at the end of training. This paper also introduces a regularizer to the importance sampled return of a trajectory because long rollouts tend to produce highly peaked distributions (very few samples are observed). The method was empirically evaluated on humanoid running and walking and showed good generalization and the ability to complete the task.}
+}
+
 % 25
 @inproceedings{pastor2011skill,
 	title={Skill Learning and Task Outcome Prediction for Manipulation},
@@ -230,7 +275,7 @@
 	author={Niekum, Scott and Osentoski, Sarah and Atkeson, Christopher G. and Barto, Andrew G.},
 	year={2015},
 	booktitle={icra},
-	annote={This paper presents an algorithm called CHAMP for online Bayesian changepoint detection. As I understand it, changepoint detection is when you have time series data and at some point the distribution from which a data point is drawn changes. Online changepoint detection is when the data must be processed in an online method. CHAMP is a general method but the focus of this paper is using it to detect changing articulation models. An articulation model represents how an objects motion can change (e.g. a door swings and then locks in place). CHAMP approximates model parameters to avoid explicit integration of candidate models. The algorithm is experimentally evaluated on time-series data with five change points where a change point is a change of variance for a Gaussian distribution. Then it is evaluated on learning changepoints in articulation models for real world objects. This work is useful for robots learning from demonstration data.}
+	annote={This paper presents an algorithm called CHAMP for online Bayesian changepoint detection. As I understand it, changepoint detection is when you have time series data and at some point the distribution from which a data point is drawn changes. Online changepoint detection is when the data must be processed in an online method. CHAMP is a general method but the focus of this paper is using it to detect changing articulation models. An articulation model represents how an objects motion can change (e.g. a door swings and then locks in place). CHAMP approximates model parameters to avoid explicit integration of candidate models. The algorithm is experimentally evaluated on time-series data with five change points where a change point is a change of variance for a Gaussian distribution. Then it is evaluated on learning changepoints in articulation models for real world objects. This work is useful for robots learning from demonstration data. This paper builds off of work by Fearnhead and Liu with three changes: Approximate model evidence, minimum length of segments (distance between changepoints), and adds the model to the definition of each particle.}
 }
 
 
