@@ -1,0 +1,82 @@
+\documentclass[12 pt]{article}
+
+\usepackage{fullpage}
+\usepackage{cite}
+
+\title{Learning walking control on a physical robot}
+\author{Josiah Hanna}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{Motivation}
+
+Walking control is a difficult problem for bipedal robots. 
+Bipedal walking in humans can be viewed as a process of repeatedly falling forward and catching our balance. 
+As the number of degrees of freedom (DOF) on a robot increases the task becomes much harder as the robot must command each joint at a high frequency in just the right way at just the right time. 
+While this is a challenging control problem it is even more challenging as a robot learning problem.
+
+Consider robot learning as a reinforcement learning problem \cite{kober2013reinforcement}.
+At each time step the robot must choose its next action as a function of its current state. 
+Ignoring hand crafted states, the simplest state is the current position of each joint and the current sensor reading. 
+For a high DOF robot this is a large number of continuous state variables.
+Further complicating the problem is that the robot must compute a joint command (often torque commands) for each DOF which is a continuous value.
+Additionally, walking violates the Markov assumption common in reinforcement learning problems.
+This assumption states that the current state is sufficient for planning for the future.
+In a highly dynamic task such as walking this no longer holds as the current state gives no information on velocity, acceleration, or jerk.
+Previous approaches to learning walking controllers have mitigated this by adding joint velocities to the state space.
+Since velocities may be hard to compute on a real robot it is desirable that we don't use them in our state space. 
+
+
+\section{Grounded Simulation Learning}
+
+Grounded simulation learning is a methodology in which learning takes place in a simulator which is incrementally modified to better match the real world \cite{farchy2013humanoid}.
+First a walking policy is executed on the physical robot.
+Data is collected from this rollout to build a model of how joint commands affect the robots state.
+Then the model is used to modify the simulator so that its dynamics better match the physical world.
+Learning takes place in the simulator and the best improved policies are transferred back to the physical robot for evaluation.
+This can happen in an iterative fashion to learn a better model of the robot as the policy changes the distribution of states visited.
+
+\subsection{Simulation Modifications}
+
+\begin{enumerate}
+\item Neural network model
+\item Use previous states as part of state space \cite{grasemann2008neural}.
+\item Gaussian processes to represent uncertainty / NN + dropout
+\end{enumerate}
+
+\subsection{Transferability}
+
+\begin{enumerate}
+\item Importance sampling with previous data \cite{thomas2015off-policy}.
+\item Bound KL divergence between policies within simulation \cite{schulman2015trust}.
+\end{enumerate}
+
+\section{Contextual Policy Search}
+
+Many past approaches to learning walking controllers have only considered two goals: speed and stability. 
+However, a walking controller that can walk quickly should be able to generalize to slower desired speeds. 
+This requires learning a contextual policy.
+Formally, given a parameterized controller $p_\theta$ and a context $s$, a contextual policy $\pi(\theta|s)$ selects parameter values for $p_\theta$ such that the controller performs well in context $s$.
+For walking, $s$ could be a vector describing direction, speed, and rotation.
+Two other alternatives are rolling $s$ into the state space or learning separate policies for each context where the reward function is based off of the context to learn.
+The latter seems intractable for a task such as walking where infinitely many controllers would have to be learned
+
+\section{Generalization to less structured environments}
+
+Learning a walk is much simpler on a flat and clear surface. 
+The problem becomes much harder if the surface is uneven or there is debris on the ground. 
+In addition to a contextual walk policy, a walk should be adaptive.
+This generalization is likely to require learning higher level features that describe the walking task.
+For example, a walk learned on a flat surface could generalize to a rough surface by learning a high level control law such as balance \cite{levine2013exploring}.
+
+
+\section{Exploiting Redundancies in the Robot's Body}
+
+
+
+\bibliography{robotics,rl,nn}
+
+\end{document}

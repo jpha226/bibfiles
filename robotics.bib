@@ -9,7 +9,7 @@
 
 % 24
 @inproceedings{chernova2004learning,
-	title={Learning and Using Models of Kicking Motions for Legged Robots}
+	title={Learning and Using Models of Kicking Motions for Legged Robots},
 	author={Chernova, Sonia and Veloso, Manuela},
 	year={2004},
 	booktitle={IEEE International Conference on Robotics and Automation, ICRA},
@@ -55,7 +55,7 @@
 
 % 19
 @inproceedings{akgun2012trajectories,
-	title={Trajectories and Keyframes for Kinesthetic Teaching: A Human-Robot Interaction Perspective}
+	title={Trajectories and Keyframes for Kinesthetic Teaching: A Human-Robot Interaction Perspective},
 	author={Akgun, Baris and Cakmak, Maya and Yoo, Jae Wook and Thomaz, Andrea L.},
 	year={2012},
 	booktitle={ACM/IEEE International Conference on Human-Robot Interaction},
@@ -130,7 +130,7 @@
 	booktitle={RoboCup-2004},
 	publisher={Springer Verlag},
 	editor={Nardi, Daniele and Riedmiller, Martin and Sammut, Claude},
-	pages={297-309}
+	pages={297-309},
 	annote={This paper is concerned with building a mathematical model of robot joints. Robot joints could lag behind the commands being sent or have limits not are not in the control software. Essentially empirical measurements are taken to determine a function that maps commands to joint positions. Then this model is approximately inverted using a piece-wise linear approximation to the desired trajectory. This is because the model is not invertible everywhere and when it is there can be infinitely many inverses. Experimental results show that this model allows an Aibo to better match desired trajectories than directly requesting the trajectory even taking into account the known lag. Future work needs to look at external forces being applied.}
 }
 
@@ -227,7 +227,7 @@
 % 2
 @inproceedings{niekum2015online,
 	title={Online Bayesian Changepoint Detection for Articulated Motion Models},
-	author={Niekum, Scott and Osentoski, Sarah and Atkeson, Christopher G. and Barto, Andrew G.}
+	author={Niekum, Scott and Osentoski, Sarah and Atkeson, Christopher G. and Barto, Andrew G.},
 	year={2015},
 	booktitle={icra},
 	annote={This paper presents an algorithm called CHAMP for online Bayesian changepoint detection. As I understand it, changepoint detection is when you have time series data and at some point the distribution from which a data point is drawn changes. Online changepoint detection is when the data must be processed in an online method. CHAMP is a general method but the focus of this paper is using it to detect changing articulation models. An articulation model represents how an objects motion can change (e.g. a door swings and then locks in place). CHAMP approximates model parameters to avoid explicit integration of candidate models. The algorithm is experimentally evaluated on time-series data with five change points where a change point is a change of variance for a Gaussian distribution. Then it is evaluated on learning changepoints in articulation models for real world objects. This work is useful for robots learning from demonstration data.}
@@ -242,5 +242,3 @@
 	booktitle={Robotics: Science and Systems},
 	annote={In robotics tasks, observations may be high dimensional and noisy. From this data a state representation must be extracted (learned or provided) so that the robot can manage high level planning. This paper identifies several robotic priors on the physical world and integrates them into the loss function for learning the state representation. Priors were: simplicity, temporal coherence, proportionality (f=ma), causality (Newton's third law) and, repeatability.Empirical evaluation showed the method identifies good state representations and these representations are usefule for solving tasks on toy domains (racetack and grid world - did not use actual robots)}
 }
-
-
