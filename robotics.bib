@@ -1,10 +1,47 @@
+% 34
+@article{saxena2015RoboBrain,
+	title={RoboBrain: Large-Scale Knowledge Engine for Robots},
+	author={Saxena, Ashutosh and Jain, Ashesh and Sener, Ozan and Jami, Aditya and Misra, Dipendra K. and Koppula, Hema S.},
+	year={2015},
+	booktitle={arXiv},
+	annote={This paper presents a knowledge graph, RoboBrain, for robots. The graph containes nodes that represent concepts and directed edges that represent relations between concepts. The goal is to let robots learn and share one representation of knowledge in a robot centric way. The paper presents the architecture and functionality of the service. The graph can keep track of information such as affordances, common knowledge, and language/image grounding. The paper presents three applications: natural language, perception, and planning. My thoughts on the paper are that it is a nice starting point but it incorporates too much structure. Ideally (in my mind), language and images and actions could be connected in a less structured way and grounding could be done by individual robots.}
+}
+
+% 33
+@article{stronger2006towards,
+	title={Towards Autonomous Sensor and Actuator Model Induction on a Mobile Robot},
+	author={Stronger, Daniel and Stone, Peter},
+	year={2006},
+	booktitle={Connection Science},
+	pages={97-119},
+	annote={This paper presents a method (ASAMI) for learning internally consisten models of a robot's action and sensor models. The robot only has access to raw sensations an dknowledge of its actions. The learned models don't have human units but are internally consistent. Some of the assumptions made are that the set of possible states is one-dimensional continuous, the agent has only one sensor, the agent can take a continuum of actions, and actions / sensor readings are perturbed by zero-mean random noise. Also each sensation maps to a specific state (i.e. no state aliasing). The paper shows how to learn one model given the other using polynomial regression. Then they learn both models together with weighted regression (more recent data has more weight). To prevent the models from diverging, the action model is updated towards the sensor model at each time step. The method requires an initial coarse action model. Experiments are done with an Aibo walking towards a beacon that demonstrate the methods works.}
+}
+
+% 32
+@inproceedings{levine2014learning,
+	title={Learning Neural Network Policies with Guided Policy Search under Unknown Dynamics},
+	author={Levine, Sergey and Abbeel, Pieter},
+	year={2014},
+	booktitle={Neural and Information Processing Systems, NIPS},
+	annote={This paper presents guided policy search without a differentiable dynamics model. Instead of learning a global dynamics model, this method involves learning locally valid models. This helps with non-smooth dynamics that are hard to model globally. This creates a hybrid model-based model free reinforcement learning approach. The algorithm optimizes linear Gaussian controllers to find a locally optimal controller. The optimization problem maximizes the entropy of the controller which gives a wide distribution of states where the controller is valid. New controllers are computed iteratively with a KL-divergence constraint which guarantees that the new controller will not stray too far from the previous controller. The previous dynamics model is used as a prior on the next iterations dynamics model. A Gaussian mixture model is fitted to samples and this is used to compute the prior. Multiple controllers can be learned in this fashion and then combined into a neural network controller as demonstrated in prior GPS work. Experimental evaluation against PILCO, REPS, and others shows that this method is superior and the neural network aids generalization.}
+}
+
+% 31
+@inproceedings{niekum2013incremental,
+	title={Incremental Semanticaly Grounded Learning from Demonstration},
+	author={Niekum, Scott and Chitta, Sachin and Marthi, Bhaskara and Osentoski, Sarah and Barto, Andrew G.},
+	year={2013},
+	booktitle={Robotics: Science and Systems},
+	annote={This paper looks at segmenting a demonstration into individual skills and assembling the skills into a finite state machine for the task. The segmentation is performed with a Beta Process Autoregressive Hidden Markov Model. The segments are modelled as DMPs and are automatically turned into states in a finite state machine. The method allows for interactive correction where the demonstration data can be augmented when the task fails. DMPs at the low level and the FSA at the high level allows flexibility in representing the task. Nodes in the FSA are split in a statistical way (semantic content of motion is significantly different) and a classifier is used to determine which transition to use when there are multiple options. The method is used to learn a FSA for putting a table leg on a piece of IKEA furniture.}
+}
+
 % 30
 @inproceedings{phillips2013learning,
 	title={Learning to Plan for Constrained Manipulation from Demonstrations},
 	author={Phillips, Mike and Hwang, Victor and Chitta, Sachin and Likhachev, Maxim},
 	year={2013},
 	booktitle={Robotics: Science and Systems},
-	annote={}
+	annote={This paper extends the E-Graph paper(below) by allowing the robot to build its graph from demonstration data. Also instead of just pose changes the new approach can handle manipulating objects along a one dimensional manifold. An E-Graph is a graph of previously explored plans which allows for faster search by penalizing the search from leaving the E-Graph (exploring the state space outside the graph). The modification to add demonstrations considers that the demonstration may not be in the original graph and the state space must have variables describing the object added to it. The latter is why the method is limited to only one dimensional manipulation because the state space is exponential in the number of dimensions. The paper introduces a new heuristic for the solution search that takes the manipulation into account. The method can handle suboptimal demonstrations because the planner will use what it can of the demonstration and find new paths for the suboptimal part. This allows for more than just replaying the demonstration.}
 }
 
 % 29
@@ -13,7 +50,7 @@
 	author={Phillips, Mike and Cohen, Benjamin and Chitta, Sachin and Likhachev, Maxim},
 	year={2012},
 	booktitle={Robotics: Science and Systems},
-	annote={}
+	annote={This paper introduces experience graphs (E-Graphs) for speeding up planning in robotics search problems. An E-Graph biases A* search towards edges that are already part of the graph. This allows robots to create plans faster by reusing prior knowledge. The approach in this paper builds the E-Graph and takes advantage of it to solve tasks quicker. This formulation relies on environments being largely static although they don't have to be completely static. If the E-Graph cannot be completely used the method can easily return to searching the entire state space. A parameter defines how much weight the planner should give to staying on the experience graph. The method works in simple cartesian state spaces and used inverse kinematics to compute movement. For large state spaces they propose using demonstration to initialize the graph. One potential problem is the experience graph growing too large. Future work could look at how to prune the graph since a large graph would take a long time to search even if it is better than regular A* over the state space.}
 }
 
 % 28
@@ -22,7 +59,7 @@
 	author={Konidaris, George and Kuindersma, Scott and Grupen, Roderic and Barto, Andrew},
 	year={2011},
 	journal={The International Journal of Robotics Research},
-	annote={}
+	annote={This paper looks at segmenting a demonstration using changepoint detection and learning skill chains from each demonstration. The skill chains can then be merged into a skill tree. The algorithm also applies a suitable abstraction to each skill to reduce the state space for that skill. The abstraction comes from a provided abstraction library and helps in high dimensional spaces. Each skill that is abstracted has its own goal and initiation set (Skills are options from options framework). The value function for each skill can be approximated with a linear value function approximator. Changes in the value function can also be used as changepoints when segmenting the demonstration (i.e. the value function becomes too complex). Once skill chains have been created, segments with the same target can be merged. Starting at the top of the chains this merging happens down the chains until no more merging can happen. This guarantees the resulting tree structure. Experimental results are given in the Pinball domain and on a mobile robotic manipulator. An interesting result is that with options a task can be learned faster than with regular RL even if the options are not provided. An experiment with a robot sequencing existing controllers to produce its own demonstrations. The authors note that this method may require domain specific tuning. First method to automatically segment a demonstration for the purpose of building skills in the options framework.}
 }
 
 % 27

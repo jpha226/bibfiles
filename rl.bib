@@ -4,7 +4,7 @@
 	author={Abbeel, Pieter and Ng, Andrew Y.},
 	year={2004},
 	booktitle={International Conference on Machine Learning, ICML},
-	annote={}
+	annote={This paper looks at the problem of learning an MDP reward function by observing an expert agent act in the MDP. It considers a known feature vector for each state and learns a reward function that is a linear function of these features. The assumption is that the expert is acting optimally. The approach repeatedly finds weights that the agent believes fit the expert's reward function. They formulate this problem as a quadratic program and solve it similar to an SVM. Theoretically they show their method converges and they offer several experiments that show it does what it is supposed to.}
 }
 
 % 31
@@ -32,7 +32,7 @@
 	author={Thomas, Philip S. and Theocharous, Georgios and Ghavamzadeh, Mohammad},
 	year={2015},
 	booktitle={Proceedings of the 32nd International Conference on Machine Learning, ICML},
-	annote={This paper presents RL algorithms that provide probabilistic lower bounds on each policy that they find. This is in the thread of finding safe policies. They assume the problem is a POMDP and it is stationary. They can then define an algorithm to be safe if it only proposes policies that meet the lower bound or semi-safe if it does this but relaxes these assumptions. They propose several confidence intervals for high confidence off-policy evaluation (see their other paper from this year).}
+	annote={This paper presents RL algorithms that provide probabilistic lower bounds on each policy that they find. This is in the thread of finding safe policies. They assume the problem is a POMDP and it is stationary. They can then define an algorithm to be safe if it only proposes policies that meet the lower bound or semi-safe if it does this but relaxes these assumptions. They propose several confidence intervals for high confidence off-policy evaluation (see their other paper from this year). The proposed algorithm, Daedalus, guarantees that proposed policies are safe and a more efficient Daedalus2 algorithm. Algorithms show fast monotonic improvements in policy value.}
 }
 
 % 28
