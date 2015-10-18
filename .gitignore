@@ -1,0 +1,12 @@
+*.class
+*.aux
+*.log
+*.o
+*.exe
+*.dll
+*.auxlock
+*.pdf
+*.synctex.gz
+*.bbl
+*.blg
+*.dvi

@@ -1,3 +1,30 @@
+% 35
+@inproceedings{ziebart2010maximum,
+	title={Maximum Entropy Inverse Reinforcement Learning},
+	author={Ziebart, Brian D. and Maas, Andrew and Bagnell, J.Andrew and Dey, Anind K.},
+	year={2010},
+	booktitle={Association for the Advancement of Artificial Intelligence, AAAI},
+	annote={This paper handles the problem of multiple possibly suboptimal demonstrations for IRL. It adopts a probabilistic framework that maximizes entropy in producing a distribution over expert policies. It assumes reward is linear in features. The motivation and evaluation comes in the form of modelling driver routing preferences. The paper points out that IRL is an ill posed problem since a policy can be optimal for many different reward functions. The paper addresses their method for deterministic and stochastic MDPs. The evaluation task is deterministic. Comparison is done with two previous IRL methods and Maximum Entropy IRL is shown to perform better.}
+}
+
+% 34
+@article{wulfmeier2015deep,
+	title={Deep Inverse Reinforcement Learning},
+	author= {Wulfmeier, Markus and Ondruska, Peter and Posner, Ingmar},
+	year={2015},
+	booktitle={arXiv},
+	annote={This paper learns a reward function for a task with inverse RL using a deep neural network as a reward function approximator. The key idea is that a deep network can learn the structure of the reward function (i.e. it doesn't have to make assumptions such that the function is linear). The maximum entropy IRL paradigm resolves expert suboptimality and stochasticity in the environment. This paradigm is covered in more detail in the above paper (Maximum Entropy IRL). The method uses a hand crafted state representation although this could potentially be learned as well. From observation data, the reward structure can be learned with back propagation. Experimental evaluation shows that DeepIRL and GPIRL (w/ Gaussian processes) can capture nonlinear structure. However Gaussian processes have poor scaling of computational time so DeepIRL does better on larger domains.}
+}
+
+% 33
+@article{chow2015robust,
+	title={Robust Policy Optimization with Baseline Guarantees},
+	author={Chow, Yinlam and Petrik, Marek and Ghavamzadeh, Mohammad},
+	year={2015},
+	booktitle={arXiv},
+	annote={This paper looks at safe learning using an inaccurate model. The work assumes a model (or simulator) with a known error function bounding its accuracy. The goal is to use the model to improve on a baseline policy and find a policy that is guaranteed to perform no worse than the baseline. Four algorithms are presented with each one more computationally complex and less conservative than the previous one. The first method adjusts the MDP reward function as a function of the error. The next method involves solving a robust MDP which looks at worse-case transition probabilities. The next method involves solving an augmented RMDP. The final approach combines the baseline policy with the robust policy - using the optimized policy when the model is reliable and the baseline when not. A toy experiment is given and all algorithms are theoretically evaluated for runtime and performance.}
+}
+
 % 32
 @inproceedings{abbeel2004apprenticeship,
 	title={Apprenticeship Learning via Inverse Reinforcement Learning},
@@ -86,7 +113,7 @@
 	title={An Approximation of the Universal Intelligence Measure},
 	author={Legg, Shane and Veness, Joel},
 	year={2011},
-	booktitle={Solomonoff Memorial Conference}
+	booktitle={Solomonoff Memorial Conference},
 	annote={This paper is concerned with the problem of defining and computing intelligence. The Universal Intelligence Measure is a formal definition of intelligence that is specified mathematically and is highly general. It is also not anthropocentric. This paper seeks an approximation of the UIM since the UIM is not computable. The measure is computed based on the sum of the expected reward for an agent over all computable reward bounded environments. The measure is continuous unlike the pass or fail Turing test. The metric defined in this paper is the Algorithmic Intelligence Quotient (AIQ). AIQ is defined as the expected value of an agent's policy over N randomly samped programs that define environments. The reference machine (essentially the language of the program) is the BF reference machine. It has a very small number of symbols and programs are always syntactically valid. Note that the choice of reference machine introduces bias into what environments will be created. Consider a Prolog reference machine. The environments would have a clear logical structure. The authors evaluated MC-AIXI (approximation to AIXI), two variants of Q-learning, and an agent that automatically adapts its learning rate. The agents performed as expected with MC-AIXI at the top. The sampling scheme was also inspected and found to be working with shorter programs being more likely and longer ones less likely.
 AIXI - the most intelligent agent under the UIM. Converges to optimal if possible.}
 }
@@ -96,14 +123,14 @@ AIXI - the most intelligent agent under the UIM. Converges to optimal if possibl
 	title={Massively Parallel Methods for Deep Reinforcement Learning},
 	author={Nair, Arun and Srinivasan, Praveen and Blackwell, Sam and Alcicek, Cagdas and Fearon, Rory and De Maria, Alessandro and Panneershelvan, Vedavyas and Suleyman, Mustafa and Beattie, Charles and Petersen, Stig and Legg, Shane and Mnih, Volodymyr and Kavukcuoglu, Koray and Silver, David},
 	year={2015},
-	booktitle={ICML Deep Learning Workshop}
+	booktitle={ICML Deep Learning Workshop},
 	annote={The DQN architecture (Mnih et. al.) had a long training time on a single machine architecture. This work implements a distributed version of DQN to speed up training time. This is similar to the DistBelief (Dean et. al. 2012) architecture for training large neural networks. The architecture involves parallel actors for generating new behavior, parallel learners training from experience, distributed replay memory, and a distributed value function approximator. The different actors can use slightly different policies which means each will see a different distribution of training data. The actors update their Q network from the central server not a particular learner. A central parameter server has a master copy of the model. It receives gradients from the learners and uses these to update its model. The replicas take mini-batches of experience and calculate gradients. Periodically they update themselves with the master parameters. Learners sample from either local or global replay memory. The simplest instantiation of the model has a one-to-one mapping between actors and learners. In this case the actor generates the local replay memory for the learner. When the master server receives gradients if they are not recent enough they will be discarded. This is to deal with network slowdown of any other problem that could arise in distributed learning. In experimental evaluation, Gorila DQN outperforms DQN on 41 of 49 Atari games. It also trained by an order of magnitude faster. The paper does not offer an explanation for the 8 games that Gorila DQN did not outperform DQN on.}
 }
 
 % 21
 @inproceedings{schaul2015universal,
 	title={Universal Value Function Approximation},
-	author={Schaul, Tom and Horgan, Dan and Gregor, Karol and Silver, David}
+	author={Schaul, Tom and Horgan, Dan and Gregor, Karol and Silver, David},
 	year={2015},
 	booktitle={International Conference on Machine Learning, ICML},
 	annote={A standard value function approximator maps states to values given its parameters. This paper is concerned with constructing a universal value function approximator (UVFA) which maps states and goals to values. A UVFA generalizes over both states and goals. A UVFA is a generalization of the Horde architecture which constucts a discrete set of value functions. Different value functions allow for creating sets of options to achieve different goals. The universal refers to generalizing over a discrete set of goal states, the power set of these states, a set of continuous goal regions or a vector representation of pseudo-reward functions. The method involves creating a sparse table with observed states as rows and observed goals as columns. Then a low rank factorization of this table is found which gives state and goal embeddings. Then a MLP can be trained to compute these embeddings and the embeddings combined with a dot product operator (or some other symmetric function). The combined result is the value for that state and goal. This architecture can interpolate between similar goals and extrapolate to new parts of the state space. The extrapolation result is due to sharing features between the state and goal networks. These tests are done in a supervised learning setting. To extend to reinforcement learning, the Horde architecture is used to learn a value function for a set of goals and use this to seed the data tablefor learning the UVFA. One challenge with this is that the behavior policy shapes what data is seen as the environment is explored. Experimental results on the Ms. Pacman domain show that a UVFA trained from a small Horde can approximate the knowledge of a much larger Horde. A method for directly bootstrapping from  Q-learning is also presented. Important to note that MDP dynamics remain the same in this approach. Only the goal changes. A UVFA could also be used to generate temporarily abstract options.}
@@ -160,7 +187,7 @@ AIXI - the most intelligent agent under the UIM. Converges to optimal if possibl
 	author={Konidaris, George and Kaelbling, Leslie Pack and Lozano-Perez, Tomas},
 	year={2014},
 	booktitle={AAAI},
-	annote{This paper shows how a symbolic representation for high level planning can be developed from a continuous low-level environment. A symbolic representation can be converted into PDDL and there are fast planners for this type of planning problem. The authors define a propositional symbol as a test that is true in a subset of the states. The paper explicitly goes over how they construct their PDDL representation. Theoretical results prove the correctness of their method. Empirical results in the continuous playroom are given. Symbols are constructed by hand and then automatically converted to PDDL. FF is used as the planner. After the initial tests, more experiments were ran that showed that symbols could be acquired through experience. The key contribution is allowing agents to construct their own symbolic representations for high level planning.}
+	annote={This paper shows how a symbolic representation for high level planning can be developed from a continuous low-level environment. A symbolic representation can be converted into PDDL and there are fast planners for this type of planning problem. The authors define a propositional symbol as a test that is true in a subset of the states. The paper explicitly goes over how they construct their PDDL representation. Theoretical results prove the correctness of their method. Empirical results in the continuous playroom are given. Symbols are constructed by hand and then automatically converted to PDDL. FF is used as the planner. After the initial tests, more experiments were ran that showed that symbols could be acquired through experience. The key contribution is allowing agents to construct their own symbolic representations for high level planning.}
 }
 
 % 14
@@ -192,7 +219,7 @@ AIXI - the most intelligent agent under the UIM. Converges to optimal if possibl
 % 11
 @inproceedings{niekum2015online,
 	title={Online Bayesian Changepoint Detection for Articulated Motion Models},
-	author={Niekum, Scott and Osentoski, Sarah and Atkeson, Christopher G. and Barto, Andrew G.}
+	author={Niekum, Scott and Osentoski, Sarah and Atkeson, Christopher G. and Barto, Andrew G.},
 	year={2015},
 	booktitle={icra},
 	annote={This paper presents an algorithm called CHAMP for online Bayesian changepoint detection. As I understand it, changepoint detection is when you have time series data and at some point the distribution from which a data point is drawn changes. Online changepoint detection is when the data must be processed in an online method. CHAMP is a general method but the focus of this paper is using it to detect changing articulation models. An articulation model represents how an objects motion can change (e.g. a door swings and then locks in place). CHAMP approximates model parameters to avoid explicit integration of candidate models. The algorithm is experimentally evaluated on time-series data with five change points where a change point is a change of variance for a Gaussian distribution. Then it is evaluated on learning changepoints in articulation models for real world objects. This work is useful for robots learning from demonstration data.}
