@@ -1,0 +1,37 @@
+\documentclass[12 pt]{article}
+
+\author{Josiah Hanna}
+\title{CS 395T Project Proposal}
+
+\usepackage{cite}
+\usepackage{fullpage}
+\usepackage{url}
+
+\begin{document}
+
+\maketitle
+
+\section{Project Description}
+
+Simulation is a valuable tool for robotics research. However, its value is limited by the inherent inaccuracy of a simulator in modelling the dynamics of the physical world. Prior work has proposed an iterative policy improvement method where the simulator is modified with data from the physical robot, learning takes place in simulation, the new policy is evaluated on the robot, and the new data is used to further modify the simulator \cite{farchy2013humanoid}. In this work, Grounded Simulation Learning (GSL), the policies with the best fitness in simulation were chosen to be tested on the physical robot. However, there is no guarantee that these policies will work at all on the physical robot which may result in a large number of policies needing to be evaluated on the robot. This project will look at the question of ``which policies to transfer to the physical robot?" by empirically evaluating a proposed method for model-based off-policy evaluation.
+
+The proposed method comes from the statistical method of bootstrapping which resamples with replacement from a single collection of samples to generate $N$ sets of samples. The idea is that while the expected value of each individual set will be incorrect, the mean expected value over all $N$ sets will be a better estimate of the true population mean. In GSL, data is used to estimate the dynamics model of the physical robot which is then combined with the physics model of the simulator to be able to estimate the value of policies in simulation. Instead of learning a single dynamics model, we can use the data collected on the robot to learn $N$ different dynamics models. When combined with the simulator, each model will give us a different evaluation of a policies return in simulation. The hypothesis is that the mean of these returns will provide a more accurate prediction of the policies performance on the physical robot.
+
+% Need a bootstrapping reference
+
+\section{Domain Description}
+
+This project will use the same domain and task as the GSL work. Namely, our task is bipedal walking on a Aldebaran NAO robot. On the physical robot we will use a base walk policy developed by the University of New South Wales Standard Platform League Robocup team \cite{ashar2014robocup}. For simulation we use the Simspark simulator used in the Robocup 3D Simulation league \cite{simspark}. The UNSW walk policy is parameterized with 7 different parameters (e.g. step height, step length). The policy was reparameterized to find a set of parameters that can walk well in both simulation and on the physical robot. The policy will be evaluated in both simulation and on the physical robot by how far forward it can walk forward in a set amount of time. Time is fixed as opposed to distance because the physical robot does not have access to ground truth position so measurements would have noise due to robot localization or human timing error.
+
+\section{Experimental Setup}
+
+
+
+\section{Related Work}
+
+This work is closely related to other attempts to determine transferrable policies and leverage simulation for sample efficient robot learning \cite{koos2010crossing} \cite{cutler2014reinforcement}. It is also related to safe-learning and off-policy evaluation \cite{thomas2015off-policy} \cite{silver2014deterministic}.
+
+\bibliographystyle{plain}
+\bibliography{rl,robotics,nn}
+
+\end{document}

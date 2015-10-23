@@ -1,3 +1,60 @@
+% 44
+@article{kumar2015optimal,
+	title={Optimal Control with Learned Local Models: Application to Dexterous Manipulation},
+	author={Kumar, Vikash and Todorov, Emanuel and Levine, Sergey},
+	year={2015},
+	journal={arXiv},
+	annote={}
+}
+
+% 43
+@article{xie2015model-based,
+	title={Model-based Reinforcement Learning with Parameterized Physical Models and Optimism-Driven Exploration},
+	author={Xie, Chris and Patil, Sachin and Moldovan, Teodor and Levine, Sergey and Abbeel, Pieter},
+	year={2015},
+	journal={arXiv},
+	annote={}
+}
+
+% 42
+@article{fu2015one-shot,
+	title={One-Shot Learning of Manipulation Skills with Online Dynamics Adaptation and Neural Network Priors},
+	author={Fu, Justin and Levine, Sergey and Abbeel, Pieter},
+	year={2015},	
+	journal={arXiv},
+	annote={This paper looks at how a course model of system dynamics can be used as a prior for quick learning of manipulation skills. The prior knowledge is encoded as a neural network dynamics model. This model can be learned from previous different tasks. This model can be adapted online to lead to quick learning. Model predictive control is used to choose actions but this requires a model of the dynamics. The prior knowledge is used to learn local and more accurate models.}
+}
+
+% 41
+@article{finn2015learning,
+	title={Learning Visual Feature Spaces for Robotic Manipulation with Deep Spatial Autoencoders},
+	author={Finn, Chelsea and Tan, Xin Yu and Duan, Yan and Darrell, Trevor and Levine, Sergey and Abbell, Pieter},
+	year={2015},
+	journal={arXiv},
+	annote={This paper looks at automatically learning a state representation from raw images using autoencoders. This work builds off of the GPS with CNN policies paper from Levine et. al. However, training the CNNs involved defining a state space for training linear gaussian controllers. This paper skips that step by learning the representation before training the controllers. As usual in Sergey's GPS work controllers are combined into a neural network policy. The method works by first having the robot attempt the task using a state space that only includes the robot configuration and joint velocity and accelerations. Since the tasks involve object manipulation the robot cannot learn the task. The resulting controller is then used as an exploration policy and images are recorded. An autoencoder is trained with the images to produce a bottleneck feature vector. Of importance is that the autoencoder is trained in a way that the final feature vector encodes object positions instead of semantic value. A term is added to the loss function to encode smoothness of feature points over images (for predicting dynamics). The learned features are then added to robot state information to form the final state representation. GPS is then used with this state representation to learn controllers for the task. The method is compared with different autoencoder architectures and it is shown that it performs with much less error.}
+}
+
+% 40
+@misc{simspark,
+	title={SimSpark generic physical multiagent simulator system},
+	howpublished={\url{http://simspark.sourceforge.net/}},
+	annote={The simspark server used in research and for 3D simulation robocup}
+}
+
+% 39
+@incollection{ashar2014robocup,
+	year={2015},
+	booktitle={RoboCup 2014: Robot World Cup XVIII},
+	volume={8992},
+	series={Lecture Notes in Computer Science},
+	editor={Bianchi, Reinaldo A. C. and Akin, H. Levent and Ramamoorthy, Subramanian and Sugiura, Komei},
+	title={RoboCup SPL 2014 Champion Team Paper},
+	publisher={Springer International Publishing},
+	author={Ashar, Jayen and Ashmore, Jaiden and Hall, Brad and Harris, Sean and Hengst, Bernhard and Liu, Roger and Mei (Jacky), Zijie and Pagnucco, Maurice and Roy, Ritwik and Sammut, Claude and Sushkov, Oleg and Teh, Belinda and Tsekouras, Luke},
+	pages={70-81},
+	annote={The UNSW 2014 SPL Champions invited paper. Useful for citing their walk engine used in my research.}
+}
+
 % 38
 @inproceedings{han2015learning,
 	title={Learning Compound Multi-Step Controllers under Unknown Dynamics},
