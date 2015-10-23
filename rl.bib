@@ -1,3 +1,30 @@
+% 38
+@inproceedings{pinto2014learning,
+	title={Learning Partial Policies to Speedup MDP Tree Search},
+	author={Pinto, Jervis and Fern, Alan},
+	year={2014},
+	booktitle={The Conference on Uncertainty in Artificial Intelligence},
+	annote={Tree search is a method for planning actions in large MDPs. This methodology looks at learning partial policies offline (using a model or simulator) to help prune trees for online planning. A partial policy is a policy that maps states to subsets of actions (as opposed to actions as in a complete policy). Learning a partial policy can allow an online planner to prune actions that are not in the partial policy for a state. This reduces the action branching factor and speeds up planning. One problem with this is that the partial policies are learned through supervised learning. When an optimal action is mistakenly pruned the planner may end up in a part of the state space that it doesn't know what to do. They modify their algorithm to allow it to handle this problem gracefully. Theoretical results establish regret bounds using proofs found in other papers. Empirical results on two games show that planning speed is increased.}
+}
+
+% 37
+@inproceedings{guo2015deep,
+	title={Deep Learning for Real-Time Atari Game Play Using Offline Monte-Carlo Tree Search Planning},
+	author={Guo, Xiaoxiao and Singh, Satinder and Lee, Honglak, and Lewis, Richard and Wang, Xiaoshi},
+	year={2015},
+	booktitle={International Conference on Autonomous Agents and Multiagent Systems, AAMAS},
+	annote={This paper uses offline MCTS to play Atari games in order to generate data to train a neural network Q-function approximator which plays Atari in real time better than DQN. MCTS can acheive better scores than Q-Learned policies but is not fast enough to play in real-time. MCTS is useful for partially observable tasks like Atari. Using UCT as a MCTS algorithm they produce three algorithms. UCTtoRegression collects data and maps four frames to action-values. UCTtoClassification does the same but maps frames to the action to choose. UCTtoClassification-Interleaved interleaves collecting data with UCT and training the Q network. This final method is a special case of DAgger (Ross and Bagnall 2011). The first does not work that well but the second two outperform DQN. UCC-I is the best but still does not match UCT performance. I wonder if combining this approach with DAgger completely would help the network match the performance of the expert UCT offline agent. }
+}
+
+% 36
+@inproceedings{jiang2015dependence,
+	title={The Dependence of Effective Planning Horizon on Model Accuracy},
+	author={Jiang, Nan and Kulesza, Alex and Singh, Satinder and Lewis, Richard},
+	year={2015},
+	booktitle={International Conference on Autonomous Agents and Multiagent Systems, AAMAS},
+	annote={This paper is on the phenomena that a shorter planning horizon can help achieve better policies when planning with a model estimated from data. They show formally that the model horizon is a parameter that controls what class of policies can be learned. The planning horizon differs from the evaluation horizon as the planning horizon is under control of the agent while the evaluation horizon (discount factor) is a task instance parameter. Theoretical contributions show that the planning horizon controls the complexity of the policy class and also they establish a bound on the planning loss in terms of the planning horizon. These bounds suggest that reduced values for the planning horizon can contribute to better performance empirically. Empirical results confirm this. The complexity results include an intuitive counting measure of complexity and a less intuitive Rademacher complexity measure that I don't understand. Random MDPs are used for empirical results. Results show that as data increases the optimal planning horizon increases since the model will be more accurate in general.}
+}
+
 % 35
 @inproceedings{ziebart2010maximum,
 	title={Maximum Entropy Inverse Reinforcement Learning},

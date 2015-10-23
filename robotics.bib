@@ -1,3 +1,30 @@
+% 38
+@inproceedings{han2015learning,
+	title={Learning Compound Multi-Step Controllers under Unknown Dynamics},
+	author={Han, Weiqiao and Levine, Sergey and Abbeel, Pieter},
+	year={2015},
+	booktitle={IEEE/RSJ International Conference on Intelligent Robots and Systems},
+	annote={This paper uses Guided Policy Search under unknown dynamics for multi-step tasks. This task is hard because the performance of each controller determines the start state distribution for the following controller. For each forward controller learned a corresponding reset controller is also learned. This allows the robot to reset itself during training which reduces human intervention. The reset is not always trivial (i.e. move to a certain point). The reset controller will not always reach the desired start state which makes the task non-stationary for the forward controller. However, the GPS under unknown dynamics algorithm does not need the task to be stationary since it does not make this assumption. Samples from the controllers are used to train a neural network policy for generalization. Experimental results show the method works for combining controllers.}
+}
+
+% 37
+@inproceedings{armstrong1987find,
+	title={On Finding 'Exciting' Trajectories for Identification Experiments Involving Systems with Non-Linear Dynamics},
+	author={Armstrong, Brian},
+	year={1987},
+	booktitle={IEEE International Conference on Robotics and Automation, ICRA},
+	annote={A lot of the math in this paper was not very intuitive to me and it had a lot of math. The main takeaway was that the trajectory chosen for identification experiments is important for being able to quickly determine model parameters for non-linear dynamical systems. Mathematically, the convergence rate / noise immunity decreases as the persistent excitation matrix condition number increases. Noise sensitivity limits the largest eigenvalue of this matrix and the convergence rate is set by the smalleest eigenvalue. Finding a trajectory that optimizes convergence rate also optimizes noise immunity. Also noted that the identification is most noise sensitive in direction that the matrix is poorly conditioned. Finally, intuitive identification trajectories may in face be poorly conditioned.}
+}
+
+% 36
+@article{chernova2009interactive,
+	title={Interactive Policy Learning through Confidence-Based Autonomy},
+	author={Chernova, Sonia and Veloso, Manuela},
+	year={2009},
+	journal={Journal of Artificial Intelligence Research},
+	annote={This paper presents a two part algorithm (Confidence-Based Autonomy or CBA) for robotic task learning. The robot receives a demonstration and learns a policy through classification. The robot then executes this policy as long as its confidence in the action is high enough (e.g. for a GMM how far the state is from the action's mean). If confidence is too low the robot requests a demonstration. This way the robot receives demonstrations for areas in which it needs more data. The teacher can also interupt the robot and make corrections when the robot performs something wrong. This work is similar to DAgger but the teacher only demonstrates when the robot asks instead of randomly. One assumption is that the problem is one that can be paused for the robot (e.g. a video game or non-dynamic task). Empirical results are given in the car driving domain with GMMs as the supervised learning method.}
+}
+
 % 35
 @inproceedings{lopes2007affordance-based,
 	title={Affordance-based imitation learning in robots},
