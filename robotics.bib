@@ -1,3 +1,12 @@
+% 45
+@inproceedings{cutler2015efficient,
+	title={Efficient Reinforcement Learnng for Robots using Informative Simulated Priors},
+	author={Cutler, Mark and How, Jonathan P.},
+	year={2015},
+	booktitle={IEEE International Conference on Robotics and Automation, ICRA},
+	annote={This paper proposes an algorithm for incorporating prior knowledge learned in simulation into the PILCO learning algorithm. A Gaussian process prior is learned from a simulator. This is then used as a prior for PILCO. Incorporating simulator knowledge as a prior is a principled way to incorporate this knowledge into PILCO because real world experience can always overcome the prior. Experimental results in simulation and on a physical robot show this can speed up learning. However in the case that the simulator is too unaccurate the prior may bias the simulator away from good policies and slow down learning. The method takes approximately twice the computation time of regular PILCO but it does not go up with the size of the simulated data set. It goes up with realworld data.}
+}
+
 % 44
 @article{kumar2015optimal,
 	title={Optimal Control with Learned Local Models: Application to Dexterous Manipulation},
@@ -13,7 +22,7 @@
 	author={Xie, Chris and Patil, Sachin and Moldovan, Teodor and Levine, Sergey and Abbeel, Pieter},
 	year={2015},
 	journal={arXiv},
-	annote={}
+	annote={This work combined model predictive control with an optimistic dynamics model. The work uses a feature-based representation of the robots dynamics (high level robot morphology) that allows the model to be fit efficiently with a least-squares procedure. This leads to online system identification using prior knowledge of the robot's joint and connectivity and physics. Optimisim driven control causes MPC to move the robot towards the goal or learn something new about the dynamics. The method works by executing a random control and appending the resulting position and derivatives to the sample list. Then the dynamics are estimated and optimistic dynamics constructed. The optimistic dynamics are used to plan a trajectory and the first action on this trajectory is executed. This process repeats until the task completes. The paper shows how linear regression can be used to fit the dynamics for online model identification. The control algorithm used for MPC is iLQR (a differential dynamic programming method). The experimental tasks involve moving an arm to certain positions which this method can do. These results indicate that dynamics models can be learned on line while completing a task. The method is comparable with DDP and fully-known dynamics.}
 }
 
 % 42
@@ -22,7 +31,7 @@
 	author={Fu, Justin and Levine, Sergey and Abbeel, Pieter},
 	year={2015},	
 	journal={arXiv},
-	annote={This paper looks at how a course model of system dynamics can be used as a prior for quick learning of manipulation skills. The prior knowledge is encoded as a neural network dynamics model. This model can be learned from previous different tasks. This model can be adapted online to lead to quick learning. Model predictive control is used to choose actions but this requires a model of the dynamics. The prior knowledge is used to learn local and more accurate models.}
+	annote={This paper looks at how a course model of system dynamics can be used as a prior for quick learning of manipulation skills. The prior knowledge is encoded as a neural network dynamics model. This model can be learned from previous different tasks. This model can be adapted online to lead to quick learning. Model predictive control is used to choose actions but this requires a model of the dynamics. The prior knowledge is used to learn local and more accurate models. The paper shows how a neural network dynamics model can be used to determine a prior for the dynamics. Also of interest to me is that their dynamics model is learning to predict acceleration which is then integrated to get the next state. The networks are trained on the ability to predict the next state but they have this extra step. The method is empirically evaluated and shown that is can solve tasks in one trial. The prior dynamics model was trained with recorded data from previous work. Also, good to note that one-shot learning is not instantaneous solutions to the task. Some exploration will still occur but the task will be solved in one trial (always less than 20 seconds). One limitation is that there must be access to a full Markov state for MPC.}
 }
 
 % 41

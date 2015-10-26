@@ -9,7 +9,7 @@
 
 \begin{document}
 
-\maketitle
+%\maketitle
 
 \section{Project Description}
 
@@ -21,15 +21,15 @@ The proposed method comes from the statistical method of bootstrapping which res
 
 \section{Domain Description}
 
-This project will use the same domain and task as the GSL work. Namely, our task is bipedal walking on a Aldebaran NAO robot. On the physical robot we will use a base walk policy developed by the University of New South Wales Standard Platform League Robocup team \cite{ashar2014robocup}. For simulation we use the Simspark simulator used in the Robocup 3D Simulation league \cite{simspark}. The UNSW walk policy is parameterized with 7 different parameters (e.g. step height, step length). The policy was reparameterized to find a set of parameters that can walk well in both simulation and on the physical robot. The policy will be evaluated in both simulation and on the physical robot by how far forward it can walk forward in a set amount of time. Time is fixed as opposed to distance because the physical robot does not have access to ground truth position so measurements would have noise due to robot localization or human timing error.
+This project will use the same domain and task as the GSL work. Namely, our task is bipedal walking on a Aldebaran NAO robot. On the physical robot we will use a base walk policy developed by the University of New South Wales Standard Platform League Robocup team \cite{ashar2014robocup}. For simulation we use the Simspark simulator used in the Robocup 3D Simulation league \cite{simspark}. The UNSW walk policy is parameterized with 7 different parameters (e.g. step height, step length). The policy was reparameterized to find a set of parameters that can walk well in both simulation and on the physical robot. The resulting base policy walks at an average velocity of 0.18 m/s on the physical robot and 0.04 m/s in simulation.
 
 \section{Experimental Setup}
 
-
+The policy will be evaluated in both simulation and on the physical robot by how far forward it can walk forward in a set amount of time. Time is fixed as opposed to distance because the physical robot does not have access to ground truth position so measurements would have noise due to robot localization or human timing error. On the physical robot five trials of 20.0 seconds will be conducted to determine policy performance. In simulation, the evaluation procedure will involve 10-20 trials of 5 to 15 seconds each. 
 
 \section{Related Work}
 
-This work is closely related to other attempts to determine transferrable policies and leverage simulation for sample efficient robot learning \cite{koos2010crossing} \cite{cutler2014reinforcement}. It is also related to safe-learning and off-policy evaluation \cite{thomas2015off-policy} \cite{silver2014deterministic}.
+This work is closely related to other attempts to determine transferrable policies and leverage simulation for sample efficient robot learning \cite{koos2010crossing} \cite{cutler2014reinforcement}. It is also related to safe-learning and off-policy evaluation \cite{thomas2015off-policy} \cite{silver2014deterministic}. Finally, it is related to model-based reinforcement learning where we use the simulator as an imperfect model of the real world \cite{kupcsik2013data} \cite{deisenroth2011pilco}.
 
 \bibliographystyle{plain}
 \bibliography{rl,robotics,nn}
