@@ -1,3 +1,12 @@
+% 39
+@inproceedings{abbeel2006using,
+	title={Using Inaccurate Models in Reinforcement Learning},
+	author={Abbeel, Pieter and Quigley, Morgan and Ng, Andrew Y.},
+	year={2006},
+	booktitle={23rd International Conference on Machine Learning},
+	annote={This paper looks at how to learn for a task using a model or simulator. Policy evaluations are grounded with real world trials but the model is used to determine the gradient for changing the policy parameters. Theoretical results show that the method acheives near optimal performance in the real world. Empirical results show that the method minimizes samples in reaching real world performance. The method finds a locally optimal policy using the model. This policy is ran on the real MDP and the trajectory data is used to construct a better model. This new model is used to calculate a direction of improvement. Then a line search is done to find the best new policy in this direction. Line search evaluations are done in the real MDP. If the policy does not improve after the line search return the current policy. Otherwise repeat. The method assumes a deterministic MDP. The method for grounding (adding time dependent biases) makes sure that the gradient is evaluated with real trajectories. They show that improvement follows the true gradient.}
+}
+
 % 38
 @inproceedings{pinto2014learning,
 	title={Learning Partial Policies to Speedup MDP Tree Search},

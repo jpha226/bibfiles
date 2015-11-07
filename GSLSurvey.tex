@@ -29,16 +29,15 @@ The following are the steps to the project and their current implementation stat
 \begin{enumerate}
 
 
-\item Find a set of parameters for the UNSW walk that work in both simulation and on the physical robot.
-\begin{itemize}
-\item Done: This step is complete for a forward walk. Increasing the walk step height and limiting the maximum forward, side step and turn accomplishes this. In simulation the walk is slightly faster than 20\% of the UNSW walk max speed.
-\item TODO: If I have time I want to get an omnidirectional UNSW walk working in simulation.
-\end{itemize}
+%\item Find a set of parameters for the UNSW walk that work in both simulation and on the physical robot.
+%\begin{itemize}
+%\item Done: This step is complete for a forward walk. Increasing the walk step height and limiting the maximum forward, side step and turn accomplishes this. In simulation the walk is slightly faster than 20\% of the UNSW walk max speed.
+%\item TODO: If I have time I want to get an omnidirectional UNSW walk working in simulation.
+%\end{itemize}
 
 \item Gather state,action,state prime data on the physical robot.
 \begin{itemize}
-\item Done: Necessary behavior is in place for collecting data and the scripts are written for parsing this data.
-\item TODO: Recollect data since the walk parameterization has changed since I first collected data.
+\item Done: Data is collected with an omniwalk ``chase ball" behavior.
 \end{itemize}
 
 \item Train a model using the Weka machine learning library
@@ -53,69 +52,54 @@ The following are the steps to the project and their current implementation stat
 
 \item Transfer best parameters back to physical robot and evaluate
 \begin{itemize}
-\item Use parameter distance metric to determine transfer.
-\item Evaluate best parameters on robot.
-\item Use bootstrapping to estimate performance on physical robot.
+\item Done. Approximately 25\% improvement after first iteration. 
 \end{itemize}
 
 \end{enumerate}
 
-This paper will survey several topics related to this research. Section two considers previous attempts to cross the gap between simulation and reality. Section three discusses model identification for robotic systems. Section four discusses a few model-based reinforcement learning algorithms applied directly to robots. 
+This paper will survey work in two areas related to this research: transfer from simulation and model-based reinforcement learning.
 
 \section{Transfer from Simulation}
 
 Since a simulator approximates reality to some degree it is reasonable to hypothesize that something can be transferred from simulation to the real world.
+
+Solutions produced in simulation can be evaluated in a multi-objective framework where the objectives are task performance and transferrability \cite{koos2010crossing}. 
+This paper views optimization of robotics control as a multi-objective problem. Simulator inaccuracies result in a trade-off between good solutions and transferable solutions. The goals are to find good transferrable controllers and minimize the number of interactions with the target system. To minimize transfers, a transferrability approximation method is introduced to measure transferrability of solutions that have not been transferred by looking at ones that have. Controller behavior is broken down into behavior features which makes it possible to compute a distance metric between behavior of different controlelrs. The objectives are then transferrability, fitness, and behavioral diversity (for exploration). The general algorithm is to evaluate controllers and compare to already transferred controllers. Controllers with high enough diversity are transferred to the real system. Then a Pareto-optimal multi objective evolutionary algorithm is applied. The final solution is taken from the set of transferable non-dominated solutions. The best compromise solution is the one closest to the ideal point of maximal transferrability and maximal fitness. Experimental results are given for a simple robot quadrupedal walking with sinusoidal controllers. NSGA-II is used as the evolutionary algorithm of choice. One experiment used a simulator and a better simulator. The other used the better simulator and a real robot. Results show that the method works but I'm not sure how impressive they are. (Interesting related work - mask parts of simulation that are inaccurate in noise. This causes robust controllers to evolve)
+
 
 Multi-fideltiy simulators \cite{cutler2014reinforcement}.
 This paper presents a framework (and two algorithms) for learning from multiple simulators where simulators can be ordered in terms of fidelity to a goal simulator or the real world. The method involves transferring Q-values to higher fideltiy simulators and using high fidelity samples to improve the models of lower fidelity simulators. Three things the framework does are 1) uses low fidelity simulators to eliminate sub-optimal actions, 2) minimizes real world samples, and 3) limits total samples. Specifically the number of samples in a simulator is polynomial in the number of samples from the previous simulator. Theoretical results are given for the family of KWIK (knows what it knows) learners. A simulator is defined as an MDP and fidelity is measured in terms of how much the optimal Q-values differ between successive simulators. Access to simulators is limited to running trajectories, not random access. Theoretical proofs are given and empirical results provided for a multi-armed bandit problem and a RC car on a race track. Results show that this method is better than unidirectional transfer in terms of number of samples needed. The low fidelity simulators eliminate policies that are clearly sub-optimal and then higer fidelity simulators eliminate policies that are problematic with higher fidelity.
 
 
 Simulated priors \cite{cutler2015efficient}.
-This paper proposes an algorithm for incorporating prior knowledge learned in simulation into the PILCO learning algorithm. A Gaussian process prior is learned from a simulator. This is then used as a prior for PILCO. Incorporating simulator knowledge as a prior is a principled way to incorporate this knowledge into PILCO because real world experience can always overcome the prior. Experimental results in simulation and on a physical robot show this can speed up learning. However in the case that the simulator is too unaccurate the prior may bias the simulator away from good policies and slow down learning. The method takes approximately twice the computation time of regular PILCO but it does not go up with the size of the simulated data set. It goes up with realworld data.
+This paper proposes an algorithm for incorporating prior knowledge learned in simulation into the PILCO learning algorithm (discussed in the next section) \cite{deisenroth2011pilco}. A Gaussian process prior is learned from a simulator. This is then used as a prior for PILCO. Incorporating simulator knowledge as a prior is a principled way to incorporate this knowledge into PILCO because real world experience can always overcome the prior. Experimental results in simulation and on a physical robot show this can speed up learning. However in the case that the simulator is too unaccurate the prior may bias the simulator away from good policies and slow down learning. The method takes approximately twice the computation time of regular PILCO but it does not go up with the size of the simulated data set. It goes up with realworld data.
 
-Solutions produced in simulation can be evaluated in a multi-objective framework where the objectives are task performance and transferrability \cite{koos2010crossing}. 
-This paper views optimization of robotics control as a multi-objective problem. Simulator inaccuracies result in a trade-off between good solutions and transferable solutions. The goals are to find good transferrable controllers and minimize the number of interactions with the target system. To minimize transfers, a transferrability approximation method is introduced to measure transferrability of solutions that have not been transferred by looking at ones that have. Controller behavior is broken down into behavior features which makes it possible to compute a distance metric between behavior of different controlelrs. The objectives are then transferrability, fitness, and behavioral diversity (for exploration). The general algorithm is to evaluate controllers and compare to already transferred controllers. Controllers with high enough diversity are transferred to the real system. Then a Pareto-optimal multi objective evolutionary algorithm is applied. The final solution is taken from the set of transferable non-dominated solutions. The best compromise solution is the one closest to the ideal point of maximal transferrability and maximal fitness. Experimental results are given for a simple robot quadrupedal walking with sinusoidal controllers. NSGA-II is used as the evolutionary algorithm of choice. One experiment used a simulator and a better simulator. The other used the better simulator and a real robot. Results show that the method works but I'm not sure how impressive they are. (Interesting related work - mask parts of simulation that are inaccurate in noise. This causes robust controllers to evolve)
+Behaviour-performance map
+
+UNSW feet paper
 
 Learning humanoid soccer actions interleaving simulated and real data
 
-On the role of simulation in the study of autonomous mobile robots
+Grounded Simulation Learning \cite{farchy2013humanoid}
 
-\section{Model Based RL}
-Generalized model learning for reinforcement learning on a humanoid robot
+\section{Model Based Reinforcement Learning}
+
+Model used for derivatives (Abbeel et. al.)
+
+Agnostic system identification (Ross and Bagnell)
+
+GPS with unknown dynamics \cite{levine2014learning}
+Local linear models and GPS \cite{levine2015learning}
 
 PILCO \cite{deisenroth2011pilco}
 
 Contextual REPS \cite{kupcsik2013data}
 
-GPS with unknown dynamics \cite{levine2014learning}
+Model consistency (Atkeson)
 
-Model predictive control
-
-
-\section{Model Identification}
-
-On finding exciting trajectories for identification experiments involving systems with nonlinear dynamics
+On finding exciting trajectories for identification experiments involving systems with nonlinear dynamics \cite{armstrong1987find}
 A lot of the math in this paper was not very intuitive to me and it had a lot of math. The main takeaway was that the trajectory chosen for identification experiments is important for being able to quickly determine model parameters for non-linear dynamical systems. Mathematically, the convergence rate / noise immunity decreases as the persistent excitation matrix condition number increases. Noise sensitivity limits the largest eigenvalue of this matrix and the convergence rate is set by the smalleest eigenvalue. Finding a trajectory that optimizes convergence rate also optimizes noise immunity. Also noted that the identification is most noise sensitive in direction that the matrix is poorly conditioned. Finally, intuitive identification trajectories may in face be poorly conditioned.
 
-Exciting trajectories for the identification of base inertial parameters of robots
-
-Identification of consistent standard dynamic parameters of industrial robots
-
-Model Identification
-
-System Identification
-
-Using model knowledge for learning inverse dynamics
-
-\section{Bipedal Walking}
-
-Design and optimization of an omnidirectional humanoid walk: A winning approach at the RoboCup 2011 3D simulation competition.
-
-\section{Off-policy evaluation}
-
-Importance sampling \cite{silver2014deterministic} \cite{levine2013guided}.
-
-Safe learning \cite{thomas2015off-policy}.
 
 \bibliographystyle{plain}
 \bibliography{robotics,rl,nn}
