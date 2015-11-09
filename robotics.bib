@@ -1,5 +1,39 @@
+@article{kumar2015optimal,
+        title={Optimal Control with Learned Local Models: Application to Dexterous Manipulation},
+        author={Kumar, Vikash and Todorov, Emanuel and Levine, Sergey},
+        year={2015},
+        journal={arXiv},
+        annote={}
+}
+
+% 47
+@inproceedings{iocchi2007learning,
+	title={Learning humanoid soccer actions interleaving simulated and real data},
+	author={Iocchi, Luca and Libera, Fabio D and Menegatti, Emanuele},
+	booktitle={Second Workshop on Humanoid Soccer Robots},
+	year={2007},
+	annote={This paper looks at transfer between simulation and reality by iteratively modifying the fitness function of the simulator to better match the real world. With this method, learning is done in simulation and trials on the real robot are used to find discrepancies in the fitness function. The key idea is that it is easier to modify the fitness function than to modify the model. Results on the real robot are used to calculate a correction function which represents the difference between simulation and reality. This correction is added to the simulation fitness function. Some argument is given of correctness with a one dimensional example but proof is left to future work. The method is evaluated using a genetic algorithm on learning a walking controller.}
+}
+
+%46
+@inproceedings{hengst2011learning,
+	title={Learning to control a biped with feet},
+	author={Hengst, Bernhard and Lange, Manuel and White, Brock},
+	year={2011},
+	booktitle={Humanoids},
+	annote={This paper looks at learning a stability policy for a robot's ankle controllers. This is so the robot can respond to rapid changes in direction or deal with stepping on obstacles or being pushed. The controller is modelled as an inverted pendulum and is learned in simulation. Q-learning is used in the simulator to learn the policy. The robot's actions are ankle joint actuations (ankle tilt) which are used to control the pendulum's pivot point by moving the foot's center of pressure. The foot is discretized into toe, center, and heel. Actions are discretized as well and the reward function is set arbitarily with the goal of keeping the robot balanced and upright. The physical robots walk by using inverse kinematics to keep the center of mass at a constant height. On the real robot a kalman filter is used to estimate the state. Results show that ankle control is enough for the robot to remain balanced.}
+}
 
 % 45
+@article{cully2015robots,
+	title={Robots that can adapt like animals},
+	author={Cully, Antoine and Clune, Jeff and Tarapore, Danesh and Mouret, Jean-Baptiste},
+	year={2015},
+	journal={Nature},
+	annote={This paper considers how damaged robots can quickly find new behaviors to compensate for the damage. The method is called Intelligent Trial and Error (IT+E). It involves the robot building a behavior-performance map before being deployed. A behavior is a low dimensional representation of policies that the robot could use. The learned map identifies high performing behaviors. The map can be learned in simulation just once. Since these behaviors have not been executed on the real system the robot will have low confidence in them. After deployment if the robot's performance drops below a threshold (e.g. robot is damaged) it can select a new behavior from the map and execute that. As behaviors are executed on the robot the behavior performance and confidence in that belief can be updated accordingly. This is implemented with a Gaussian process and new behaviors are selected by maximizing information acquisition that balances exploration and exploitation. The algorithm is evaluated on a Hexapod robot and experiments show it can adapt in a small number of trials. It is noted that prior knowledge could hinder the robot from learning a new behavior depending on the type of damage or differences in simulation and reality}
+}
+
+% 44
 @inproceedings{cutler2015efficient,
 	title={Efficient Reinforcement Learnng for Robots using Informative Simulated Priors},
 	author={Cutler, Mark and How, Jonathan P.},
@@ -8,14 +42,6 @@
 	annote={This paper proposes an algorithm for incorporating prior knowledge learned in simulation into the PILCO learning algorithm. A Gaussian process prior is learned from a simulator. This is then used as a prior for PILCO. Incorporating simulator knowledge as a prior is a principled way to incorporate this knowledge into PILCO because real world experience can always overcome the prior. Experimental results in simulation and on a physical robot show this can speed up learning. However in the case that the simulator is too unaccurate the prior may bias the simulator away from good policies and slow down learning. The method takes approximately twice the computation time of regular PILCO but it does not go up with the size of the simulated data set. It goes up with realworld data.}
 }
 
-% 44
-@article{kumar2015optimal,
-	title={Optimal Control with Learned Local Models: Application to Dexterous Manipulation},
-	author={Kumar, Vikash and Todorov, Emanuel and Levine, Sergey},
-	year={2015},
-	journal={arXiv},
-	annote={}
-}
 
 % 43
 @article{xie2015model-based,
