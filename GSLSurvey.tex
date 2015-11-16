@@ -1,5 +1,6 @@
 \documentclass[12 pt]{article}
 
+\usepackage{url}
 \usepackage{cite}
 \usepackage{fullpage}
 
@@ -9,95 +10,106 @@
 \begin{document}
 \maketitle
 
-\section{Introduction}
-
-Motivation: Need a couple papers on design of walk engine \cite{ashar2014robocup} \cite{simspark}
-Robotic learning and challenges: \cite{kober2013reinforcement}
+\section{Project Proposal}
 
 
 Simulation is a valuable tool for robotics research. 
-However, its value is limited by the inherent inaccuracy of a simulator in modelling the dynamics of the physical world. 
+However, its value is limited by the inherent inaccuracy of a simulator in modelling the dynamics of the physical world \cite{kober2013reinforcement}. 
 Prior work has proposed an iterative policy improvement method where the simulator is modified with data from the physical robot, learning takes place in simulation, the new policy is evaluated on the robot, and the new data is used to further modify the simulator \cite{farchy2013humanoid}.
 My project proposal is to duplicate this work using the University of New South Wales walk engine \cite{ashar2014robocup}. 
 This will involve learning a dynamics model of the physical Nao (mapping from joint sensations and joint commands to resulting joint sensations). 
-This model will then be used to modify the joint commands produced by the runswift walk in simulation to make the simulated walk better match the physical walk. 
-The walk parameters will then be optimized in simulation using CMA-ES and the best parameters will be evaluated on the robot. 
-My goal for this project is to complete one cycle of grounding the simulator and transferring parameters back to the robot for a walk front behavior. 
+This model will then be used to modify the joint commands produced by the runswift walk in the SimSpark Robot Soccer simulation \cite{simspark} to make the simulated walk better match the physical walk. 
+The walk parameters will then be optimized in simulation using the Covariate Matrix Adaptation Evolutionary Strategy (CMA-ES)\cite{hansen2011cma} and the best parameters will be evaluated on the robot. 
+My goal for this project iss to complete one cycle of grounding the simulator and transferring parameters back to the robot for a walk front behavior. 
 This will require completing all of the necessary framework for future iterations.
-The following are the steps to the project and their current implementation status:
 
-\begin{enumerate}
-
-
-%\item Find a set of parameters for the UNSW walk that work in both simulation and on the physical robot.
-%\begin{itemize}
-%\item Done: This step is complete for a forward walk. Increasing the walk step height and limiting the maximum forward, side step and turn accomplishes this. In simulation the walk is slightly faster than 20\% of the UNSW walk max speed.
-%\item TODO: If I have time I want to get an omnidirectional UNSW walk working in simulation.
-%\end{itemize}
-
-\item Gather state,action,state prime data on the physical robot.
-\begin{itemize}
-\item Done: Data is collected with an omniwalk ``chase ball" behavior.
-\end{itemize}
-
-\item Train a model using the Weka machine learning library
-\begin{itemize}
-\item Currently using a two layer neural network with 40 hidden sigmoidal units in each layer. Models are trained in Weka and the resulting model is imported into a C++ neural network implementation using the Eigen linear algebra library.
-\end{itemize}
-
-\item Optimize using CMA-ES
-\begin{itemize}
-\item The WalkFront behavior optimization task was performed using the average of predicted commands and the simulated agent's walk engine commands.
-\end{itemize}and use for prediction.
-
-\item Transfer best parameters back to physical robot and evaluate
-\begin{itemize}
-\item Done. Approximately 25\% improvement after first iteration. 
-\end{itemize}
-
-\end{enumerate}
+Work on the project progressed faster than expected and so I want to propose an additional component. I want to compare the direction of policy improvement from one iteration of CMA-ES on the physical robot with the direction from one iteration with different fidelity models. Fidelity will be determined by the weights in a weighted average of the learned model and the simulated robot's commands. 
 
 This paper will survey work in two areas related to this research: transfer from simulation and model-based reinforcement learning.
 
 \section{Transfer from Simulation}
 
-Since a simulator approximates reality to some degree it is reasonable to hypothesize that something can be transferred from simulation to the real world.
+Since a simulator approximates reality to some degree it is reasonable to hypothesize that something can be transferred from simulation to the real world. The first three related works describe approaches that use simulation to reduce learning time on the physical system.
 
-Solutions produced in simulation can be evaluated in a multi-objective framework where the objectives are task performance and transferrability \cite{koos2010crossing}. 
-This paper views optimization of robotics control as a multi-objective problem. Simulator inaccuracies result in a trade-off between good solutions and transferable solutions. The goals are to find good transferrable controllers and minimize the number of interactions with the target system. To minimize transfers, a transferrability approximation method is introduced to measure transferrability of solutions that have not been transferred by looking at ones that have. Controller behavior is broken down into behavior features which makes it possible to compute a distance metric between behavior of different controlelrs. The objectives are then transferrability, fitness, and behavioral diversity (for exploration). The general algorithm is to evaluate controllers and compare to already transferred controllers. Controllers with high enough diversity are transferred to the real system. Then a Pareto-optimal multi objective evolutionary algorithm is applied. The final solution is taken from the set of transferable non-dominated solutions. The best compromise solution is the one closest to the ideal point of maximal transferrability and maximal fitness. Experimental results are given for a simple robot quadrupedal walking with sinusoidal controllers. NSGA-II is used as the evolutionary algorithm of choice. One experiment used a simulator and a better simulator. The other used the better simulator and a real robot. Results show that the method works but I'm not sure how impressive they are. (Interesting related work - mask parts of simulation that are inaccurate in noise. This causes robust controllers to evolve)
+% 1
+One approach involves learning in multiple simulators with increasing fidelity to the real world \cite{cutler2014reinforcement}. 
+In this work, fidelity is quantified as the difference between the optimal Q-values in the simulator MDP and the target task MDP.
+The framework proposed in this work involves transferring Q-values to higher fideltiy simulators and using high fidelity samples to improve the models of lower fidelity simulators.
+The lower fidelity simulators can eliminate sub-optimal actions in order to reduce the sample complexity of learning in high-fidelity simulators. 
+Then high-fidelity simulators can eliminate policies that don't work at a higher fidelity. 
+The framework also allows the learner to transfer knowledge back to improve the low fidelity simulator so it can continue learning with less costly low-fidelity samples.
+The sample complexity is bound in theory for the KWIK (``Knows What It Knows") family of RL algorithms and two experiments are given for empirical evaluation. 
+
+% 2
+Another approach is to use the simulator as a form of prior knowledge about the real world \cite{cutler2015efficient}.
+This paper extends the PILCO model-based RL algorithm (discussed in the next section) by learning a Gaussian process prior for the dynamics of the environment in simulation. PILCO learns a Gaussian process of the dynamics from scratch so the prior can significantly reduce the sample complexity of learning the model. 
+Incorporating simulated knowledge as a prior is a principled way to use simulation knowledge because  real world knowledge can always overcome the prior.
+The main drawback to this approach is that inference with Gaussian processes is slow so computation becomes an issue and incorporating the prior makes it worse than standard PILCO.
+Another problem found in experimentation was that the prior knowledge may bias the robot away from good real world policies which slows down learning.
+
+% 3
+Simulators can also be used as prior knowledge by learning a map of the different behaviors available to the robot with the simulator \cite{cully2015robots}.
+The motivation in this work is to help damaged robots quickly find new behaviors.
+Before deployment a robot can use a simulator to create a behavior-performance map which maps behaviors - low dimensional representations of policies - to a performance value.
+Then if the robot becomes damaged it can try behaviors that are predicted to have good performance.
+Aside from behavior performance, the robot maintains a confidence in behaviors. Initially confidence is low in all behaviors but the robot can update performance and confidence as it tries behaviors in the real world. Similar to the previous paper, a bad simulator may bias the robot away from good policies and slow down learning although this was not observed empirically.
 
 
-Multi-fideltiy simulators \cite{cutler2014reinforcement}.
-This paper presents a framework (and two algorithms) for learning from multiple simulators where simulators can be ordered in terms of fidelity to a goal simulator or the real world. The method involves transferring Q-values to higher fideltiy simulators and using high fidelity samples to improve the models of lower fidelity simulators. Three things the framework does are 1) uses low fidelity simulators to eliminate sub-optimal actions, 2) minimizes real world samples, and 3) limits total samples. Specifically the number of samples in a simulator is polynomial in the number of samples from the previous simulator. Theoretical results are given for the family of KWIK (knows what it knows) learners. A simulator is defined as an MDP and fidelity is measured in terms of how much the optimal Q-values differ between successive simulators. Access to simulators is limited to running trajectories, not random access. Theoretical proofs are given and empirical results provided for a multi-armed bandit problem and a RC car on a race track. Results show that this method is better than unidirectional transfer in terms of number of samples needed. The low fidelity simulators eliminate policies that are clearly sub-optimal and then higer fidelity simulators eliminate policies that are problematic with higher fidelity.
+% 4
+Estimating transferrability is another approach to using simulation \cite{koos2010crossing}.
+Multi-objective optimization can be used to find solutions in simulation that are likely to transfer to the real world and maximize performance. 
+With an inaccurate simulator it is expected that good policies in simulation will not be transferrable while transferrable policies may not perform well in simulation.
+The authors define a transferrability metric based on the difference of user-defined behavior features to a policy that has already been transferred.
+A multi-objective genetic algorithm is then used to produce a Pareto-set of solutions for the two objectives. 
+The final solution is the transferrable solution closest to the ideal solution which has the maximal transferrability and performance values.
+The method is implemented on a simple quadruped robot. The proposed project differs from this work in that solution policies will be transferred directly without an estimate of whether they will transfer or not.
 
+% 5
+While the proposed project considers using real world data to modify the simulator dynamics, another approach is to use real world data to modify the fitness function of the simulator \cite{iocchi2007learning}.
+With this method, learning is done in simulation and trials on the real robot are used to find discrepancies in the fitness function. 
+The key idea is that it is much easier to modify the fitness function than to modify the model. 
+Performance on the real robot is used to calculate a correction function which represents the difference between simulation and reality. 
+This correction is then added to the simulation fitness function. 
+Some argument is given of correctness but formal proof is left to future work. 
+Empirical evaluation demonstrates the method for learning a walking controller.
 
-Simulated priors \cite{cutler2015efficient}.
-This paper proposes an algorithm for incorporating prior knowledge learned in simulation into the PILCO learning algorithm (discussed in the next section) \cite{deisenroth2011pilco}. A Gaussian process prior is learned from a simulator. This is then used as a prior for PILCO. Incorporating simulator knowledge as a prior is a principled way to incorporate this knowledge into PILCO because real world experience can always overcome the prior. Experimental results in simulation and on a physical robot show this can speed up learning. However in the case that the simulator is too unaccurate the prior may bias the simulator away from good policies and slow down learning. The method takes approximately twice the computation time of regular PILCO but it does not go up with the size of the simulated data set. It goes up with realworld data.
+% 6
+An example of direct transfer from simulation to the real world is balance control for the UNSW walk used in the proposed work \cite{hengst2011learning}.
+The goal in this work was to learn a stability policy for a robot's ankle controllers to improve robustness to perturbation, obstacles, and rapid changes of direction.
+The robot is modelled as an inverted pendulum with feet. Actuating the ankle joints changes the center of pressure of the model. Q-learning is used in simulation to learn an ankle control policy for maintaining balance. The solution is then directly moved to two different bipedal robots. It is not clear why the solution is able to directly transfer. The main difference between this work and the proposed project is that the simulator is used as-is.
 
-This paper considers how damaged robots can quickly find new behaviors to compensate for the damage. The method is called Intelligent Trial and Error (IT+E). It involves the robot building a behavior-performance map before being deployed. A behavior is a low dimensional representation of policies that the robot could use. The learned map identifies high performing behaviors. The map can be learned in simulation just once. Since these behaviors have not been executed on the real system the robot will have low confidence in them. After deployment if the robot's performance drops below a threshold (e.g. robot is damaged) it can select a new behavior from the map and execute that. As behaviors are executed on the robot the behavior performance and confidence in that belief can be updated accordingly. This is implemented with a Gaussian process and new behaviors are selected by maximizing information acquisition that balances exploration and exploitation. The algorithm is evaluated on a Hexapod robot and experiments show it can adapt in a small number of trials. It is noted that prior knowledge could hinder the robot from learning a new behavior depending on the type of damage or differences in simulation and reality. \cite{cully2015robots}
-
-This paper looks at learning a stability policy for a robot's ankle controllers. This is so the robot can respond to rapid changes in direction or deal with stepping on obstacles or being pushed. The controller is modelled as an inverted pendulum and is learned in simulation. Q-learning is used in the simulator to learn the policy. The robot's actions are ankle joint actuations (ankle tilt) which are used to control the pendulum's pivot point by moving the foot's center of pressure. The foot is discretized into toe, center, and heel. Actions are discretized as well and the reward function is set arbitarily with the goal of keeping the robot balanced and upright. The physical robots walk by using inverse kinematics to keep the center of mass at a constant height. On the real robot a kalman filter is used to estimate the state. Results show that ankle control is enough for the robot to remain balanced. \cite{hengst2011learning}
-
-This paper looks at transfer between simulation and reality by iteratively modifying the fitness function of the simulator to better match the real world. With this method, learning is done in simulation and trials on the real robot are used to find discrepancies in the fitness function. The key idea is that it is easier to modify the fitness function than to modify the model. Results on the real robot are used to calculate a correction function which represents the difference between simulation and reality. This correction is added to the simulation fitness function. Some argument is given of correctness with a one dimensional example but proof is left to future work. The method is evaluated using a genetic algorithm on learning a walking controller.\cite{iocchi2007learning}
-
-This paper introduces the Grounded Simulation Learning (GSL) framework for learning in simulation and transferring to a real robot. The basic idea is to iteratively modify the simulator to make it better match the performance of the physical robot. This approach allows for many trials to be ran in simulation and orders of magnitude fewer ran on the real robot. Without the grounding learning algorithms tend to overfit to the simulator's differences from realities. The five parts of the framework are 1) an imperfect simulator that can be modified, 2) A robot on which evaluations can be ran, 3) An explor robot routine, 4) a supervised learning algorithm to learn a model of states and actions on the real robot, and 5) an optimization algorithm for finding better parameters in simulation. In addition to the grounding, the framework can also exploit expert guidance of the optimization. In this paper the task is a Nao learning to walk faster (HTWK walk base). The optimization method is CMA-ES and the supervised learning algorithm is the M5P tree regression algorithm. For grounding, a function is learned that maps commands on the real robot to resulting joint positions. Then the resulting joint positions are used as commands (plus some smoothing) in simulation. Guidance was in the form of opening and closing different parameters. Result was a 25 percent increase in walk speed. Future work could look at improving how the simulator is grounded or automating the selection of parameters for further investigation.\cite{farchy2013humanoid}
+% 7
+Clearly, the work that is most similar to the proposed project is grounded simulation learning \cite{farchy2013humanoid}.
+Since the main ideas of the work were presented in the introduction, we focus on what is different about the project and this method here. The project uses more data and a neural network to learn the robot's dynamics model. In contrast, the original GSL work used the M5P tree algorithm and less data although the data collection phase involves equal time on the physical robot. Second, the model in the proposed work uses a history of states and actions to predict the next state. This is to approximate joint velocities which are an important part of the state space that is ignored in the prior work. Finally, GSL involves expert user guidance in selection of which parameters to leave open for each iteration. The proposed project will use the same set of parameters the entire time.
 
 \section{Model Based Reinforcement Learning}
 
-This paper looks at how to learn for a task using a model or simulator. Policy evaluations are grounded with real world trials but the model is used to determine the gradient for changing the policy parameters. Theoretical results show that the method acheives near optimal performance in the real world. Empirical results show that the method minimizes samples in reaching real world performance. The method finds a locally optimal policy using the model. This policy is ran on the real MDP and the trajectory data is used to construct a better model. This new model is used to calculate a direction of improvement. Then a line search is done to find the best new policy in this direction. Line search evaluations are done in the real MDP. If the policy does not improve after the line search return the current policy. Otherwise repeat. The method assumes a deterministic MDP. The method for grounding (adding time dependent biases) makes sure that the gradient is evaluated with real trajectories. They show that improvement follows the true gradient. \cite{abbeel2006using}
+Model-based reinforcement learning aims to build a model of the task MDP and use this model to learn how to solve the task. In this section, we survey related work in model-based reinforcement learning.
 
-This paper extends the DAgger method to model-based reinforcement learning. The main contributions are strong guarantees even if the true systemis not in the class of models. The results also formalize the iterative system identification / controller synthesis method of learning a model, designing a controller, and then modifying the model after collecting data under the new controller. The method works by iteratively building a model, learning a controller, building a new model with the new data and the old data and then producing a new controller. This can be repeated for a fixed number of iterations. The problem with not covering enough of the state space is that any model will under estimate the cost of the part of the state space where it doesn't have data. This makes controllers that visit these parts of the state space more likely. The method needs an exploration distribution to sample transitions from and it isn't clear if this involves random access to the system or refers to rollouts.\cite{ross2012agnostic}
+% 8
+Abbeel et. al. consider how real world data can be used to improve an inaccurate model so that the model can be used in learning \cite{abbeel2006using}.
+Policy evaluations are grounded with real world trials but the model is used to determine the gradient of policy parameter improvement.
+A line search along the direction of improvement is used to determine the next policy.
+The methodology is very similar to the proposed project in that real world trajectories are used to modify the dynamics of the model.
+Interestingly, theoretical results show that their method of adding time-dependent biases to the model transition function results in the gradient being estimated along true trajectories \emph{in deterministic MDPs}. The real world evaluations with model-based policy updates are similar to the proposed work.
 
-This paper presents guided policy search without a differentiable dynamics model. Instead of learning a global dynamics model, this method involves learning locally valid models. This helps with non-smooth dynamics that are hard to model globally. This creates a hybrid model-based model free reinforcement learning approach. The algorithm optimizes linear Gaussian controllers to find a locally optimal controller. The optimization problem maximizes the entropy of the controller which gives a wide distribution of states where the controller is valid. New controllers are computed iteratively with a KL-divergence constraint which guarantees that the new controller will not stray too far from the previous controller. The previous dynamics model is used as a prior on the next iterations dynamics model. A Gaussian mixture model is fitted to samples and this is used to compute the prior. Multiple controllers can be learned in this fashion and then combined into a neural network controller as demonstrated in prior GPS work. Experimental evaluation against PILCO, REPS, and others shows that this method is superior and the neural network aids generalization.\cite{levine2014learning}
-This paper is on learning skills for tasks with complex dynamics (i.e. more than just moving the body and object in a particular trajectory). Typical policies are resticted to low dimensional representations but this work uses higher dimensional policy representations. Also standard dynamics methods struggle with tasks with significant force or dynamics components. This approach learns a set of trajectories using linear-Gaussian controllers and unifies them with a neural network policy using guided policy search (GPS). They also propose a method for generating samples from trajectory distributions to produce more samples for learning the policy. The robot learns linear-gaussian controllers for learning a trajectory distribution. Samples from these trajectories are then used to train a neural network policy. At each iteration the allowable step size between the old and new trajectory distributions is adaptively adjusted to allow the robot to learn quicker in some parts of the task. GPS requires that as the policy is learned the trajectories must be optimized to match the state distribution of the current policy. As long as the state distribution is the same for the policy and the trajectories they can use supervised learning. For the different experimental manipulation tasks they define a general cost function which encourages quickly getting the object close to the target and then placing the object precisely. They also penalize joint velocities and torques to produce smooth motion. Method is evaluated on placing rings onto pegs, putting a part into a toy airplane, stacking large lego blocks, screwing caps onto bottles, and inserting a shoe tree into a shoe. The number of samples to learn a good controller is 20-25 which is much better than previous work. A two hidden layer neural network is used to represent the policy and provide generalization.\cite{levine2015learning}
+% 9
+The original GSL work involves collecting more data after each iteration. Ross et. al. formalize the need for this in their iterative approach to model-based RL \cite{ross2012agnostic}. 
+Their methodology involves finding an optimal policy with some optimal control algorithm under a given model. Then state-action-state-prime tuples are sampled with the new policy and a new model is learned with the aggregated old data and new data. This is repeated for a fixed number of iterations and then the optimal solution of each iteration is returned. Most importantly, if a model in the class of models being considered in learning can acheive low training error on the data set then a near optimal policy can still be acheived even if the true model is not in that class.
 
-This paper introduce PILCO, a model based RL method with reduced model bias. The model is represented as a Gaussian process. The model allows PILCO to be very data-efficient in learning from scratch and the GP lets it represent uncertainty in the model. Policy evaluation can be done in closed form and the gradient computed analytically. Then the policy is updated with this gradient. Experimental results show that the algorithm can learn tasks rapidly. The main contribution is the reduction of model bias with the GP. This paper also mentions that motor babbling is an inefficient way to explore. I would like to learn more about what is the best exploration strategy for building a model. \cite{deisenroth2011pilco}
 
-This paper considers adapting local planners to be used with learned models. The main result is that planners that balance obeying the model with minimizing cost perform better than planners that remain consistent. The planner is modified so the hard constraint on obeying the model becomes a soft constraint on staying close to the learned model.\cite{atkeson1997nonparametric}
+% 10
+The previous two works (and the proposed work) consider global models. Given the challenge in learning unbiased global models, an alternate approach is to learn a sequence of local models \cite{levine2014learning}. The guided policy search algorithm learns a set of linear Gaussian controllers and then uses these controllers to provided guiding samples for learning neural network policies. However, finding a linear Gaussian controller requires a differentiable dynamics model. This problem is countered with learning a local linear model around the current trajectory. With this model a new optimal  distribution over trajectories is found subject to the constraint that the KL-divergence of the new distribution is within of $\epsilon$ of the old distribution. This guarantees that the local models remain valid for the new trajectory. This method has been extended to very sample-efficient task learning with a PR-2 \cite{levine2015learning}. 
 
-On finding exciting trajectories for identification experiments involving systems with nonlinear dynamics \cite{armstrong1987find}
-A lot of the math in this paper was not very intuitive to me and it had a lot of math. The main takeaway was that the trajectory chosen for identification experiments is important for being able to quickly determine model parameters for non-linear dynamical systems. Mathematically, the convergence rate / noise immunity decreases as the persistent excitation matrix condition number increases. Noise sensitivity limits the largest eigenvalue of this matrix and the convergence rate is set by the smalleest eigenvalue. Finding a trajectory that optimizes convergence rate also optimizes noise immunity. Also noted that the identification is most noise sensitive in direction that the matrix is poorly conditioned. Finally, intuitive identification trajectories may in face be poorly conditioned.
+% 11
+If a global model is learned for a robotic task it will be biased because it is not possible to gather enough data to learn an unbiased model. The PILCO algorithm learns a Gaussian process model of the task dynamics which allows it to incorporate model uncertainty into planning \cite{deisenroth2011pilco}. The Gaussian process model allows PILCO to be very data-efficient while modelling uncertainty in the model. Policy evaluation can be done in closed form and policy gradients can also be calculated analytically. While PILCO is data-efficient, computation is very slow which makes it not practical for on-line learning. Grounded simulation learning does not attempt to model uncertainty which leads to incorrect policy updates as the policies in simulation move away from the learned model.
 
+% 12
+Model-based RL involves identifying the system in which an agent acts. A final surveyed work considers what the best trajectories are for identification experiments \cite{armstrong1987find}. This work shows that intuitive identification trajectories may not be ideal for identifying system parameters. Instead model learning from one trajectory will give a good fit for that trajectory and will therefore only be valid on that trajectory.
+
+\section{Conclusion}
+
+This paper has drawn connections between work in robotic simulations and model-based reinforcement learning and the proposed grounded simulation learning project. Aside from being a good foundation to build on, it also suggests some directions for future work.
 
 \bibliographystyle{plain}
 \bibliography{robotics,rl,nn}

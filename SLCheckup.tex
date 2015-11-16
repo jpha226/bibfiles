@@ -1,4 +1,4 @@
-\documentclass[12 pt]{article}
+\documentclass[12 pt,two column]{article}
 
 \author{Josiah Hanna}
 \title{CS 395T Project Checkpoint}
@@ -9,7 +9,7 @@
 
 \begin{document}
 
-%\maketitle
+\maketitle
 
 \section{Project Description}
 
@@ -27,9 +27,27 @@ This project will use the same domain and task as the GSL work. Namely, our task
 
 The policy will be evaluated in both simulation and on the physical robot by how far forward it can walk forward in a set amount of time. Time is fixed as opposed to distance because the physical robot does not have access to ground truth position so measurements would have noise due to robot localization or human timing error. On the physical robot five trials of 20.0 seconds will be conducted to determine policy performance. In simulation, the evaluation procedure will involve 10-20 trials of 5 to 15 seconds each. 
 
-\section{Related Work}
+\section{Progress To Date}
+The main work needed is an efficient system for creating the bootstrap datasets and train the 2000 models. Fortunately the department's computing cluster allows much of the tasks to be parallized. Current status to date is that the framework for the project has been but 
 
-This work is closely related to other attempts to determine transferrable policies and leverage simulation for sample efficient robot learning \cite{koos2010crossing} \cite{cutler2014reinforcement}. It is also related to safe-learning and off-policy evaluation \cite{thomas2015off-policy} \cite{silver2014deterministic}. Finally, it is related to model-based reinforcement learning where we use the simulator as an imperfect model of the real world \cite{kupcsik2013data} \cite{deisenroth2011pilco}.
+\begin{enumerate}
+\item Large dataset of 30,000 samples created
+\item Datasets of 2,500-30,000 samples created in increments of 2,500.
+\item Parallel bootstrap sampling and creation of model sets implemented to run on cluster.
+\item Model evaluation code in place
+\item Experiment using linear regression completed
+\end{enumerate}
+
+Early results with linear regression agree with the hypothesis that the lower bound would increase with more data. Variance in the the estimate of the robot's performance estimate increases with more data but then decreases.
+
+The main challenges faced so far are with data management and training time. Each model set has 2000 models and the machine learning library I'm using requires data to be explicitly written to file for training. Each model must predict for 15 joints so each model set involves training 30,000 linear regression models. Fortunately, this can be parallelized. However, this creates another issue of needing to write out a lot of the bootstrap data sets at the same time which fills disk space. Several scripts have had to be refactored to be more efficient with how much is written to file at one time to maximize the number of models training at the same time.
+
+\section{Remaining Tasks}
+The first set of experiments using simple linear regression showed some promising results but the lower bounds found still all predicted that the robot would fall when executing a policy that is known to be stable in the real world. One explanation for this is that linear regression is not expressive enough to capture the dynamics of the robot. The proposed solution to this is to use linear regression over basis functions. I plan to perform the same experiment with linear regression models over a 3rd order Fourier basis. Ideally, this more expressive model will give a better idea of each policy's return because it can model the dynamics better.
+
+The framework for the project is in place. The main results I want to see for this project are how the lower bounds and variances change with more data using linear regression over basis functions. I am currently double checking components of the bootstrap model training pipeline and then I can perform these experiments.
+%\section{Related Work}
+%This work is closely related to other attempts to determine transferrable policies and leverage simulation for sample efficient robot learning \cite{koos2010crossing} \cite{cutler2014reinforcement}. It is also related to safe-learning and off-policy evaluation \cite{thomas2015off-policy} \cite{silver2014deterministic}. Finally, it is related to model-based reinforcement learning where we use the simulator as an imperfect model of the real world \cite{kupcsik2013data} \cite{deisenroth2011pilco}.
 
 \bibliographystyle{plain}
 \bibliography{rl,robotics,nn}
