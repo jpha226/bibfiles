@@ -1,4 +1,4 @@
-\documentclass[12 pt,two column]{article}
+\documentclass[12 pt]{article}
 
 \author{Josiah Hanna}
 \title{CS 395T Project Checkpoint}
@@ -13,41 +13,43 @@
 
 \section{Project Description}
 
-Simulation is a valuable tool for robotics research. However, its value is limited by the inherent inaccuracy of a simulator in modelling the dynamics of the physical world. Prior work has proposed an iterative policy improvement method where the simulator is modified with data from the physical robot, learning takes place in simulation, the new policy is evaluated on the robot, and the new data is used to further modify the simulator \cite{farchy2013humanoid}. In this work, Grounded Simulation Learning (GSL), the policies with the best fitness in simulation were chosen to be tested on the physical robot. However, there is no guarantee that these policies will work at all on the physical robot which may result in a large number of policies needing to be evaluated on the robot. This project will look at the question of ``which policies to transfer to the physical robot?" by empirically evaluating a proposed method for model-based off-policy evaluation.
+%Simulation is a valuable tool for robotics research. However, its value is limited by the inherent inaccuracy of a simulator in modelling the dynamics of the physical world. Prior work has proposed an iterative policy improvement method where the simulator is modified with data from the physical robot, learning takes place in simulation, the new policy is evaluated on the robot, and the new data is used to further modify the simulator \cite{farchy2013humanoid}. In this work, Grounded Simulation Learning (GSL), the policies with the best fitness in simulation were chosen to be tested on the physical robot. However, there is no guarantee that these policies will work at all on the physical robot which may result in a large number of policies needing to be evaluated on the robot.i This project will look at the question of ``which policies to transfer to the physical robot?" by empirically evaluating a proposed method for model-based off-policy evaluation.
 
-The proposed method comes from the statistical method of bootstrapping which resamples with replacement from a single collection of samples to generate $N$ sets of samples. The idea is that while the expected value of each individual set will be incorrect, the mean expected value over all $N$ sets will be a better estimate of the true population mean. In GSL, data is used to estimate the dynamics model of the physical robot which is then combined with the physics model of the simulator to be able to estimate the value of policies in simulation. Instead of learning a single dynamics model, we can use the data collected on the robot to learn $N$ different dynamics models. When combined with the simulator, each model will give us a different evaluation of a policies return in simulation. The hypothesis is that the mean of these returns will provide a more accurate prediction of the policies performance on the physical robot.
+Simulation is often used as a way to speed up policy learning for robotics tasks. 
+However there is no guarantee that policies learnt in simulation will work well or even safely in the real world. 
+This project looks at estimating the performance of a policy without executing the policy on the physical system.
+The proposed method comes from the statistical method of bootstrapping which is used to find measures of accuracy for sample estimates.
+Specifically, bootstrapping samples with replacement from a set of $D$ data samples to produce $N$ sets of $D$ samples each.
+Estimates from each of these bootstrap data sets can be used to derive a confidence bound on estimated measures of the true population (e.g. expected value).
+In the context of robot learning in simulation we would like to put a lower bound on the estimated return of a policy that has not been executed in the real world.
+We assume that we have a policy that can be executed in the real world and used to gather data on the robot's dynamics.
+This policy is executed to collect a data set of size $D$ where each sample in $D$ is a state-action-state-prime tuple ($(s,a,s')$).
+Then $N$ bootstrap data sets are created and each set is used to train a function approximator of the robot's dynamics.
+Each learned model is combined with the simulator to make the robot in simulation move more like the robot in the real world.
+Since each model was trained on a different data set, each model will give a different evaluation of a policies return in simulation. The hypothesis is that the returns of a policy evaluated under each learned model can be used to derive a lower confidence bound on the performance of the policy in the real world.
 
 % Need a bootstrapping reference
+\section{Approach Details}
 
-\section{Domain Description}
-
-This project will use the same domain and task as the GSL work. Namely, our task is bipedal walking on a Aldebaran NAO robot. On the physical robot we will use a base walk policy developed by the University of New South Wales Standard Platform League Robocup team \cite{ashar2014robocup}. For simulation we use the Simspark simulator used in the Robocup 3D Simulation league \cite{simspark}. The UNSW walk policy is parameterized with 7 different parameters (e.g. step height, step length). The policy was reparameterized to find a set of parameters that can walk well in both simulation and on the physical robot. The resulting base policy walks at an average velocity of 0.18 m/s on the physical robot and 0.04 m/s in simulation.
-
-\section{Experimental Setup}
-
-The policy will be evaluated in both simulation and on the physical robot by how far forward it can walk forward in a set amount of time. Time is fixed as opposed to distance because the physical robot does not have access to ground truth position so measurements would have noise due to robot localization or human timing error. On the physical robot five trials of 20.0 seconds will be conducted to determine policy performance. In simulation, the evaluation procedure will involve 10-20 trials of 5 to 15 seconds each. 
+The return of a policy is average velocity for a forward walk trajectory. Data is collected on the physical robot using an omniwalk behavior. For this task a state refers to the joint configuration of the robot and the joint configuration from a previous time step. Actions are joint angle commands. On the physical robot these commands are implemented with PID controllers and in simulation the robot sends velocity commands to each joint. The dynamics models are learned with linear regression. The first round of experiments used simple linear regression but the next step is linear regression over basis functions. The lower confidence bound on a policy is determined by ranking the returns under each model ($N = 2000$), throwing away the bottom 5\% and using the next return left as the bound (for a 95 \% confidence bound). Finally, integration of the dynamics models  into the simulator is done by replacing the simulated robot's action with the predicted next state if the same action was taken in the real world from the current state. This makes the assumption that the simulated robot acheives its desired joint positions instantaneously which is not entirely true. As discussed in the proposal, the physical robot is the Aldebaran NAO which uses a parameterized walk engine \cite{ashar2014robocup}. The simulator is the Robocup 3D Simulation league simulator \cite{simspark}.
 
 \section{Progress To Date}
-The main work needed is an efficient system for creating the bootstrap datasets and train the 2000 models. Fortunately the department's computing cluster allows much of the tasks to be parallized. Current status to date is that the framework for the project has been but 
 
-\begin{enumerate}
-\item Large dataset of 30,000 samples created
-\item Datasets of 2,500-30,000 samples created in increments of 2,500.
-\item Parallel bootstrap sampling and creation of model sets implemented to run on cluster.
-\item Model evaluation code in place
-\item Experiment using linear regression completed
-\end{enumerate}
+The main work needed is an efficient system for creating the bootstrap datasets and train the 2000 models. Fortunately the department's computing cluster allows much of the tasks to be parallized. Current status to date is that the necessary infrastructure is in place and a trial run with simple linear regression has been completed. This trial run involved creating datasets of size 2,500-30,000 and then using each data set for creating a set of bootstrap models. 
 
-Early results with linear regression agree with the hypothesis that the lower bound would increase with more data. Variance in the the estimate of the robot's performance estimate increases with more data but then decreases.
+Early results with linear regression agree with the hypothesis that the lower bound would increase with more data. Variance in the the estimate of the robot's performance estimate increases with more data but then decreases. It is hypothesized that the model at first introduces more variance into the simulated returns but with more data the variance decreases again. 
 
 The main challenges faced so far are with data management and training time. Each model set has 2000 models and the machine learning library I'm using requires data to be explicitly written to file for training. Each model must predict for 15 joints so each model set involves training 30,000 linear regression models. Fortunately, this can be parallelized. However, this creates another issue of needing to write out a lot of the bootstrap data sets at the same time which fills disk space. Several scripts have had to be refactored to be more efficient with how much is written to file at one time to maximize the number of models training at the same time.
 
 \section{Remaining Tasks}
 The first set of experiments using simple linear regression showed some promising results but the lower bounds found still all predicted that the robot would fall when executing a policy that is known to be stable in the real world. One explanation for this is that linear regression is not expressive enough to capture the dynamics of the robot. The proposed solution to this is to use linear regression over basis functions. I plan to perform the same experiment with linear regression models over a 3rd order Fourier basis. Ideally, this more expressive model will give a better idea of each policy's return because it can model the dynamics better.
 
-The framework for the project is in place. The main results I want to see for this project are how the lower bounds and variances change with more data using linear regression over basis functions. I am currently double checking components of the bootstrap model training pipeline and then I can perform these experiments.
+The initial attempt at this produced poor models for some of the joints. Figuring out the reason for this is the last step in completing the model training pipeline. Ideally the problem can be identified quickly but it is also a good opportunity to thoroughly check each component of the experiment infrastructure. After this is done, another set of bootstrap models can be trained and experiments conducted.
+
+The framework for the project is in place. The main results I want to see for this project are how the lower bounds and variances change with more data using linear regression over basis functions and evaluated with multiple policies with known real world performance.
+As discussed above, getting linear regression over basis functions working is the last step to getting all models trained. Once this is complete, evaluations with the models can be done fairly quickly. Given progress to date the project will be completed in the next two weeks.
 %\section{Related Work}
-%This work is closely related to other attempts to determine transferrable policies and leverage simulation for sample efficient robot learning \cite{koos2010crossing} \cite{cutler2014reinforcement}. It is also related to safe-learning and off-policy evaluation \cite{thomas2015off-policy} \cite{silver2014deterministic}. Finally, it is related to model-based reinforcement learning where we use the simulator as an imperfect model of the real world \cite{kupcsik2013data} \cite{deisenroth2011pilco}.
+%This work is closely related to other attempts to determine transferrable policies and leverage simulation for sample efficient robot learning \cite{koos2010crossing} \cite{cutler2014reinforcement}. It is also related to safe-learning and off-policy evaluation \cite{thomas2015off-policy} \cite{silver2014deterministic}. Finally, it is related to model-based reinforcement learning where we use the simulator as an imperfect model of the real world \cite{kupcsik2013data} \citep{2015MnihDQN}	2011pilco}.
 
 \bibliographystyle{plain}
 \bibliography{rl,robotics,nn}
