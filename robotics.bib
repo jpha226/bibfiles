@@ -1,3 +1,38 @@
+@inproceedings{nikolaidis2013human-robot,
+	author={Nikolaidis, Stefanos and Shah, Julie},
+	title={Human-Robot Cross-Training: Computational Formulation, Modeling and Evaluation of a Human Team Training Strategy},
+	booktitle={ACM/IEEE International Conference on Human-Robot Interaction},
+	year={2013},
+	annote={}
+}
+
+%48
+@inproceedings{koppula2013anticipating,
+	author={Koppula, Hema S. and Saxena, Ashutosh},
+	title={Anticipating Human Activities using Object Affordances for Reactive Robotic Response},
+	booktitle={Robotics: Science and Systems},
+	year={2013},
+	annote={This paper looks at robots predicting human action. They use an anticipatory temporal conditional random field.}
+}
+
+% 47
+@article{zhang2015learning,
+	author={Zhang, Tianhao and Kahn, Gregory and Levine, Sergey and Abbeel, Pieter},
+	title={Learning Deep Control Policies for Autonomous Aerial Vehicles with MPC-Guided Policy Search},
+	journal={arXiv},
+	volume={abs/1509.06791},
+	year={2015},
+	annote={This paper aims to use model predictive control to as a guiding policy for guided policy search with autonomous aerial vehicles. MPC generates training data using full state observations. Then a neural network is trained on a partially observable version of this data to learn good policies for test time. In other words the neural network has different inputs than MPC but will still know the correct action. The second benefit of this is that MPC is computationally demanding but NNs are efficient. Work is demonstrated on quadrotor obstacle avoidance tasks in simulation. Model free learning during training could result in catastrophic failure. This is why MPC has to be used. Offline optimization generates a guiding trajectory and then MPC is used to track this trajectory during training. This is because MPC usually uses a short planning horizon while a longer horizon is needed to complete certain tasks. Experimental results evaluate different components of the system. One of the key ideas is the instrumented training setup where full state information is supplied at training time and then only on board sensors are used at test time.}
+}
+
+% 46
+@article{gat1995role,
+	title={On the Role of Autonomous Mobile of Simulation in the Study Robots},
+	author={Gat, Erann},
+	year={1995},
+	annote={<Quotes: "Simulations are doomed to succeed" - Rodney Brooks and "You can't do science about robots without firing up a robot" - Erann Gat> This essay argues that simulation results should be viewed as predictions rather than experiments. This is in line with other science where models are developed in order to make predictions. However a model must be tested in the real world to confirm its validity. A simulator should be viewed as a complex mathematical model and results are predictions for how things will work in the real world. In some cases the simulator plays the role of "the system under study" which is not the case since it is simply a substitute for the robot. Basically, simulation experiments should be viewed as making predictions with a model - not actually doing an experiment.}
+}
+
 % 45
 @inproceedings{cutler2015efficient,
 	title={Efficient Reinforcement Learnng for Robots using Informative Simulated Priors},
@@ -13,7 +48,7 @@
 	author={Kumar, Vikash and Todorov, Emanuel and Levine, Sergey},
 	year={2015},
 	journal={arXiv},
-	annote={}
+	annote={This paper considers an application of learned local models to dexterous manipulation with a high degree of freedom robotic hand. The task has 100-dimensional continuous state spaces and 40-dimensional continuous control actions. The method can be viewed as model-based RL (with local models) or adaptive control which interleaves system identification with control. The main contribution is showing that previous work can scale up with no pre-specified model or policy structure. The task is rotation of a cylinder 90 degrees in the hand. In one instance the start and end pose required gravity to be overcome and in one gravity can be used. Results are gathered in simulation and on the physical system. Not surprisingly results are better in simulation. They also study how injecting exploration noise and initial state noise can improve robustness. Results show that some noise increases robustness.}
 }
 
 % 43
