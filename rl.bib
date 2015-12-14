@@ -1,3 +1,30 @@
+% 41
+@inproceedings{atkeson1997nonparametric,
+	title={Nonparametric Model-Based Reinforcement Learning},	
+	author={Atkeson, Christopher G.},
+	year={1997},
+	booktitle={Neural and Information Processing Systems, NIPS},
+	annote={This paper considers adapting local planners to be used with learned models. The main result is that planners that balance obeying the model with minimizing cost perform better than planners that remain consistent. The planner is modified so the hard constraint on obeying the model becomes a soft constraint on staying close to the learned model.}
+}
+
+% 40
+@inproceedings{ross2012agnostic,
+	title={Agnostic System Identification for Model-Based Reinforcement Learning},
+	author={Ross, Stephane and Bagnell, J. Andrew},
+	year={2012},
+	booktitle={29th International Conference on Machine Learning, ICML},
+	annote={This paper extends the DAgger method to model-based reinforcement learning. The main contributions are strong guarantees even if the true systemis not in the class of models. The results also formalize the iterative system identification / controller synthesis method of learning a model, designing a controller, and then modifying the model after collecting data under the new controller. The method works by iteratively building a model, learning a controller, building a new model with the new data and the old data and then producing a new controller. This can be repeated for a fixed number of iterations. The problem with not covering enough of the state space is that any model will under estimate the cost of the part of the state space where it doesn't have data. This makes controllers that visit these parts of the state space more likely. The method needs an exploration distribution to sample transitions from and it isn't clear if this involves random access to the system or refers to rollouts.}
+}
+
+% 39
+@inproceedings{abbeel2006using,
+	title={Using Inaccurate Models in Reinforcement Learning},
+	author={Abbeel, Pieter and Quigley, Morgan and Ng, Andrew Y.},
+	year={2006},
+	booktitle={23rd International Conference on Machine Learning, ICML},
+	annote={This paper looks at how to learn for a task using a model or simulator. Policy evaluations are grounded with real world trials but the model is used to determine the gradient for changing the policy parameters. Theoretical results show that the method acheives near optimal performance in the real world. Empirical results show that the method minimizes samples in reaching real world performance. The method finds a locally optimal policy using the model. This policy is ran on the real MDP and the trajectory data is used to construct a better model. This new model is used to calculate a direction of improvement. Then a line search is done to find the best new policy in this direction. Line search evaluations are done in the real MDP. If the policy does not improve after the line search return the current policy. Otherwise repeat. The method assumes a deterministic MDP. The method for grounding (adding time dependent biases) makes sure that the gradient is evaluated with real trajectories. They show that improvement follows the true gradient.}
+}
+
 % 38
 @inproceedings{pinto2014learning,
 	title={Learning Partial Policies to Speedup MDP Tree Search},
