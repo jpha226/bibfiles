@@ -1,3 +1,37 @@
+% 53
+@inproceedings{nikolaidis2013human-robot,
+	author={Nikolaidis, Stefanos and Shah, Julie},
+	title={Human-Robot Cross-Training: Computational Formulation, Modeling and Evaluation of a Human Team Training Strategy},
+	booktitle={ACM/IEEE International Conference on Human-Robot Interaction},
+	year={2013},
+	annote={}
+}
+
+% 52
+@inproceedings{koppula2013anticipating,
+	author={Koppula, Hema S. and Saxena, Ashutosh},
+	title={Anticipating Human Activities using Object Affordances for Reactive Robotic Response},
+	booktitle={Robotics: Science and Systems},
+	year={2013},
+	annote={This paper looks at robots predicting human action. They use an anticipatory temporal conditional random field.}
+}
+
+% 51
+@article{zhang2015learning,
+	author={Zhang, Tianhao and Kahn, Gregory and Levine, Sergey and Abbeel, Pieter},
+	title={Learning Deep Control Policies for Autonomous Aerial Vehicles with MPC-Guided Policy Search},
+	journal={arXiv},
+	volume={abs/1509.06791},
+	year={2015},
+	annote={This paper aims to use model predictive control to as a guiding policy for guided policy search with autonomous aerial vehicles. MPC generates training data using full state observations. Then a neural network is trained on a partially observable version of this data to learn good policies for test time. In other words the neural network has different inputs than MPC but will still know the correct action. The second benefit of this is that MPC is computationally demanding but NNs are efficient. Work is demonstrated on quadrotor obstacle avoidance tasks in simulation. Model free learning during training could result in catastrophic failure. This is why MPC has to be used. Offline optimization generates a guiding trajectory and then MPC is used to track this trajectory during training. This is because MPC usually uses a short planning horizon while a longer horizon is needed to complete certain tasks. Experimental results evaluate different components of the system. One of the key ideas is the instrumented training setup where full state information is supplied at training time and then only on board sensors are used at test time.}
+}
+
+% 50
+@article{gat1995role,
+	title={On the Role of Autonomous Mobile of Simulation in the Study Robots},
+	author={Gat, Erann},
+	year={1995},
+	annote={<Quotes: "Simulations are doomed to succeed" - Rodney Brooks and "You can't do science about robots without firing up a robot" - Erann Gat> This essay argues that simulation results should be viewed as predictions rather than experiments. This is in line with other science where models are developed in order to make predictions. However a model must be tested in the real world to confirm its validity. A simulator should be viewed as a complex mathematical model and results are predictions for how things will work in the real world. In some cases the simulator plays the role of "the system under study" which is not the case since it is simply a substitute for the robot. Basically, simulation experiments should be viewed as making predictions with a model - not actually doing an experiment.}
 
 % 49
 @article{hansen2011cma,
@@ -7,16 +41,8 @@
 	annote={}
 }
 
-% 48
-@article{kumar2015optimal,
-        title={Optimal Control with Learned Local Models: Application to Dexterous Manipulation},
-        author={Kumar, Vikash and Todorov, Emanuel and Levine, Sergey},
-        year={2015},
-        journal={arXiv},
-        annote={}
-}
 
-% 47
+% 48
 @inproceedings{iocchi2007learning,
 	title={Learning humanoid soccer actions interleaving simulated and real data},
 	author={Iocchi, Luca and Libera, Fabio D and Menegatti, Emanuele},
@@ -25,7 +51,7 @@
 	annote={This paper looks at transfer between simulation and reality by iteratively modifying the fitness function of the simulator to better match the real world. With this method, learning is done in simulation and trials on the real robot are used to find discrepancies in the fitness function. The key idea is that it is easier to modify the fitness function than to modify the model. Results on the real robot are used to calculate a correction function which represents the difference between simulation and reality. This correction is added to the simulation fitness function. Some argument is given of correctness with a one dimensional example but proof is left to future work. The method is evaluated using a genetic algorithm on learning a walking controller.}
 }
 
-%46
+%47
 @inproceedings{hengst2011learning,
 	title={Learning to control a biped with feet},
 	author={Hengst, Bernhard and Lange, Manuel and White, Brock},
@@ -34,7 +60,7 @@
 	annote={This paper looks at learning a stability policy for a robot's ankle controllers. This is so the robot can respond to rapid changes in direction or deal with stepping on obstacles or being pushed. The controller is modelled as an inverted pendulum and is learned in simulation. Q-learning is used in the simulator to learn the policy. The robot's actions are ankle joint actuations (ankle tilt) which are used to control the pendulum's pivot point by moving the foot's center of pressure. The foot is discretized into toe, center, and heel. Actions are discretized as well and the reward function is set arbitarily with the goal of keeping the robot balanced and upright. The physical robots walk by using inverse kinematics to keep the center of mass at a constant height. On the real robot a kalman filter is used to estimate the state. Results show that ankle control is enough for the robot to remain balanced.}
 }
 
-% 45
+% 46
 @article{cully2015robots,
 	title={Robots that can adapt like animals},
 	author={Cully, Antoine and Clune, Jeff and Tarapore, Danesh and Mouret, Jean-Baptiste},
@@ -43,7 +69,7 @@
 	annote={This paper considers how damaged robots can quickly find new behaviors to compensate for the damage. The method is called Intelligent Trial and Error (IT+E). It involves the robot building a behavior-performance map before being deployed. A behavior is a low dimensional representation of policies that the robot could use. The learned map identifies high performing behaviors. The map can be learned in simulation just once. Since these behaviors have not been executed on the real system the robot will have low confidence in them. After deployment if the robot's performance drops below a threshold (e.g. robot is damaged) it can select a new behavior from the map and execute that. As behaviors are executed on the robot the behavior performance and confidence in that belief can be updated accordingly. This is implemented with a Gaussian process and new behaviors are selected by maximizing information acquisition that balances exploration and exploitation. The algorithm is evaluated on a Hexapod robot and experiments show it can adapt in a small number of trials. It is noted that prior knowledge could hinder the robot from learning a new behavior depending on the type of damage or differences in simulation and reality}
 }
 
-% 44
+% 45
 @inproceedings{cutler2015efficient,
 	title={Efficient Reinforcement Learnng for Robots using Informative Simulated Priors},
 	author={Cutler, Mark and How, Jonathan P.},
@@ -52,6 +78,14 @@
 	annote={This paper proposes an algorithm for incorporating prior knowledge learned in simulation into the PILCO learning algorithm. A Gaussian process prior is learned from a simulator. This is then used as a prior for PILCO. Incorporating simulator knowledge as a prior is a principled way to incorporate this knowledge into PILCO because real world experience can always overcome the prior. Experimental results in simulation and on a physical robot show this can speed up learning. However in the case that the simulator is too unaccurate the prior may bias the simulator away from good policies and slow down learning. The method takes approximately twice the computation time of regular PILCO but it does not go up with the size of the simulated data set. It goes up with realworld data.}
 }
 
+% 44
+@article{kumar2015optimal,
+	title={Optimal Control with Learned Local Models: Application to Dexterous Manipulation},
+	author={Kumar, Vikash and Todorov, Emanuel and Levine, Sergey},
+	year={2015},
+	journal={arXiv},
+	annote={This paper considers an application of learned local models to dexterous manipulation with a high degree of freedom robotic hand. The task has 100-dimensional continuous state spaces and 40-dimensional continuous control actions. The method can be viewed as model-based RL (with local models) or adaptive control which interleaves system identification with control. The main contribution is showing that previous work can scale up with no pre-specified model or policy structure. The task is rotation of a cylinder 90 degrees in the hand. In one instance the start and end pose required gravity to be overcome and in one gravity can be used. Results are gathered in simulation and on the physical system. Not surprisingly results are better in simulation. They also study how injecting exploration noise and initial state noise can improve robustness. Results show that some noise increases robustness.}
+}
 
 % 43
 @article{xie2015model-based,
