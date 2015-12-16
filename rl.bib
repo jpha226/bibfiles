@@ -1,3 +1,4 @@
+% 51
 @incollection{heess2015learning,
         title = {Learning Continuous Control Policies by Stochastic Value Gradients},
         author = {Heess, Nicolas and Wayne, Gregory and Silver, David and Lillicrap, Tim and Erez, Tom and Tassa, Yuval},
@@ -5,26 +6,20 @@
         editor = {C. Cortes and N.D. Lawrence and D.D. Lee and M. Sugiyama and R. Garnett and R. Garnett},
         pages = {2926--2934},
         year = {2015},
-        annote={}
+        annote={This paper extends value gradient algorithms to stochastic domains and stochastic policies. This is done by treating stochasticity as a deterministic function of exogenous noise. The value gradient is a more sample efficient method of estimating the policy gradient than likelihood ratio methods. However the value gradient computation requires a differentiable model of the environment. This paper reparameterizes a stochatic transition function as a deterministic function of exogenous event to handle this. The value gradient is used to train a critic which is then used to update an actor. Several algorithms are introduced (SVG(k)). Experience replay is incorporated into the model learning which gave the best performance in experiments. Also, one important feature is that gradients are evaluated on real trajectories. Experiments are conducted on some simple simulated robot tasks. Neural networks are used to represent the value function, policy, and model.}
 }
 
+% 50
 @article{lillicrap2015continuous,
-  author    = {Timothy P. Lillicrap and
-               Jonathan J. Hunt and
-               Alexander Pritzel and
-               Nicolas Heess and
-               Tom Erez and
-               Yuval Tassa and
-               David Silver and
-               Daan Wierstra},
-  title     = {Continuous control with deep reinforcement learning},
-  journal   = {CoRR},
-  volume    = {abs/1509.02971},
-  year      = {2015},
-        annote={}
+	author={Timothy P. Lillicrap and Jonathan J. Hunt and Alexander Pritzel and Nicolas Heess and Tom Erez and Yuval Tassa and David Silver and Daan Wierstra},
+	title={Continuous control with deep reinforcement learning},
+	journal={CoRR},
+	volume={abs/1509.02971},
+	year={2015},
+        annote={This paper combines ideas from DQN with the deterministic policy gradient (DPG) to get deep deterministic policy gradient (DDPG). The resulting algorithm can learn policies for continuous control tasks from high dimensional state representations. Since using a non-linear approximation of the value function introduces bias which voids convergence guarantees. To handle this they use a soft update which gradually moves the "critic" network towards a target network (DQN used a hard update). A replay buffer is used so that backpropagation can be used (requires iid data). Batch normalization is used to handle different scale features. Finally, learning is done off-policy by adding noise to the deterministic policy and computing the off policy deterministic policy gradient. Experimental evaluation is done with both low dimensional state spaces and high dimensional "learn from pixels" tasks implemented in the MuJoCu simulator. Results show that DDPG is competitive with and sometimes outperforms a model-based planner with full access to the environment model and its derivatives.}
 }
 
-% 48
+% 49
 @article{peters2008reinforcement,
         title={Reinforcement learning of motor skills with policy gradients},
         author={Peters, Jan and Schaal, Stefan},
@@ -34,10 +29,10 @@
         pages={682--697},
         year={2008},
         publisher={Elsevier},
-        annote={}
+        annote={This journal article presents natural policy gradient learning for robotic tasks. Overall it is also a good reference on policy gradient learning as it surveys some of the work. The presented algorithm is the natural actor-critic which uses the natural policy gradient when updating the actor. The natural gradient is the direction of steepest ascent with respect to the Fisher information metric. One advantage of the natural gradient is that a small change in the parameters should be a small change in the policy but small is ambiguous and depends the parameterization of the policy. The natural gradient does not depend on the parameterization of the policy. The natural actor-critic and episodic natural actor-critic algorithms are presented and empirical results are conducted with a baseball task.}
 }
 
-% 47
+% 48
 @article{akimoto2012theoretical,
         title={Theoretical foundation for CMA-ES from information geometry perspective},
         author={Akimoto, Youhei and Nagata, Yuichi and Ono, Isao and Kobayashi, Shigenobu},
@@ -49,16 +44,17 @@
         publisher={Springer}
 }
 
-% 46
+% 47
 @article{hall2009weka,
-  title={The WEKA data mining software: an update},
-  author={Hall, Mark and Frank, Eibe and Holmes, Geoffrey and Pfahringer, Bernhard and Reutemann, Peter and Witten, Ian H},
-  journal={ACM SIGKDD explorations newsletter},
-  volume={11},
-  number={1},
-  pages={10--18},
-  year={2009},
-  publisher={ACM}
+	title={The WEKA data mining software: an update},
+	author={Hall, Mark and Frank, Eibe and Holmes, Geoffrey and Pfahringer, Bernhard and Reutemann, Peter and Witten, Ian H},
+	journal={ACM SIGKDD explorations newsletter},
+	volume={11},
+	number={1},
+	pages={10--18},
+	year={2009},
+	publisher={ACM},
+	annote={Machine learning library used in grounded simulation learning. Library has a lot of different methods including neural networks, linear regression, trees, SVMs, and others.}
 }
 
 
@@ -68,20 +64,21 @@
 	Title={RTMBA: A Real-Time Model-Based Reinforcement Learning Architecture for Robot Control},
 	year={2012},
 	booktitle={IEEE International Conference on Robotics and Automation, ICRA},
-	annote={}
+	annote={The main contribution of this paper is a parallelized implementation of model-based RL which separates planning, acting, and model updates into three concurrent threads. This allows the algorithm to run in real-time on a robot. Previous model-based approaches are sample efficient but computationally slow. Planning time is limited by using approximate planning (e.g. UCT) instead of full planning. Experimental evaluation is done in mountain car and on an autonomous vehicle. RTMBA is competitive in the anytime case and in real-time it surpasses other approaches.}
 }
 
 % 45
 @InCollection(stone2000layered,
-        Author="Peter Stone and Manuela Veloso",
-        Title="Layered Learning",
-        booktitle="Machine Learning: ECML 2000 (Proceedings of the Eleventh European Conference on Machine Learning)",
-        editor="Ramon L\'{o}pez de M\'{a}ntaras and Enric Plaza",
-        month="May/June",
-        Year="2000",
-        address="Barcelona,Catalonia,Spain",
-        publisher="Springer Verlag",
-        pages="369--381"
+        Author={Peter Stone and Manuela Veloso},
+        Title={Layered Learning},
+        booktitle={Machine Learning: ECML 2000 (Proceedings of the Eleventh European Conference on Machine Learning)},
+        editor={Ramon L\'{o}pez de M\'{a}ntaras and Enric Plaza},
+        month={May/June},
+        Year={2000},
+        address={Barcelona,Catalonia,Spain},
+        publisher={Springer Verlag},
+        pages={369--381},
+	annote={This paper introduces the layered learning paradigm for tasks where learning a direct mapping from inputs to outputs is too challenging with existing learning algorithms. Given a task hierarchy, learning preceeds from one layer of the hierarchy to the next. At each layer learning influences the next by constructing the training set, constructing features, or pruning the output set. An implementation is given for a simulated robotic soccer task. Starting from a low-level ball control task, agents are able to progress up to a competitive pass selection behavior using layered learning. Layered learning requires many design decisions for choosing the learning algorithm, layers, and task at each layer. }
 }
 
 % 44
@@ -90,7 +87,7 @@
 	title={Bias in Natural Actor-Critic Algorithms},
 	year={2014},
 	booktitle = {31st International Conference on Machine Learning, ICML},
-	annote={}
+	annote={The main result in this paper is that prior work in natural actor-critic algorithms use a biased estimate of the natural gradient. The bias comes from a missing $\gamma^t$ termThe paper derives an unbiased natural gradient for the discounted reward setting. Previous algorithms are more suited for the average reward setting (no discount). The paper also shows that in the same conditions that SARSA only has global optima, the policy gradient objective function only has global optima so gradient based methods will converge to globally optimal policies. The paper does not present a practical algorithm (mainly theoretical results) and also suggests that increasing a policy's representational power and increasing exploration can help avoid local minima.}
 }
 
 %43
@@ -98,9 +95,9 @@
 	author={Todd Hester and Peter Stone},
 	title={Real Time Targeted Exploration in Large Domains},
 	booktitle = {The Ninth International Conference on Development and Learning (ICDL)},
-	location = {Ann Arbor, Michigan},
 	month={August},
 	year={2010}
+	annote={This paper presents TEXPLORE for performing real-time targeted exploration in large domains. The paper uses multiple models to reason about model uncertainty. This allows the algorithm to perform targeted exploration. TEXPLORE trains multiple decision trees on different subsets of experience. Different methods of incorporating intrinsic motivation are tested. One uses average reward and one uses model variance to either avoid uncertainty or explore it based on a parameter. This methodology allows TEXPLORE to reason about uncertainty and whether to explore or not in a principled method similar to Bayesian RL but with a realistic runtime.}
 }
 
 % 42

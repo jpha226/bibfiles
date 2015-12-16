@@ -1,3 +1,14 @@
+% 57
+@inproceedings{abdolmaleki2015model,
+	title={Model-Based Relative Entropy Stochastic Search},
+	author={Abdolmaleki, Abbas and Lioutikov, Rudolf and Peters, Jan R and Lau, Nuno and Reis, Luis Pualo and Neumann, Gerhard},
+	booktitle={Advances in Neural Information Processing Systems},
+	pages={3523--3531},
+	year={2015},
+	annote={This paper improves stochastic search by using samples to learn a surrogate objective function model in terms of parameters. The learned model can be used to compute the update policy search distribution for the REPS optimization. Models are only used locally and a new model is learned at each step from new samples. A lower bound of the search distribution entropy is introduced to prevent premature convergence. The surrogate objective is a quadratic approximation to the task. Because a quadratic representation has a lot of parameters dimensionality reduction is applied to the parameters before being passed through the quadratic basis functions. Advantages of this approach are noise in the objective function is smoothed out, more efficient than sample-based approximations to the KL-Divergence constraint in the REPS optimization. Experiments optimize two functions, two planar robotic tasks, and a simulated robotic beer pong task. The presented algorithm, MORE (Model-based relative entropy stochastic search), outperforms REPS, CMA-ES, POWER, and NES.}
+}
+
+% 56
 @inproceedings{abdolmaleki2015contextual,
 	title={Contextual Policy Search for Generalizing a Parameterized Biped Walking Controller},
 	author={Abdolmaleki, Abbas and Lau, Nuno and Reis, Luis Paulo and Peters, Jan and Neumann, Gerhard},
@@ -5,15 +16,16 @@
 	pages={17--22},
 	year={2015},
 	organization={IEEE},
-	annote={}
+	annote={This paper extends the work of Kupsick et. al. with contextual REPS to biped walking. This early work used a linear representation of the upper level policy which this new walk extends to non-linear representations with radial basis functions. So this work basically uses contextual REPS with a non-linear basis functions for the upper level policy. A context for walking is a speed and direction. Future work could look at more complex upper level policy representations.}
 }
 
+% 55
 @inproceedings{nguyen-tuong2010using,
 	title={Using Model Knowledge for Learning Inverse Dynamics},
 	author={Nguyen-Tuong, Duy and Peters, Jan},
 	year={2010},
 	booktitle={IEEE International Conference on Robotics and Automation, ICRA},
-	annote={}
+	annote={This paper introduces two semi-parameteric methods for learning inverse dynamics (what action to take for a certain effect). A rigid body dynamics model (RBD) and a structured error term make up a robot's dynamics. The RBD term is known to be linear in the model parameters which are not straightforward to learn from data. Parametric methods also can't capture the structured error term which introduces bias into the estimation of the parameters. Non-parametric methods can do better here but most approaches attempt to learn from scratch which doesn't take prior model knowledge into account as parametric methods do. Also if data sets are small the non-parametric methods won't generalize well. The two methods presented here use a parametric estimate of the RBD model as a prior for a non-parametric GP estimate of the inverse dynamics. The two methods are to 1) use the RBD model as the mean of the GP or 2) use the RBD in the kernel function. Experimental evaluation is done with robotic tracking problems.}
 }
 
 % 54
@@ -22,7 +34,7 @@
 	author={Lenz, Ian and Knepper, Ross and Saxena, Ashutosh},
 	year={2015},
 	booktitle={Robotics: Systems and Science},
-	annote={}
+	annote={This paper introduces a recurrent architecture for learning dynamics models where dynamics vary with time. The learned models are fast enough for real-time model predictive control (MPC). The result is a DeepMPC controller for food cutting tasks. They also propose a multi-stage pre-training algorithm for their architecture and evaluate it experimentally. Learned latent features capture material properties and variations. The task is linear cutting which involves applying force in two cartesian directions. MPC uses a differentiable model (like a neural network model) to find optimal controls for some cost. The pre-training involves unsupervised learning followed by short term prediction training, followed by a warm start recurrent training. Experiments are conducted on a PR-2 robot and parallelization allows for real-time speeds. Experiments show the predictive power of the model and ability to be used for MPC. The controller is able to handle a variety of different food materials in a cutting task.}
 }
 
 % 53
