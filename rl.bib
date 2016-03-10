@@ -1,9 +1,26 @@
+@inproceedings{oh2015action,
+  title={Action-conditional video prediction using deep networks in atari games},
+  author={Oh, Junhyuk and Guo, Xiaoxiao and Lee, Honglak and Lewis, Richard L and Singh, Satinder},
+  booktitle={Advances in Neural Information Processing Systems},
+  pages={2845--2853},
+  year={2015},
+  annote={Predict Atari frames conditioned on actions. Predictions are useful for control up to 100 time steps.}
+}
+
+@article{wang2015dueling,
+  title={Dueling Network Architectures for Deep Reinforcement Learning},
+  author={Wang, Ziyu and de Freitas, Nando and Lanctot, Marc},
+  journal={arXiv preprint arXiv:1511.06581},
+  year={2015},
+  annote={RL net which has one net for learning value function and one for advantage function. Claimed to help generalization across actions.}
+}
+
 @article{tamar2016value,
 	title={Value Iteration Networks},	
 	author={Tamar, Aviv and Levine, Sergey and Abbeel, Pieter},
 	journal={arXiv},
 	year={2016},
-	annote={Introduces a fully differentiable neural network with a 'planning module' embedded. Good for predicting outcomes which require planning. Includes a differentiable approximation of value-iteration algorithm. Evaluated by predicting trajectories across terrain from images.}
+	annote={Introduces a fully differentiable neural network with a 'planning module' embedded. Good for predicting outcomes which require planning. Includes a differentiable approximation of value-iteration algorithm. Evaluated by predicting trajectories across terrain from images. Paper draws a connection between convolutions+maxpooling and value iteration algorithm. Problems evaluated are images that encode a planning problem (e.g. find a path through a picture of obstacles). A convolutional network learns a reward function from the image. Stacking the reward function and a current value function and convolving over it is similar to estimating Q values and maximizing over actions to estimate new value function is like max-pooling. Repeating this process (recurrent connections) is equivalent to multiple iterations of value iteration. They also introduce a hierarchical value iteration network by down sampling the input image which is similar to creating macro states and actions. Empirical evaluation is done on a synthetic path finding task and on Mars rover path planning data.}
 }
 
 @article{borsa2016learning,
