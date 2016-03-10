@@ -1,3 +1,35 @@
+@article{kahn2016PLATO,
+	title={PLATO: Policy Learning using Adaptive Trajectory Optimization},
+	author={Kahn, Gregory and Zhang, Tianhao and Levine, Sergey and Abbeel, Pieter},
+	journal={arXiv},
+	year={2016},
+	annote={Uses MPC to generate supervised training data for learning deep network policies. Sounds a lot like guided policy search but using MPC for supervision. Adaptive training makes MPC gradually match the learned policy. MPC protects from dangerous on-policy actions during learning. Evaluated on simulated aerial vehicle tasks.}
+}
+
+@article{finn2016guided,
+	title={Guided Cost Learning: Deep Inverse Optimal Control via Policy Optimization},
+	author={Finn, Chelsea and Levine, Sergey and Abbeel, Pieter},
+	journal={arXiv},
+	year={2016},
+	annote={Explores methods for learning deep network cost functions from demonstrations. Formulates a sample-based aproximation of max entropy inverse optimal control problem and uses a deep network to allow a wide variety of cost function structures.}
+}
+
+@article{lerer2016learning,
+	title={Learning Physical Intuition of Block Towers by Example},
+	author={Lerer, Adam and Gross, Sam and Fergus, Rob},
+	journal={arXiv},
+	year={2016},
+	annote={Learn convoluational network physical models of stacked blocks. Network can predict if a block tower will fall and also the trajectory of blocks from vision. Model is trained on synthetic data from a game engine but generalizes to the real world. Connection to transfer from simulation.}
+}
+
+@article{levine2016learning,
+	title={Learning Hand-Eye Coordination for Robotic Grasping with Deep Learning and Large-Scale Data Collection},
+	author={Levine, Sergey and Pastor, Peter and Krizhevsky, Alex and Quillen, Deirdre},
+	journal={arXiv},
+	year={206},
+	annote={Learn robot grasps by learning to predict if a grasp will succeed or not. Use a convolutional neural net predictor and collect training data with 14 robotic arm manipulators and monocular cameras. Learns relationship between gripper and objects (ie hand-eye coordination). Large scale data collection involved over 800,000 grasp attemps over two months.}
+}
+
 % 57
 @inproceedings{abdolmaleki2015model,
 	title={Model-Based Relative Entropy Stochastic Search},
