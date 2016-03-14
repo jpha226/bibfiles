@@ -1,3 +1,11 @@
+@article{tzeng2016towards,
+	title={Towards Adapting Deep Visuomotor Representations From Simulated to Real Environments},
+	author={Tzeng, Eric and Coline, Devin and Hoffman, Judy and Finn, Chelsea and Xingchao, Peng and Levine, Sergey and Saenko, Kate and Darrell, Trevor},
+	journal={arXiv pre-print: arXiv:1511.07111},
+	year={2016},
+	annote={Method for adapting representations of synthetic images to the real world. Useful for learning pose estimates. Modified loss function leads to model learning features that transfer to real world. Method exploits presence of real-synthetic training pairs.}
+}
+
 @article{kahn2016PLATO,
 	title={PLATO: Policy Learning using Adaptive Trajectory Optimization},
 	author={Kahn, Gregory and Zhang, Tianhao and Levine, Sergey and Abbeel, Pieter},
@@ -27,7 +35,7 @@
 	author={Levine, Sergey and Pastor, Peter and Krizhevsky, Alex and Quillen, Deirdre},
 	journal={arXiv},
 	year={206},
-	annote={Learn robot grasps by learning to predict if a grasp will succeed or not. Use a convolutional neural net predictor and collect training data with 14 robotic arm manipulators and monocular cameras. Learns relationship between gripper and objects (ie hand-eye coordination). Large scale data collection involved over 800,000 grasp attemps over two months.}
+	annote={Learn robot grasps by learning to predict if a grasp will succeed or not. Use a convolutional neural net predictor and collect training data with 14 robotic arm manipulators and monocular cameras. Learns relationship between gripper and objects (ie hand-eye coordination). Large scale data collection involved over 800,000 grasp attemps over two months. Methods works by predicting grasp success given a move and then repeatedly selecting move that leads to grasp success. Grasps occur when probability of success reaches a given threshold.}
 }
 
 % 57

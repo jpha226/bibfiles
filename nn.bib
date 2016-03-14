@@ -1,3 +1,11 @@
+@article{van2016learning,
+  title={Learning functions across many orders of magnitudes},
+  author={van Hasselt, Hado and Guez, Arthur and Hessel, Matteo and Silver, David},
+  journal={arXiv preprint arXiv:1602.07714},
+  year={2016},
+  annote={Considers problem where output targets may have different magnitudes. Normalizing outputs may help. This can be done in supervised learning easily but may be difficult in adaptive setting or in RL. Paper proposes a method for adaptive output normalization. Method computes statistics of output distribution (mean and covariance) and also modifies weights in top layer of neural network to preserve prior learning. This allows DQN to work without reward clipping when learning atari from frames.}
+}
+
 @inproceedings{jaderberg2015spatial,
   title={Spatial transformer networks},
   author={Jaderberg, Max and Simonyan, Karen and Zisserman, Andrew and others},

@@ -1,3 +1,39 @@
+@inproceedings{masson2016reinforcement,
+  title={Reinforcement Learning with Parameterized Actions},
+  author={Masson, Warwick and Ranchod, Pravesh and Konidaris, George},
+  year={2016},
+  booktitle={Association for the Advancement of Artificial Intelligence, AAAI},
+  annote={Introduces a Q-learning approach for learning action-values in a parameterized action setting. Method involves fixing continuous action policies and updating discrete policy and then updating each continuous action policy. Theoretical and emprical results.}
+}
+
+@article{achiam2016easy,
+  title={Easy Monotonic Policy Iteration},
+  author={Achiam, Joshua},
+  year={2016},
+  journal={arXiv preprint arXiv:1602.09118},
+  annote={Theoretical paper that presents a method for generating monotonically improving policies. New bound from trust region policy optimization work. No empricial work but method is implementable in a sample-based framework.}
+}
+
+@inproceedings{ng2005learning,
+  title={Learning first-order Markov models for control},
+  author={Ng, Pieter Abbeel Andrew Y},
+  booktitle={Advances in Neural Information Processing Systems 17: Proceedings of the 2004 Conference},
+  volume={17},
+  pages={1},
+  year={2005},
+  organization={MIT Press},
+  annote={Standard max liklihood estimates of Markov models only consider first order effects. Many problems have higher order effects so the max liklihood model is not a good estimate. This paper presents a method for learning models over more time-steps and empirically shows how this improves on max liklihood. EM type algorithm.}
+}
+
+@inproceedings{guo2013reward,
+  title={Reward Mapping for Transfer in Long-Lived Agents},
+  author={Guo, Xiaoxiao and Singh, Satinder and Lewis, Richard L},
+  booktitle={Advances in Neural Information Processing Systems},
+  pages={2130--2138},
+  year={2013},
+  annote={Transfer an intrinsic internal reward function that is learned over tasks. Internal reward improves over objective reward for task learning. Builds on optimal reward problem which tries to find the reward that will guide agent to optimal objective policy. Results show this is more effective than policy transfer.}
+}
+
 @article{wahlstrom2015pixels,
   title={From pixels to torques: Policy learning with deep dynamical models},
   author={Wahlstr{\"o}m, Niklas and Sch{\"o}n, Thomas B and Deisenroth, Marc Peter},
@@ -59,7 +95,7 @@
   booktitle={Advances in Neural Information Processing Systems},
   pages={2845--2853},
   year={2015},
-  annote={Predict Atari frames conditioned on actions. Predictions are useful for control up to 100 time steps.}
+  annote={Predict Atari frames conditioned on actions. Predictions are useful for control up to 100 time steps. Learns an encoded representation of frames and then learns action dynamics in this latent space and then decodes to produce a new frame. Model is trained to minimize predictions of K steps which improves over one step dynamics approach. The predictive model is used to improve exploration with DQN.}
 }
 
 @article{wang2015dueling,
