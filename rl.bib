@@ -1,3 +1,58 @@
+@article{wahlstrom2015pixels,
+  title={From pixels to torques: Policy learning with deep dynamical models},
+  author={Wahlstr{\"o}m, Niklas and Sch{\"o}n, Thomas B and Deisenroth, Marc Peter},
+  journal={arXiv preprint arXiv:1502.02251},
+  year={2015},
+  annote={Model-based algorithm for learning control from pixels. Uses a low dimensional embedding of images and dynamical predictive model. Data-efficient and learns quickly.}
+}
+
+@article{rawlik2013stochastic,
+  title={On stochastic optimal control and reinforcement learning by approximate inference},
+  author={Rawlik, Konrad and Toussaint, Marc and Vijayakumar, Sethu},
+  journal={Robotics},
+  pages={353},
+  year={2013},
+  publisher={MIT Press},
+  annote={Reformulates stochatic optimal control problem and unifies prior work. Also connect to reinforcement learning and derive new model-free algorithms. Mainly theoretical but with some evaluation on toy domains.}
+}
+
+@inproceedings{li2004iterative,
+  title={Iterative linear quadratic regulator design for nonlinear biological movement systems.},
+  author={Li, Weiwei and Todorov, Emanuel},
+  booktitle={ICINCO (1)},
+  pages={222--229},
+  year={2004},
+  annote={Method for locally-optimal control of non-linear systems. I think it works with locally linear models and iteratively improves controller and adapts model.}
+}
+
+@inproceedings{watter2015embed,
+  title={Embed to control: A locally linear latent dynamics model for control from raw images},
+  author={Watter, Manuel and Springenberg, Jost and Boedecker, Joschka and Riedmiller, Martin},
+  booktitle={Advances in Neural Information Processing Systems},
+  pages={2728--2736},
+  year={2015},
+  annote={Introduces a method for model learning and control of non-linear systems from raw pixel images. Deep generative model that generates image trajectories from a latent space where dynamics are locally linear.}
+}
+
+@inproceedings{mahmood2014weighted,
+  title={Weighted importance sampling for off-policy learning with linear function approximation},
+  author={Mahmood, A Rupam and van Hasselt, Hado P and Sutton, Richard S},
+  booktitle={Advances in Neural Information Processing Systems},
+  pages={3014--3022},
+  year={2014},
+  annote={Weighted importance sampling does not carry over well to function approximation. They do not fix this but work to bridge the gap. They show weighted importace sampling is a special case of weighting the error of individual samples and use this to derive a new off-policy LSTD(lambda) algorithm.}
+}
+
+@inproceedings{vanseijen2015deeper,
+  title={A Deeper Look at Planning as Learning from Replay},
+  author={Vanseijen, Harm and Sutton, Rich},
+  booktitle={Proceedings of the 32nd International Conference on Machine Learning (ICML-15)},
+  pages={2314--2322},
+  year={2015},
+  annote={Derives two new off-policy lambda algorithms, PQ(lambda) and off policy TD(lambda). Abstract claims a new derivation technique for deriving these methods. Prior off-policy methods are not truly Monte Carlo when lambda=1 hence motivation for this work.}
+
+}
+
 @inproceedings{oh2015action,
   title={Action-conditional video prediction using deep networks in atari games},
   author={Oh, Junhyuk and Guo, Xiaoxiao and Lee, Honglak and Lewis, Richard L and Singh, Satinder},
