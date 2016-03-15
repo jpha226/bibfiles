@@ -1,3 +1,23 @@
+@inproceedings{da2014learning,
+  title={Learning parameterized motor skills on a humanoid robot},
+  author={Da Silva, Bruno Castro and Baldassarre, Gianluca and Konidaris, George and Barto, Andrew},
+  booktitle={Robotics and Automation (ICRA), 2014 IEEE International Conference on},
+  pages={5239--5244},
+  year={2014},
+  organization={IEEE},
+  annote={Identify charts of policy manifold, map tasks to charts (classification), linear regression on task features to find parameters in chosen manifold. Generalizes learned policies to other contexts within a family of parameterized tasks.}
+}
+
+@inproceedings{punjani2015deep,
+  title={Deep learning helicopter dynamics models},
+  author={Punjani, Ali and Abbeel, Pieter},
+  booktitle={Robotics and Automation (ICRA), 2015 IEEE International Conference on},
+  pages={3223--3230},
+  year={2015},
+  organization={IEEE},
+  annote={Learns a helicopter's dynamics with a MLP with RELUs. Introduces a weight initialization techinique by initializing weights to values of training examples. The final model combines another type of model with the learned network. The network learns from a history of states and actions.}
+}
+
 @article{tzeng2016towards,
 	title={Towards Adapting Deep Visuomotor Representations From Simulated to Real Environments},
 	author={Tzeng, Eric and Coline, Devin and Hoffman, Judy and Finn, Chelsea and Xingchao, Peng and Levine, Sergey and Saenko, Kate and Darrell, Trevor},
@@ -11,7 +31,7 @@
 	author={Kahn, Gregory and Zhang, Tianhao and Levine, Sergey and Abbeel, Pieter},
 	journal={arXiv},
 	year={2016},
-	annote={Uses MPC to generate supervised training data for learning deep network policies. Sounds a lot like guided policy search but using MPC for supervision. Adaptive training makes MPC gradually match the learned policy. MPC protects from dangerous on-policy actions during learning. Evaluated on simulated aerial vehicle tasks.}
+	annote={Uses MPC to generate supervised training data for learning deep network policies. Sounds a lot like guided policy search but using MPC for supervision. Adaptive training makes MPC gradually match the learned policy. MPC protects from dangerous on-policy actions during learning. Evaluated on simulated aerial vehicle tasks. Very similar to earlier work by same authors. Main difference seems to be does not require episodic formulation as update occur every time step. Comparison to DAGGER type algorithms is made more explicit and some interesting theoretical results presented.}
 }
 
 @article{finn2016guided,

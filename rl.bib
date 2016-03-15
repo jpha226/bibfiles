@@ -1,3 +1,35 @@
+@article{mandel2016offline,
+  title={Offline Evaluation of Online Reinforcement Learning Algorithms},
+  author={Mandel, Travis and Liu, Yun-En and Brunskill, Emma and Popovic, Zoran},
+  year={2016},
+  annote={Use data offline to look at performance of RL algorithms. They don't build models but present data to the algorithm in a way such that it is if data is sampled from true distribution. Methods are based on rejection sampling. Empirical comparison to a max liklihood model and they do much better. A lot of theoretical results as well.}
+}
+
+@article{schaul2015prioritized,
+  title={Prioritized Experience Replay},
+  author={Schaul, Tom and Quan, John and Antonoglou, Ioannis and Silver, David},
+  journal={arXiv preprint arXiv:1511.05952},
+  year={2015},
+  annote={Replaces uniform replay with weighted sampling where weights are based on TD errors. Method uses stochastic prioritization and importance sampling to correct bias. Experiments combine method with Double DQN and they get state-of-the-art results.}
+}
+
+@inproceedings{sui2015safe,
+  title={Safe exploration for optimization with Gaussian processes},
+  author={Sui, Yanan and Gotovos, Alkis and Burdick, Joel and Krause, Andreas},
+  booktitle={Proceedings of the 32nd International Conference on Machine Learning (ICML-15)},
+  pages={997--1005},
+  year={2015},
+  annote={Continuous bandit method with safe exploration. Never takes a decision that is under a specified threshold of safety. Makes several ssumptions about underlying dynamics (e.g. evaluation function is k-lipschitz).}
+}
+
+@article{gu2015continuous,
+  title={Continuous Deep Q-Learning with Model-based Acceleration},
+  author={Gu, Shixiang and Lillicrap, Timothy and Sutskever, Ilya and Levine, Sergey},
+  year={2016},
+  journal={arXiv preprint arXiv:1603.00748},
+  annote={Introduces a continuous action variant of Q-learning. Also includes a mechanism for speeding up learning w/ local linear models (similar to work by Levine and Abbeel). Method incorporates samples from 'imaginary' model rollouts which are used to supplement real world samples. Q-learning with continuous actions is accomplished by learning a quadratic approximation to the advantage function. Then the maximum action can be selected easily.}
+}
+
 @inproceedings{masson2016reinforcement,
   title={Reinforcement Learning with Parameterized Actions},
   author={Masson, Warwick and Ranchod, Pravesh and Konidaris, George},
