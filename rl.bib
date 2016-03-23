@@ -1,3 +1,125 @@
+@inproceedings{knox2009interactively,
+  title={Interactively shaping agents via human reinforcement: The TAMER framework},
+  author={Knox, W Bradley and Stone, Peter},
+  booktitle={Proceedings of the fifth international conference on Knowledge capture},
+  pages={9--16},
+  year={2009},
+  organization={ACM},
+  annote={Presents TAMER method for human-provided reinforcement to an RL agent. TAMER agents model human feedback and change actions to maximize reinforcement.}
+}
+
+@inproceedings{heess2015learning,
+  title={Learning continuous control policies by stochastic value gradients},
+  author={Heess, Nicolas and Wayne, Gregory and Silver, David and Lillicrap, Tim and Erez, Tom and Tassa, Yuval},
+  booktitle={Advances in Neural Information Processing Systems},
+  pages={2926--2934},
+  year={2015},
+  annote={Introduces a method for learning stochastic control policies using value gradient methods. Extends applicability of value gradient to stochastic dynamics and policies. Idea is to build a model, compute value gradients, and then use value gradient to compute a lower variance form of policy gradient. Cool trick to treat a stochastic function as a deterministic function of exogenous noise variables.}
+}
+
+@article{vigorito2010intrinsically,
+  title={Intrinsically motivated hierarchical skill learning in structured environments},
+  author={Vigorito, Christopher M and Barto, Andrew G},
+  journal={Autonomous Mental Development, IEEE Transactions on},
+  volume={2},
+  number={2},
+  pages={132--143},
+  year={2010},
+  publisher={IEEE},
+  annote={Method for learning hierarchy of skills across multiple tasks in factored environments. Ignores extrinsic reward and uses an intrinsic reward to guide exploration. Idea is that skill hierarchy will be useful for future tasks.}
+}
+
+@inproceedings{platt2010belief,
+  title={Belief space planning assuming maximum likelihood observations},
+  author={Platt Jr, Robert and others},
+  booktitle={Proceedings of the Robotics: Science and Systems Conference, 6th},
+  year={2010},
+  annote={Plan directly in belief space and replan as plan gets off. Planning in belief space you can take uncertainty into account while planning. Use belief system dynamics instead of true dynamics in planning.}
+}
+
+@inproceedings{mohamed2015variational,
+  title={Variational Information Maximisation for Intrinsically Motivated Reinforcement Learning},
+  author={Mohamed, Shakir and Rezende, Danilo Jimenez},
+  booktitle={Advances in Neural Information Processing Systems},
+  pages={2116--2124},
+  year={2015},
+  annote={Shows how mutual information can be maximized with a variational lower bound. Technique is used for intrinsically motivated RL agents. Method is model-free and scales to high dimensional problems.}
+}
+
+@inproceedings{thomas2015policy,
+  title={Policy Evaluation Using the $\Omega$-Return},
+  author={Thomas, Philip S and Niekum, Scott and Theocharous, Georgios and Konidaris, George},
+  booktitle={Advances in Neural Information Processing Systems},
+  pages={334--342},
+  year={2015},
+  annote={Replaces independence of returns assumption of TD(lambda) building off TD_gamma paper. Introduces approximation scheme for computing omega return. Omega return accounts for the correlation of different length returns. Empirical results show superiority on some problems. Omega refers to covariance matrix of n-step returns.}
+}
+
+@inproceedings{konidaris2011td_gamma,
+  title={TD\_gamma: Re-evaluating Complex Backups in Temporal Difference Learning},
+  author={Konidaris, George and Niekum, Scott and Thomas, Philip S},
+  booktitle={Advances in Neural Information Processing Systems},
+  pages={2402--2410},
+  year={2011},
+  annote={Introduces the gamma-return which is a parameter free lambda-return (gamma is discount factor). Method has time and space complexity proportional to episode length so they introduce an algorithm with a capacity parameter for approximating TD-gamma. This paper shows that the lambda-return is a max-liklihood estimator of the return under several conditions one of which is that variances of n-step returns increase geometrically. This is typically false so gamma-return reweights returns to account for this. Empirically the method outperformas lambda-return.}
+}
+
+@inproceedings{loshchilov2013intensive,
+  title={Intensive surrogate model exploitation in self-adaptive surrogate-assisted cma-es (saacm-es)},
+  author={Loshchilov, Ilya and Schoenauer, Marc and Sebag, Mich{\`e}le},
+  booktitle={Proceedings of the 15th annual conference on Genetic and evolutionary computation},
+  pages={439--446},
+  year={2013},
+  organization={ACM},
+  annote={Paper describes a mechanism for using surrogate models for black-box optimization (e.g. w/ CMA-ES).}
+}
+
+@article{silver2016mastering,
+  title={Mastering the game of Go with deep neural networks and tree search},
+  author={Silver, David and Huang, Aja and Maddison, Chris J and Guez, Arthur and Sifre, Laurent and van den Driessche, George and Schrittwieser, Julian and Antonoglou, Ioannis and Panneershelvam, Veda and Lanctot, Marc and others},
+  journal={Nature},
+  volume={529},
+  number={7587},
+  pages={484--489},
+  year={2016},
+  publisher={Nature Publishing Group},
+  annote={Describes the Alpha Go system for human-level Go play. First they learn a Go policy with a convolutional neural network trained on expert moves. Then policy gradient RL is used to improve this policy on games of self-play. Then a value function network is learned for estimating the value of a board configuration. Value function is derived from policy network. Then MCTS is used for the final agent which used the policy to select actions and value network to evaluate boards. Program defeated European champion 5-0 and later the world chamption 4-1.}
+}
+
+@article{hansen2005cma,
+  title={The CMA evolution strategy: A tutorial},
+  author={Hansen, Nikolaus},
+  journal={Vu le},
+  volume={29},
+  year={2005},
+  annote={Tutorial of CMA-ES algorithm. Useful reference for papers that refer to CMA-ES.}
+}
+
+@inproceedings{bareinboim2015bandits,
+  title={Bandits with unobserved confounders: A causal approach},
+  author={Bareinboim, Elias and Forney, Andrew and Pearl, Judea},
+  booktitle={Advances in Neural Information Processing Systems},
+  pages={1342--1350},
+  year={2015},
+  annote={Proposes a new framework for multi-armed bandits with confounding variables and modifies Thompson sampling for this new framework. Confounders are unmeasured variables that affect action and outcome variables. Makes a distinction between experimental and observational distribution. Example given in paper is that there is a difference between randomly assigning patients in a medical study as opposed to obeserving what happens in practice.}
+}
+
+@article{rusu2015policy,
+  title={Policy Distillation},
+  author={Rusu, Andrei A and Colmenarejo, Sergio Gomez and Gulcehre, Caglar and Desjardins, Guillaume and Kirkpatrick, James and Pascanu, Razvan and Mnih, Volodymyr and Kavukcuoglu, Koray and Hadsell, Raia},
+  journal={arXiv preprint arXiv:1511.06295},
+  year={2015},
+  annote={Combining multiple DQN policies into single agent, compressing policies, and online compression. Idea is to either have one network that can play multiple games well or to get a smaller representation of a learned policy. Basic idea is to use regression to match larger policy outputs (action-values).}
+}
+
+@inproceedings{bellemare2016increasing,
+  title={Increasing the Action Gap: New Operators for Reinforcement Learning},
+  author={Bellemare, Marc G. and Ostrovski, Georg and Guez, Arthur and Thomas, Philip S. and Munos, Remi},
+  year={2016},
+  booktitle={Association for the Advancement of Artificial Intelligence, AAAI},
+  annote={This paper introduces a family of Bellman operators which preserve the set of optimal policies although they devalue suboptimal actions. Devaluing suboptimal actions is related to advantage learning. The inconsistency of the traditional Bellman operator is a problem in function approximation when small approximation errors can change the optimal policy. Main empirical result is that new operator significantly improves performance of DQN with a one line change.}
+}
+
 @article{mandel2016offline,
   title={Offline Evaluation of Online Reinforcement Learning Algorithms},
   author={Mandel, Travis and Liu, Yun-En and Brunskill, Emma and Popovic, Zoran},
