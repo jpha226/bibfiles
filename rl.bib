@@ -1,3 +1,43 @@
+@inproceedings{subramanian2016exploration,
+  title={Exploration from Demonstration for Interactive Reinforcement Learning},
+  author={Subramanian, Kaushik and Isbell Jr, Charles L and Thomaz, Andrea L},
+  year={2016},
+  booktitle={Autonomous Agents and Multi-agent Systems},
+  annote={Introduces exploration from demonstration which uses demonstration to guide exploration. Agent's uncertainty is used to solicite more demonstrations from the user.}
+}
+
+@inproceedings{suay2016learning,
+  title={Learning from Demonstration for Shaping through Inverse Reinforcement Learning},
+  author={Suay, Halit Bener and Brys, Tim and Taylor, Matthew E and Chernova, Sonia},
+  year={2016},
+  booktitle={Autonomous Agents and Multi-agent Systems},
+  annote={Use demonstrations and IRL to generate a reward function and then use this reward as a shaping function for episodic tasks with sparse rewards. Method is model-free and scales to an Atari Mario problem. Favorable comparisons with state-of-the-art LfD methods.}
+}
+
+@article{kawaguchi2016bounded,
+  title={Bounded Optimal Exploration in MDP},
+  author={Kawaguchi, Kenji},
+  journal={arXiv preprint arXiv:1604.01350},
+  year={2016},
+  annote={Relax PAC-MDP conditions to speed-up attainment of satisfactory behavior. Theoretical analysis of algorithms for discrete and continuous MDPs.}
+}
+
+@article{thomas2016data-efficient,
+  title={Data-Efficient Off-Policy Policy Evaluation for Reinforcement Learning},
+  author={Thomas, Phil and Brunskill, Emma},
+  journal={arXiv preprint arXiv:1604.00923}, 
+  year={2016},
+  annote={Extend Jiang and Li's doubly robust estimator to infinite horizon problems and extend algorith to weighted DR. Then introduce blended WDR and model based off-policy estimates to further improve performance. Goal is to minimize MSE when evaluating a policy with data from another policy. Model-based and IS estimates are blended in a way similar to complex returns such as the lambda return.}
+}
+
+@article{jiang2015doubly,
+  title={Doubly Robust Off-policy Evaluation for Reinforcement Learning},
+  author={Jiang, Nan and Li, Lihong},
+  journal={arXiv preprint arXiv:1511.03722},
+  year={2015},
+  annote={Alternative to importance sampling with lower variance but still no bias. Extends doubly robust estimator from bandits to MDPs. Idea is to introduce a model to guide IS and reduce variance. Only derived for finite horizon case.}
+}
+
 @inproceedings{wingate2007discovery,
   title={On discovery and learning of models with predictive representations of state for agents with continuous actions and observations},
   author={Wingate, David and Singh, Satinder},
@@ -14,7 +54,7 @@
   booktitle={Advances in neural information processing systems},
   pages={None},
   year={2003},
-  annote={Fit a model to helicopter dynamics and use the model to learn control. The model is stochastic and non-linear which is interesting.}
+  annote={Fit a model to helicopter dynamics and use the model to learn control. The model is locally weighted linear regression and is a generative model. Introduces PEGASUS trick for reducing variance between model trajectories. With PEGASUS trick dynamics become effectively deterministic function of pre-determined noise variables.}
 }
 
 @inproceedings{moldovan2012risk,
@@ -23,7 +63,7 @@
   booktitle={NIPS},
   pages={3140--3148},
   year={2012},
-  annote={Method for finding a policy that minimizes expected cost but performs better than some bound with probability 1 - delta where delta is a risk aversion parameter. }
+  annote={Method for finding a policy that minimizes expected cost but performs better than some bound with probability 1 - delta where delta is a risk aversion parameter. Discrete MDPs and MDP is known. Interesting to see if there is a connection between this paper and Phil's work on high confidence policy improvement.}
 }
 
 @inproceedings{jiang2015abstraction,
