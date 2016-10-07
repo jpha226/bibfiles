@@ -1,3 +1,87 @@
+@article{thomas2016energetic,
+  title={Energetic Natural Gradient Descent},
+  author={Thomas, Philip S and EDU, CMU and da Silva, Bruno Castro and BR, UFRGS and Dann, Christoph and Brunskill, Emma},
+  booktitle={Proceedings of the 33rd International Conference on Machine Learning},
+  year={2016},
+  annote={Extension of natural gradient descent to take information about differences between events being samples from distribution. The true natural gradient moves the distribution such that KL is bounded but energetic natural gradient takes into account how different two events are. Empirically improves updates made in gradient descent. }
+}
+
+@article{rusu2016progressive,
+  title={Progressive neural networks},
+  author={Rusu, Andrei A and Rabinowitz, Neil C and Desjardins, Guillaume and Soyer, Hubert and Kirkpatrick, James and Kavukcuoglu, Koray and Pascanu, Razvan and Hadsell, Raia},
+  journal={arXiv preprint arXiv:1606.04671},
+  year={2016},
+  annote={Neural network architechture for transfer learning. Adds a new network for a new task with lateral connections to features in previous networks. Architecture is evaluated on transfer between variants of Pong, transfer between different atari games, and transfer between labyrinth domain games. Introduces a measure of transfer based off of Fisher information and perturbation. Perturbation involves injecting noise into different components of the network and seeing how performance drops (component is important if adding noise really hurts performance). Fisher information metric computes Fisher information matrix wrt hidden layer activations instead of parameters. Also serves as a way to see how important each layer or network column is. Talk on this work at RSS workshop shows it being used to transfer learning from simulation to physical robots.}
+}
+
+@article{boyan1995generalization,
+  title={Generalization in reinforcement learning: Safely approximating the value function},
+  author={Boyan, Justin and Moore, Andrew W},
+  journal={Advances in neural information processing systems},
+  pages={369--376},
+  year={1995},
+  annote={Function approximation with dynamic programming diverges in a wide variety of settings. This paper analyzes failure to converge across several tasks with different function approximators. Then they introduce the "grow support" algorithm which always converges. Learns from Monte Carlo returns for a given set of sample points.}
+}
+
+@inproceedings{baird1995residual,
+  title={Residual algorithms: Reinforcement learning with function approximation},
+  author={Baird, Leemon and others},
+  booktitle={Proceedings of the twelfth international conference on machine learning},
+  pages={30--37},
+  year={1995},
+  annote={Baird's counter-example paper. Off-policy direct gradient methods (minimize Bellman error) diverge with bootstrapping. Residual gradient methods that minimize Bellman residual (full gradient methods) provably converge but are slow. Paper introduces a family of algorithms which uses a weighted average of these updates to achieve a faster method which converges. Method is only applicable to deterministic MDPs or if a model is available because each update requires two samples from P(|s,a).}
+}
+
+@inproceedings{doshi2008reinforcement,
+  title={Reinforcement learning with limited reinforcement: Using Bayes risk for active learning in POMDPs},
+  author={Doshi, Finale and Pineau, Joelle and Roy, Nicholas},
+  booktitle={Proceedings of the 25th international conference on Machine learning},
+  pages={256--263},
+  year={2008},
+  organization={ACM},
+  annote={Agent acts in a POMDP. Paper frames it as acting in a parameterized MDP with hidden parameters. Agent maintains a set of particles to represent hypotheses about correct MDP. Agent can use queries to lower risk of taking suboptimal action. Bayes risk is used to decide when to ask for help. This work does not appear to scale to large problems.}
+}
+
+@inproceedings{greensmith2001variance,
+  title={Variance Reduction Techniques for Gradient Estimates in Reinforcement Learning.},
+  author={Greensmith, Evan and Bartlett, Peter L and Baxter, Jonathan and others},
+  booktitle={NIPS},
+  pages={1507--1514},
+  year={2001},
+  annote={Analyze the baseline technique used to reduce variance of policy gradient methods. Mainly theoretical results on variance with some preliminary experimental work.}
+}
+
+@inproceedings{kakade2001natural,
+  title={A Natural Policy Gradient.},
+  author={Kakade, Sham},
+  booktitle={NIPS},
+  volume={14},
+  pages={1531--1538},
+  year={2001},
+  annote={Natural gradient policy improvement method. Show that each update moves policy towards optimal action not just a better action.}
+}
+
+@inproceedings{veness2011variance,
+  title={Variance reduction in monte-carlo tree search},
+  author={Veness, Joel and Lanctot, Marc and Bowling, Michael},
+  booktitle={Advances in Neural Information Processing Systems},
+  pages={1836--1844},
+  year={2011},
+  annote={Application of three common variance reduction techniques to UCT for game play. Techniques are control variates, antithetic variates, and common random numbers. Paper describes how to use each of these with MC action selection.}
+}
+
+@inproceedings{zinkevich2006optimal,
+  title={Optimal unbiased estimators for evaluating agent performance},
+  author={Zinkevich, Martin and Bowling, Michael and Bard, Nolan and Kan, Morgan and Billings, Darse},
+  booktitle={Proceedings of the National Conference on Artificial Intelligence},
+  volume={21},
+  number={1},
+  pages={573},
+  year={2006},
+  organization={Citeseer},
+  annote={Advantage sum estimator applied to texas hold 'em poker. Advantage sum estimator is lower variance than MC estimate of a policy's value.}
+}
+
 @inproceedings{white2010interval,
   title={Interval estimation for reinforcement-learning algorithms in continuous-state domains},
   author={White, Martha and White, Adam},
