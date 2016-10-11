@@ -1,3 +1,43 @@
+@inproceedings{munos2016safe,
+  title={Safe and Efficient Off-Policy Reinforcement Learning},
+  author={Munos, R{\'e}mi and Stepleton, Tom and Harutyunyan, Anna and Bellemare, Marc G},
+  booktitle={In Proceedings of Neural and Information Processing Systems}
+  year={2016},
+  annote={Retrace(\lambda) algorithm for efficient off-policy learning. Paper is heavy on theory (convergence proofs for policy evaluation and control). Empirical results on Atari conducted with experience replay over trajectory segments. New method is shown to improve DQN performance.}
+}
+
+@inproceedings{duan2016benchmarking,
+  title={Benchmarking Deep Reinforcement Learning for Continuous Control},
+  author={Duan, Yan and Chen, Xi and Houthooft, Rein and Schulman, John and Abbeel, Pieter},
+  booktitle={In Proceedings of the 33rd International Conference on Machine Learning},
+  year={2016},
+  annote={Compares a bunch of state-of-the-art RL algorithms on a bunch of tasks. Tasks range from standard control to high dimensional control, tasks with partial observability, hierarchical tasks, and system identification tasks. Overall good codebase released with the paper and a good reference for several RL algorithms.}
+}
+
+@article{dulacdeep,
+  title={Deep Reinforcement Learning in Large Discrete Action Spaces},
+  author={Dulac-Arnold, Gabriel and Evans, Richard and van Hasselt, Hado and Sunehag, Peter and Lillicrap, Timothy and Hunt, Jonathan},
+  year={2016},
+  journal={arXiv:1512.07679v2},
+  annote={Title says it all. Proposed method embeds actions in continuous space for generalization and fast KNN among actions. Trained with DDPG and empirically evaluated on discretized cartpole, RL planning problem, and a recommender system. Architecture is the 'wolpertinger' architecture which is a mythological German creature.}
+}
+
+@inproceedings{oh2016control,
+  title={Control of Memory, Active Perception, and Action in Minecraft},
+  author={Oh, Junhyuk and Chockalingam, Valliappa and Singh, Satinder and Lee, Honglak},
+  booktitle={In Proceedings of the 33rd International Conference on Machine Learning},
+  year={2016},
+  annote={Propose several minecraft tasks which require memory. Evaluate DQN, DRQN and several new deep RL architectures which use NTM like memory components. New architectures perform favorably on these tasks.}
+}
+
+@article{blundell2016model,
+  title={Model-free episodic control},
+  author={Blundell, Charles and Uria, Benigno and Pritzel, Alexander and Li, Yazhe and Ruderman, Avraham and Leibo, Joel Z and Rae, Jack and Wierstra, Daan and Hassabis, Demis},
+  journal={arXiv preprint arXiv:1606.04460},
+  year={2016},
+  annote={Tabular RL method which estimates max return instead of expected return (mainly purposed for deterministic environments). Uses KNN to generalize to unseen states. Embeds observations into a feature space where features are used as the state for deciding table entry. This also helps generalization when using an embedding learned with a variational auto encoder. Shows good results in Atari and Labyrinth games in terms of learning quicker than deep RL methods.}
+}
+
 @article{thomas2016energetic,
   title={Energetic Natural Gradient Descent},
   author={Thomas, Philip S and EDU, CMU and da Silva, Bruno Castro and BR, UFRGS and Dann, Christoph and Brunskill, Emma},
