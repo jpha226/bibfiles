@@ -1,3 +1,40 @@
+@inproceedings{chaganty2012learning,
+  title={Learning in a small world},
+  author={Chaganty, Arun Tejasvi and Gaur, Prateek and Ravindran, Balaraman},
+  booktitle={Proceedings of the 11th International Conference on Autonomous Agents and Multiagent Systems-Volume 1},
+  pages={391--397},
+  year={2012},
+  organization={International Foundation for Autonomous Agents and Multiagent Systems},
+  annote={Small world networks are graphs that can be constructed in a way such that all nodes have a high degree of connectivity to one another but the number of edges does not blow up. This approach is used in this paper to generate options for temporal abstraction in RL. The approach is shown to outperform several other approaches in hierarchical RL domains.}
+}
+
+
+@inproceedings{barreto2017successor,
+  title={Successor features for transfer in reinforcement learning},
+  author={Barreto, Andr{\'e} and Dabney, Will and Munos, R{\'e}mi and Hunt, Jonathan J and Schaul, Tom and van Hasselt, Hado P and Silver, David},
+  booktitle={Advances in neural information processing systems},
+  pages={4055--4065},
+  year={2017},
+  annote={Learn reward function as linear function of some features and show how this can be shown for transfer to new environment.}
+}
+
+
+@article{metelli2018policy,
+  title={Policy Optimization via Importance Sampling},
+  author={Metelli, Alberto Maria and Papini, Matteo and Faccio, Francesco and Restelli, Marcello},
+  journal={arXiv preprint arXiv:1809.06098},
+  year={2018},
+  annote={This paper proposes a high confidence bound for IS. They then present two methods that optimize this lower bound for offline policy improvement. Experiments show the method is competitive with trust region policy optimization.}
+}
+
+
+@book{sutton1998reinforcement,
+	Author = {Richard S. Sutton and Andrew G. Barto},
+	Publisher = {MIT Press},
+	Title = {Reinforcement Learning: An Introduction},
+	Year = {1998}}
+
+
 @article{rajeswaran2016epopt,
   title={EPOpt: Learning Robust Neural Network Policies Using Model Ensembles},
   author={Rajeswaran, Aravind and Ghotra, Sarvjeet and Levine, Sergey and Ravindran, Balaraman},
@@ -88,25 +125,6 @@
   year={2008},
   organization={ACM},
   annote={Agent acts in a POMDP. Paper frames it as acting in a parameterized MDP with hidden parameters. Agent maintains a set of particles to represent hypotheses about correct MDP. Agent can use queries to lower risk of taking suboptimal action. Bayes risk is used to decide when to ask for help. This work does not appear to scale to large problems.}
-}
-
-@inproceedings{greensmith2001variance,
-  title={Variance Reduction Techniques for Gradient Estimates in Reinforcement Learning.},
-  author={Greensmith, Evan and Bartlett, Peter L and Baxter, Jonathan and others},
-  booktitle={NIPS},
-  pages={1507--1514},
-  year={2001},
-  annote={Analyze the baseline technique used to reduce variance of policy gradient methods. Mainly theoretical results on variance with some preliminary experimental work.}
-}
-
-@inproceedings{kakade2001natural,
-  title={A Natural Policy Gradient.},
-  author={Kakade, Sham},
-  booktitle={NIPS},
-  volume={14},
-  pages={1531--1538},
-  year={2001},
-  annote={Natural gradient policy improvement method. Show that each update moves policy towards optimal action not just a better action.}
 }
 
 @inproceedings{veness2011variance,
@@ -576,17 +594,6 @@
 }
 
 % 49
-@article{peters2008reinforcement,
-        title={Reinforcement learning of motor skills with policy gradients},
-        author={Peters, Jan and Schaal, Stefan},
-        journal={Neural networks},
-        volume={21},
-        number={4},
-        pages={682--697},
-        year={2008},
-        publisher={Elsevier},
-        annote={This journal article presents natural policy gradient learning for robotic tasks. Overall it is also a good reference on policy gradient learning as it surveys some of the work. The presented algorithm is the natural actor-critic which uses the natural policy gradient when updating the actor. The natural gradient is the direction of steepest ascent with respect to the Fisher information metric. One advantage of the natural gradient is that a small change in the parameters should be a small change in the policy but small is ambiguous and depends the parameterization of the policy. The natural gradient does not depend on the parameterization of the policy. The natural actor-critic and episodic natural actor-critic algorithms are presented and empirical results are conducted with a baseball task.}
-}
 
 % 48
 @article{akimoto2012theoretical,

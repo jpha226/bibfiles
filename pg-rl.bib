@@ -1,0 +1,184 @@
+
+@inproceedings{greensmith2001variance,
+  title={Variance Reduction Techniques for Gradient Estimates in Reinforcement Learning.},
+  author={Greensmith, Evan and Bartlett, Peter L and Baxter, Jonathan and others},
+  booktitle={NIPS},
+  pages={1507--1514},
+  year={2001},
+  annote={This paper analyzes the baseline technique used to reduce variance of policy gradient methods. Mainly theoretical results on variance with some preliminary experimental work. They derive the optimal baseline which is more compilated than just the state-dependent baseline. Optimal baseline depends on the policy parameterization.}
+}
+
+@inproceedings{kakade2001natural,
+  title={A Natural Policy Gradient.},
+  author={Kakade, Sham},
+  booktitle={NIPS},
+  volume={14},
+  pages={1531--1538},
+  year={2001},
+  annote={Introduces the natural gradient policy improvement method for RL. Shows that each update moves policy towards optimal action not just a better action.}
+}
+
+@article{schulman2017proximal,
+  title={Proximal policy optimization algorithms},
+  author={Schulman, John and Wolski, Filip and Dhariwal, Prafulla and Radford, Alec and Klimov, Oleg},
+  journal={arXiv preprint arXiv:1707.06347},
+  year={2017},
+  annote={Improves over TRPO by removing the constraint and instead uses importance weight clipping in the surrogate objective. By removing the constraint the policy can be optimized jointly with the value function. Paper also considers a version of TRPO where constraint is replaced with KL divergence penalty.}
+}
+@inproceedings{gu2017q,
+  title={Q-prop: Sample-efficient policy gradient with an off-policy critic},
+  author={Gu, Shixiang and Lillicrap, Timothy and Ghahramani, Zoubin and Turner, Richard E and Levine, Sergey},
+  booktitle={International Conference on Learning Representations},
+  year={2017},
+  annote={Develops an action-dependent control variate for policy gradient learning by using a taylor expansion of non-linear Q function. This allows exact integration for the control variate. Paper presents state-of-the-art results however later work has shown that the paper doesn't correctly implement its own method and hence produces biased results.}
+}
+@inproceedings{sutton2000policy,
+	title={Policy Gradient Methods for Reinforcement Learning with Function Approximation},
+	author={Sutton, Richard S. and McAllester, David and Singh, Satinder and Mansour, Yishay},
+	year={2000},
+	booktitle={NIPS},
+	annote={Instead of using function approximators for RL one can use function approximators for the policy. Then the parameters of the approximator can be updated using the reward gradient. The main result of this paper is to show that the gradient can be estimated from sample interactions with the environment. A function approximator for a policy takes a state as input and outputs a probability distribution over actions. Using this approach, a locally optimal policy can be found. The paper presents a policy gradient theorem where the exact action value function is used to compute the gradient. The next section shows that an approximation of the action value function is good enough for estimating the gradient. These two results allow the authors to show that policy iteration with function approximation will converge to a local optimum. Actor-critic methods and the REINFORCE algorithm are examples of this approach.}
+}
+
+@article{williams1992simple,
+  title={Simple statistical gradient-following algorithms for connectionist reinforcement learning},
+  author={Williams, Ronald J.},
+  journal={Machine learning},
+  volume={8},
+  number={3-4},
+  pages={229--256},
+  year={1992},
+  publisher={Springer},
+  annote={Most basic policy gradient method. }
+}
+
+@inproceedings{schulman2015trust,
+	title={Trust Region Policy Optimization},
+	author={Schulman, John and Levine, Sergey and Moritz, Philipp and Jordan, Michael and Abbeel, Pieter},
+	year={2015},
+	booktitle={International Conference on Machine Learning, ICML},
+	annote={This paper presents a policy update scheme with monotonic improvement and then introduces a finite sample approximation for large scale problems. The policy update scheme is theoretically derived. A previous result had derived the correct direction for monotonic improvement but required a very small step size to guarantee performance. The bound also only applies to mixed policies but this work extends it to all policy classes. A surrogate loss function is introduced which is the loss function with a penalty for the KL-divergence between the current policy and the updated policy. Minimizing the surrogate loss guarantees improvement for all policy classes. Then they change the KL-divergence penalty to a constraint which allows larger steps to be made. The final optimization problem is minimize the loss function such that the average KL divergence is less than a constraint. The objective and constraint function are approximated using Monte Carlo simulations. Two methods for this are given, the standard single path method and a new vine method that can be used if the system can be set to an arbitary state. Experiments compare against a variety of gradient based and gradient free methods on several simulated robotics tasks and Atari games. On experiments the algorithm performed better than the others. On Atari games they compare against the DeepMind workshop paper with DQN which outperforms them on most game. However, this demonstrates the generality of the method for learning policies. Future work could include recurrent neural network policies or combining with model based RL.}
+}
+
+@article{tucker2018mirage,
+  title={The mirage of action-dependent baselines in reinforcement learning},
+  author={Tucker, George and Bhupatiraju, Surya and Gu, Shixiang and Turner, Richard E and Ghahramani, Zoubin and Levine, Sergey},
+  journal={arXiv preprint arXiv:1802.10031},
+  year={2018},
+  annote={}
+}
+
+@article{wang2016sample,
+  title={Sample efficient actor-critic with experience replay},
+  author={Wang, Ziyu and Bapst, Victor and Heess, Nicolas and Mnih, Volodymyr and Munos, Remi and Kavukcuoglu, Koray and de Freitas, Nando},
+  journal={arXiv preprint arXiv:1611.01224},
+  year={2016}
+}
+
+@inproceedings{mnih2016asynchronous,
+  title={Asynchronous methods for deep reinforcement learning},
+  author={Mnih, Volodymyr and Badia, Adria Puigdomenech and Mirza, Mehdi and Graves, Alex and Lillicrap, Timothy and Harley, Tim and Silver, David and Kavukcuoglu, Koray},
+  booktitle={International conference on machine learning},
+  pages={1928--1937},
+  year={2016}
+}
+
+
+@inproceedings{wu2017scalable,
+  title={Scalable trust-region method for deep reinforcement learning using kronecker-factored approximation},
+  author={Wu, Yuhuai and Mansimov, Elman and Grosse, Roger B and Liao, Shun and Ba, Jimmy},
+  booktitle={Advances in neural information processing systems},
+  pages={5279--5288},
+  year={2017}
+}
+
+
+@inproceedings{silver2014deterministic,
+  title={Deterministic policy gradient algorithms},
+  author={Silver, David and Lever, Guy and Heess, Nicolas and Degris, Thomas and Wierstra, Daan and Riedmiller, Martin},
+  booktitle={ICML},
+  year={2014}
+}
+
+@article{lillicrap2015continuous,
+	author={Timothy P. Lillicrap and Jonathan J. Hunt and Alexander Pritzel and Nicolas Heess and Tom Erez and Yuval Tassa and David Silver and Daan Wierstra},
+	title={Continuous control with deep reinforcement learning},
+	journal={CoRR},
+	volume={abs/1509.02971},
+	year={2015},
+        annote={This paper combines ideas from DQN with the deterministic policy gradient (DPG) to get deep deterministic policy gradient (DDPG). The resulting algorithm can learn policies for continuous control tasks from high dimensional state representations. Since using a non-linear approximation of the value function introduces bias which voids convergence guarantees. To handle this they use a soft update which gradually moves the "critic" network towards a target network (DQN used a hard update). A replay buffer is used so that backpropagation can be used (requires iid data). Batch normalization is used to handle different scale features. Finally, learning is done off-policy by adding noise to the deterministic policy and computing the off policy deterministic policy gradient. Experimental evaluation is done with both low dimensional state spaces and high dimensional "learn from pixels" tasks implemented in the MuJoCu simulator. Results show that DDPG is competitive with and sometimes outperforms a model-based planner with full access to the environment model and its derivatives.}
+}
+
+@inproceedings{silver2014deterministic,
+	title={Deterministic Policy Gradient Algorithms},
+	author={Silver, David and Lever, Guy and Heess, Nicolas and Degris, Thomas and Weirstra, Daan and Riedmiller, Martin},
+	year={2014},
+	booktitle={ICML},
+	annote={This paper shows how to compute the gradient of deterministic policies. Previous work had shown how to compute the gradient for stochastic policies. The computation for the deterministic gradient is more efficient because there is no need to integrate over actions as in the stochastic policy gradient. As well as proving their deterministic policy gradient theorem, the authors show that their theorem is the limiting case of the stochastic policy gradient theorem as variance goes to 0. Deterministic policies may not explore as well as stochastic policies. To combat this the authors introduce an off-policy actor-critic. The actor in this method adjusts the parameters of the deterministic policy with gradient ascent. The critic can update its Q function using TD learning. The off-policy adaption uses importance sampling since experience comes from the exploration policy distribution, not the target policy one. The authors also describe what compatible function approximators are for the policy. Experimental results are given for high dimensional, continuous action domains. Comparisons are done against a stochastic actor-critic algorithm. The deterministic off-policy actor critic learns quicker in terms of computation and steps to convergence.}
+}
+
+@article{ciosek2018expected,
+  title={Expected Policy Gradients for Reinforcement Learning},
+  author={Ciosek, Kamil and Whiteson, Shimon},
+  journal={arXiv preprint arXiv:1801.03326},
+  year={2018}
+}
+
+@inproceedings{gu2017interpolated,
+  title={Interpolated policy gradient: Merging on-policy and off-policy gradient estimation for deep reinforcement learning},
+  author={Gu, Shixiang and Lillicrap, Tim and Turner, Richard E and Ghahramani, Zoubin and Sch{\"o}lkopf, Bernhard and Levine, Sergey},
+  booktitle={Advances in Neural Information Processing Systems},
+  pages={3846--3855},
+  year={2017}
+}
+
+@article{liu2018action,
+  title={Action-dependent control variates for policy optimization via stein identity},
+  author={Liu, Hao and Feng, Yihao and Mao, Yi and Zhou, Dengyong and Peng, Jian and Liu, Qiang},
+  year={2018}
+}
+
+@article{schulman2015high,
+  title={High-dimensional continuous control using generalized advantage estimation},
+  author={Schulman, John and Moritz, Philipp and Levine, Sergey and Jordan, Michael and Abbeel, Pieter},
+  journal={arXiv preprint arXiv:1506.02438},
+  year={2015}
+}
+
+
+@article{peters2008reinforcement,
+        title={Reinforcement learning of motor skills with policy gradients},
+        author={Peters, Jan and Schaal, Stefan},
+        journal={Neural networks},
+        volume={21},
+        number={4},
+        pages={682--697},
+        year={2008},
+        publisher={Elsevier},
+        annote={This journal article presents natural policy gradient learning for robotic tasks. Overall it is also a good reference on policy gradient learning as it surveys some of the work. The presented algorithm is the natural actor-critic which uses the natural policy gradient when updating the actor. The natural gradient is the direction of steepest ascent with respect to the Fisher information metric. One advantage of the natural gradient is that a small change in the parameters should be a small change in the policy but small is ambiguous and depends the parameterization of the policy. The natural gradient does not depend on the parameterization of the policy. The natural actor-critic and episodic natural actor-critic algorithms are presented and empirical results are conducted with a baseball task.}
+}
+
+
+@inproceedings{ciosek2017offer,
+  title={O{F}{F}{E}{R}: Off-Environment Reinforcement Learning},
+  author={Ciosek, Kamil and Whiteson, Shimon},
+  year={2017},
+  booktitle={Proceedings of the 31st AAAI Conference on Artificial Intelligence (AAAI)}
+}
+
+
+@inproceedings{thomas2014bias,
+	author={Thomas, Phillip S.},
+	title={Bias in Natural Actor-Critic Algorithms},
+	year={2014},
+	booktitle = {31st International Conference on Machine Learning, ICML},
+	annote={The main result in this paper is that prior work in natural actor-critic algorithms use a biased estimate of the natural gradient. The bias comes from a missing $\gamma^t$ termThe paper derives an unbiased natural gradient for the discounted reward setting. Previous algorithms are more suited for the average reward setting (no discount). The paper also shows that in the same conditions that SARSA only has global optima, the policy gradient objective function only has global optima so gradient based methods will converge to globally optimal policies. The paper does not present a practical algorithm (mainly theoretical results) and also suggests that increasing a policy's representational power and increasing exploration can help avoid local minima.}
+}
+
+@inproceedings{levine2013guided,
+	title={Guided Policy Search},
+	author={Levine, Sergey and Koltun, Vladlen},
+	year={2013},
+	booktitle={International Conference on Machine Learning, ICML},
+	annote={The high level idea of this paper is to create a guiding trajectory for completing a task. This can be repeated for different starting states and the controllers combined into one neural network policy. This results in a policy that generalizes well to new situations. Differential dynamic programming is used to find the trajectories. The trajectories are then used to generate training data for the neural network. A constraint on the KL-divergence of the controllers and the policy ensures that the induced state distributions will be the same at the end of training. This paper also introduces a regularizer to the importance sampled return of a trajectory because long rollouts tend to produce highly peaked distributions (very few samples are observed). The method was empirically evaluated on humanoid running and walking and showed good generalization and the ability to complete the task.}
+}
