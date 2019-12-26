@@ -125,7 +125,7 @@ on Artificial Intelligence (AAAI)},
   pages={336--343},
   year={2008},
   organization={ACM},
-  annote={Assume known rare-events and a simulator which directly controls the probability of rare-events.}
+  annote={Learn value function in the presence of rare-events. Assume known rare-events and a simulator which directly controls the probability of rare-events. Can change the probability of rare-events and use importance sampling to correct distribution shift. Introduce algorithms that learn in this way and compare favorably to TD-learning. Analyze tabular bias and variance compared to TD-learning.}
 }
 
 @inproceedings{desai2001simulation,
@@ -293,7 +293,18 @@ annote={Grad descent convergence conditions}
   title={Data-efficient policy evaluation through behavior policy search},
   author={Hanna, Josiah and Thomas, Philip S. and Stone, Peter and Niekum, Scott},
   year={2017},
-  booktitle={Proceedings of the 34th International Conference on Machine Learning (ICML)}
+  booktitle={Proceedings of the 34th International Conference on Machine Learning (ICML)},
+  annote={Optimal behavior policy for IS is not the evaluation policy. Propose an algorithm to learn a lower variance policy for IS.}
+}
+
+@inproceedings{hanna2017bootstrapping,
+  title={Bootstrapping with models: Confidence intervals for off-policy evaluation},
+  author={Hanna, Josiah P and Stone, Peter and Niekum, Scott},
+  booktitle={Proceedings of the 16th Conference on Autonomous Agents and MultiAgent Systems},
+  pages={538--546},
+  year={2017},
+  organization={International Foundation for Autonomous Agents and Multiagent Systems},
+  annote={Propose two bootstrap confidence interval methods. One uses model-based policy evaluation and the other uses weighted doubly robust. Outperform similar methods with IS as base policy evaluation method.}
 }
 
 
@@ -410,3 +421,36 @@ annote={Grad descent convergence conditions}
   organization={Omnipress}
 }
 
+@inproceedings{narita2019efficient,
+  title={Efficient Counterfactual Learning from Bandit Feedback},
+  author={Narita, Yusuke and Yasui, Shota and Yata, Kohei},
+  year={2019},
+  booktitle={The 35th AAAI Conference on Artificial Intelligence (AAAI)},
+  annote={Estimate the behavior policy even if you know the true one for contextual bandits. Two theoretical results showing lower asymptotic variance and empirical results with web marketing.}
+}
+
+@inproceedings{strehl2010learning,
+  title={Learning from logged implicit exploration data},
+  author={Strehl, Alex and Langford, John and Li, Lihong and Kakade, Sham M},
+  booktitle={Advances in Neural Information Processing Systems},
+  pages={2217--2225},
+  year={2010},
+  annote={Estimate behavior policy to smooth importance weights when logging with deterministic policies.}
+}
+
+@inproceedings{swaminathan2015self,
+  title={The self-normalized estimator for counterfactual learning},
+  author={Swaminathan, Adith and Joachims, Thorsten},
+  booktitle={Advances in Neural Information Processing Systems},
+  pages={3231--3239},
+  year={2015},
+  annote={weighted importance sampling for bandit learning}
+}
+
+@inproceedings{doroudi2017importance,
+  title={Importance sampling for fair policy selection},
+  author={Doroudi, Shayan and Thomas, Philip S and Brunskill, Emma},
+  booktitle={Uncertainty in Artificial Intelligence (UAI)},
+  year={2017},
+  annote={Importance sampling is unbiased but tends to under-estimate the value of policies in MDPs.}
+}
