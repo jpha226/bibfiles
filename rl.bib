@@ -1,3 +1,12 @@
+@article{franccois2018combined,
+  title={Combined Reinforcement Learning via Abstract Representations},
+  author={Fran{\c{c}}ois-Lavet, Vincent and Bengio, Yoshua and Precup, Doina and Pineau, Joelle},
+  journal={arXiv preprint arXiv:1809.04506},
+  year={2018},
+  annote={Learn low dimensional encoding of the environment and use for both model-based and model-free control. Adds modularity to RL by separating representation from control.}
+}
+
+
 @inproceedings{chaganty2012learning,
   title={Learning in a small world},
   author={Chaganty, Arun Tejasvi and Gaur, Prateek and Ravindran, Balaraman},
@@ -125,6 +134,25 @@
   year={2008},
   organization={ACM},
   annote={Agent acts in a POMDP. Paper frames it as acting in a parameterized MDP with hidden parameters. Agent maintains a set of particles to represent hypotheses about correct MDP. Agent can use queries to lower risk of taking suboptimal action. Bayes risk is used to decide when to ask for help. This work does not appear to scale to large problems.}
+}
+
+@inproceedings{greensmith2001variance,
+  title={Variance Reduction Techniques for Gradient Estimates in Reinforcement Learning.},
+  author={Greensmith, Evan and Bartlett, Peter L and Baxter, Jonathan and others},
+  booktitle={NIPS},
+  pages={1507--1514},
+  year={2001},
+  annote={Analyze the baseline technique used to reduce variance of policy gradient methods. Mainly theoretical results on variance with some preliminary experimental work.}
+}
+
+@inproceedings{kakade2001natural,
+  title={A Natural Policy Gradient.},
+  author={Kakade, Sham},
+  booktitle={NIPS},
+  volume={14},
+  pages={1531--1538},
+  year={2001},
+  annote={Natural gradient policy improvement method. Show that each update moves policy towards optimal action not just a better action.}
 }
 
 @inproceedings{veness2011variance,
@@ -594,6 +622,17 @@
 }
 
 % 49
+@article{peters2008reinforcement,
+        title={Reinforcement learning of motor skills with policy gradients},
+        author={Peters, Jan and Schaal, Stefan},
+        journal={Neural networks},
+        volume={21},
+        number={4},
+        pages={682--697},
+        year={2008},
+        publisher={Elsevier},
+        annote={This journal article presents natural policy gradient learning for robotic tasks. Overall it is also a good reference on policy gradient learning as it surveys some of the work. The presented algorithm is the natural actor-critic which uses the natural policy gradient when updating the actor. The natural gradient is the direction of steepest ascent with respect to the Fisher information metric. One advantage of the natural gradient is that a small change in the parameters should be a small change in the policy but small is ambiguous and depends the parameterization of the policy. The natural gradient does not depend on the parameterization of the policy. The natural actor-critic and episodic natural actor-critic algorithms are presented and empirical results are conducted with a baseball task.}
+}
 
 % 48
 @article{akimoto2012theoretical,
@@ -1051,6 +1090,7 @@ Important idea: features learned are shaped by RL signal. It isn't just a matter
 
 }
 
+
 @inproceedings{eysenbach2019search,
   title={Search on the Replay Buffer: Bridging Planning and Reinforcement Learning},
   author={Eysenbach, Benjamin and Salakhutdinov, Ruslan and Levine, Sergey},
@@ -1081,4 +1121,13 @@ Important idea: features learned are shaped by RL signal. It isn't just a matter
   booktitle={Proceedings of the International Conference on Machine Learning (ICML)},
   year={2018},
   annote={Modular LfD. Use task sketches which just require sequence of tasks performed but no actual segmentation of demonstration into different tasks. Show that the approach can do just as well as a fully supervised approach. Requires less annotation.}
+}
+@inproceedings{diuk2009adaptive,
+  title={The adaptive k-meteorologists problem and its application to structure learning and feature selection in reinforcement learning},
+  author={Diuk, Carlos and Li, Lihong and Leffler, Bethany R},
+  booktitle={Proceedings of the 26th Annual International Conference on Machine Learning},
+  pages={249--256},
+  year={2009},
+  organization={ACM},
+  annote={Algorithm for the adaptive k-meteorologist problem. Algorithm is evaluated on feature selection and structure learning for RL tasks.}
 }
